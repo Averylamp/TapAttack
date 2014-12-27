@@ -1,0 +1,437 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BB2F652B1A4F3FEE00E4AD79 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2F652A1A4F3FEE00E4AD79 /* main.m */; };
+		BB2F652E1A4F3FEE00E4AD79 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2F652D1A4F3FEE00E4AD79 /* AppDelegate.m */; };
+		BB2F65311A4F3FEE00E4AD79 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2F65301A4F3FEE00E4AD79 /* GameScene.m */; };
+		BB2F65331A4F3FEE00E4AD79 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = BB2F65321A4F3FEE00E4AD79 /* GameScene.sks */; };
+		BB2F65361A4F3FEE00E4AD79 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2F65351A4F3FEE00E4AD79 /* GameViewController.m */; };
+		BB2F65391A4F3FEE00E4AD79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB2F65371A4F3FEE00E4AD79 /* Main.storyboard */; };
+		BB2F653B1A4F3FEE00E4AD79 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB2F653A1A4F3FEE00E4AD79 /* Images.xcassets */; };
+		BB2F653E1A4F3FEE00E4AD79 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB2F653C1A4F3FEE00E4AD79 /* LaunchScreen.xib */; };
+		BB2F654A1A4F3FEE00E4AD79 /* GreenRedBlackGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2F65491A4F3FEE00E4AD79 /* GreenRedBlackGameTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BB2F65441A4F3FEE00E4AD79 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BB2F651D1A4F3FEE00E4AD79 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BB2F65241A4F3FEE00E4AD79;
+			remoteInfo = GreenRedBlackGame;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		BB2F65251A4F3FEE00E4AD79 /* GreenRedBlackGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GreenRedBlackGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB2F65291A4F3FEE00E4AD79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BB2F652A1A4F3FEE00E4AD79 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BB2F652C1A4F3FEE00E4AD79 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		BB2F652D1A4F3FEE00E4AD79 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		BB2F652F1A4F3FEE00E4AD79 /* GameScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
+		BB2F65301A4F3FEE00E4AD79 /* GameScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
+		BB2F65321A4F3FEE00E4AD79 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		BB2F65341A4F3FEE00E4AD79 /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		BB2F65351A4F3FEE00E4AD79 /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
+		BB2F65381A4F3FEE00E4AD79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BB2F653A1A4F3FEE00E4AD79 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		BB2F653D1A4F3FEE00E4AD79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		BB2F65431A4F3FEE00E4AD79 /* GreenRedBlackGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GreenRedBlackGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB2F65481A4F3FEE00E4AD79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BB2F65491A4F3FEE00E4AD79 /* GreenRedBlackGameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GreenRedBlackGameTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BB2F65221A4F3FEE00E4AD79 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB2F65401A4F3FEE00E4AD79 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BB2F651C1A4F3FEE00E4AD79 = {
+			isa = PBXGroup;
+			children = (
+				BB2F65271A4F3FEE00E4AD79 /* GreenRedBlackGame */,
+				BB2F65461A4F3FEE00E4AD79 /* GreenRedBlackGameTests */,
+				BB2F65261A4F3FEE00E4AD79 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BB2F65261A4F3FEE00E4AD79 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BB2F65251A4F3FEE00E4AD79 /* GreenRedBlackGame.app */,
+				BB2F65431A4F3FEE00E4AD79 /* GreenRedBlackGameTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BB2F65271A4F3FEE00E4AD79 /* GreenRedBlackGame */ = {
+			isa = PBXGroup;
+			children = (
+				BB2F652C1A4F3FEE00E4AD79 /* AppDelegate.h */,
+				BB2F652D1A4F3FEE00E4AD79 /* AppDelegate.m */,
+				BB2F652F1A4F3FEE00E4AD79 /* GameScene.h */,
+				BB2F65301A4F3FEE00E4AD79 /* GameScene.m */,
+				BB2F65321A4F3FEE00E4AD79 /* GameScene.sks */,
+				BB2F65341A4F3FEE00E4AD79 /* GameViewController.h */,
+				BB2F65351A4F3FEE00E4AD79 /* GameViewController.m */,
+				BB2F65371A4F3FEE00E4AD79 /* Main.storyboard */,
+				BB2F653A1A4F3FEE00E4AD79 /* Images.xcassets */,
+				BB2F653C1A4F3FEE00E4AD79 /* LaunchScreen.xib */,
+				BB2F65281A4F3FEE00E4AD79 /* Supporting Files */,
+			);
+			path = GreenRedBlackGame;
+			sourceTree = "<group>";
+		};
+		BB2F65281A4F3FEE00E4AD79 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BB2F65291A4F3FEE00E4AD79 /* Info.plist */,
+				BB2F652A1A4F3FEE00E4AD79 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BB2F65461A4F3FEE00E4AD79 /* GreenRedBlackGameTests */ = {
+			isa = PBXGroup;
+			children = (
+				BB2F65491A4F3FEE00E4AD79 /* GreenRedBlackGameTests.m */,
+				BB2F65471A4F3FEE00E4AD79 /* Supporting Files */,
+			);
+			path = GreenRedBlackGameTests;
+			sourceTree = "<group>";
+		};
+		BB2F65471A4F3FEE00E4AD79 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BB2F65481A4F3FEE00E4AD79 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BB2F65241A4F3FEE00E4AD79 /* GreenRedBlackGame */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB2F654D1A4F3FEE00E4AD79 /* Build configuration list for PBXNativeTarget "GreenRedBlackGame" */;
+			buildPhases = (
+				BB2F65211A4F3FEE00E4AD79 /* Sources */,
+				BB2F65221A4F3FEE00E4AD79 /* Frameworks */,
+				BB2F65231A4F3FEE00E4AD79 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GreenRedBlackGame;
+			productName = GreenRedBlackGame;
+			productReference = BB2F65251A4F3FEE00E4AD79 /* GreenRedBlackGame.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BB2F65421A4F3FEE00E4AD79 /* GreenRedBlackGameTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB2F65501A4F3FEE00E4AD79 /* Build configuration list for PBXNativeTarget "GreenRedBlackGameTests" */;
+			buildPhases = (
+				BB2F653F1A4F3FEE00E4AD79 /* Sources */,
+				BB2F65401A4F3FEE00E4AD79 /* Frameworks */,
+				BB2F65411A4F3FEE00E4AD79 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BB2F65451A4F3FEE00E4AD79 /* PBXTargetDependency */,
+			);
+			name = GreenRedBlackGameTests;
+			productName = GreenRedBlackGameTests;
+			productReference = BB2F65431A4F3FEE00E4AD79 /* GreenRedBlackGameTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BB2F651D1A4F3FEE00E4AD79 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0620;
+				ORGANIZATIONNAME = "Avery Lamp";
+				TargetAttributes = {
+					BB2F65241A4F3FEE00E4AD79 = {
+						CreatedOnToolsVersion = 6.2;
+					};
+					BB2F65421A4F3FEE00E4AD79 = {
+						CreatedOnToolsVersion = 6.2;
+						TestTargetID = BB2F65241A4F3FEE00E4AD79;
+					};
+				};
+			};
+			buildConfigurationList = BB2F65201A4F3FEE00E4AD79 /* Build configuration list for PBXProject "GreenRedBlackGame" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BB2F651C1A4F3FEE00E4AD79;
+			productRefGroup = BB2F65261A4F3FEE00E4AD79 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BB2F65241A4F3FEE00E4AD79 /* GreenRedBlackGame */,
+				BB2F65421A4F3FEE00E4AD79 /* GreenRedBlackGameTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BB2F65231A4F3FEE00E4AD79 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB2F653E1A4F3FEE00E4AD79 /* LaunchScreen.xib in Resources */,
+				BB2F653B1A4F3FEE00E4AD79 /* Images.xcassets in Resources */,
+				BB2F65331A4F3FEE00E4AD79 /* GameScene.sks in Resources */,
+				BB2F65391A4F3FEE00E4AD79 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB2F65411A4F3FEE00E4AD79 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BB2F65211A4F3FEE00E4AD79 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB2F65361A4F3FEE00E4AD79 /* GameViewController.m in Sources */,
+				BB2F652E1A4F3FEE00E4AD79 /* AppDelegate.m in Sources */,
+				BB2F65311A4F3FEE00E4AD79 /* GameScene.m in Sources */,
+				BB2F652B1A4F3FEE00E4AD79 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB2F653F1A4F3FEE00E4AD79 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB2F654A1A4F3FEE00E4AD79 /* GreenRedBlackGameTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BB2F65451A4F3FEE00E4AD79 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BB2F65241A4F3FEE00E4AD79 /* GreenRedBlackGame */;
+			targetProxy = BB2F65441A4F3FEE00E4AD79 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		BB2F65371A4F3FEE00E4AD79 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BB2F65381A4F3FEE00E4AD79 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		BB2F653C1A4F3FEE00E4AD79 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BB2F653D1A4F3FEE00E4AD79 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BB2F654B1A4F3FEE00E4AD79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		BB2F654C1A4F3FEE00E4AD79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BB2F654E1A4F3FEE00E4AD79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = GreenRedBlackGame/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		BB2F654F1A4F3FEE00E4AD79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = GreenRedBlackGame/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		BB2F65511A4F3FEE00E4AD79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = GreenRedBlackGameTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GreenRedBlackGame.app/GreenRedBlackGame";
+			};
+			name = Debug;
+		};
+		BB2F65521A4F3FEE00E4AD79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = GreenRedBlackGameTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GreenRedBlackGame.app/GreenRedBlackGame";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BB2F65201A4F3FEE00E4AD79 /* Build configuration list for PBXProject "GreenRedBlackGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB2F654B1A4F3FEE00E4AD79 /* Debug */,
+				BB2F654C1A4F3FEE00E4AD79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BB2F654D1A4F3FEE00E4AD79 /* Build configuration list for PBXNativeTarget "GreenRedBlackGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB2F654E1A4F3FEE00E4AD79 /* Debug */,
+				BB2F654F1A4F3FEE00E4AD79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		BB2F65501A4F3FEE00E4AD79 /* Build configuration list for PBXNativeTarget "GreenRedBlackGameTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB2F65511A4F3FEE00E4AD79 /* Debug */,
+				BB2F65521A4F3FEE00E4AD79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BB2F651D1A4F3FEE00E4AD79 /* Project object */;
+}
