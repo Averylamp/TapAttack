@@ -7,7 +7,8 @@
 //
 
 #import "GameScene.h"
-@interface GameScene()<UIApplicationDelegate>
+#import "AppDelegate.h"
+@interface GameScene()
 @property double lastTime;
 @property double numberOfUpdates;
 @property int score;
@@ -23,6 +24,7 @@
 @property NSMutableArray *arrayOfRedCircles;
 @property NSMutableArray *arrayOfRedTimesToDissappear;
 @property BOOL started;
+@property BOOL lost;
 @end
 @implementation GameScene
 
@@ -31,6 +33,11 @@
     CGFloat screenScale = [[UIScreen mainScreen] scale];
     CGSize screenSize = CGSizeMake(screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
     self.screenSize = screenSize;
+    
+    AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
+    appDelegate.gameScene = self;
+    
+    self.lost = NO;
     
     /* Setup your scene here */
     self.spawnTime = 0;
@@ -89,46 +96,50 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
-    
-    for (UITouch *touch in touches) {
-        
-        
-        CGPoint positionInScene = [touch locationInNode:self];
-        SKShapeNode *touchedNode = (SKShapeNode *)[self nodeAtPoint:positionInScene];
-        if (touchedNode){
-            if ([[touchedNode name]  isEqualToString:@"Green Node"]){
-                //[self lose];
-                int x = [self.arrayOfClickableCircles indexOfObject:touchedNode];
-                if (x<[self.arrayOfTimesToDissappear count]) {
-                    [self.arrayOfTimesToDissappear removeObjectAtIndex:x];
+    if(!self.lost){
+        for (UITouch *touch in touches) {
+            
+            
+            CGPoint positionInScene = [touch locationInNode:self];
+            SKShapeNode *touchedNode = (SKShapeNode *)[self nodeAtPoint:positionInScene];
+            if (touchedNode){
+                if ([[touchedNode name]  isEqualToString:@"Green Node"]){
+                    //[self lose];
+                    int x = [self.arrayOfClickableCircles indexOfObject:touchedNode];
+                    if (x<[self.arrayOfTimesToDissappear count]) {
+                        [self.arrayOfTimesToDissappear removeObjectAtIndex:x];
+                    }
+                    [self.arrayOfClickableCircles  removeObjectAtIndex:x];
+                    [touchedNode removeAllActions];
+                    [touchedNode removeFromParent];
+                    self.score = self.score + 1;
                 }
-                [self.arrayOfClickableCircles  removeObjectAtIndex:x];
-                [touchedNode removeAllActions];
-                [touchedNode removeFromParent];
-                self.score = self.score + 1;
+                if([[touchedNode name]isEqualToString:@"Golden Node"]){
+                    [touchedNode removeFromParent];
+                    self.score = self.score + arc4random() %30 + 20;
+                }
+                if([[touchedNode name]isEqualToString:@"Red Node"]){
+                    [self lose];
+                }
             }
-            if([[touchedNode name]isEqualToString:@"Golden Node"]){
-                [touchedNode removeFromParent];
-                self.score = self.score + arc4random() %30 + 20;
-            }
+            
+            /*
+             CGRect circle = CGRectMake(-55, -55, 110.0,110.0);
+             SKShapeNode *shapeNode = [[SKShapeNode alloc] init];
+             shapeNode.path = [UIBezierPath bezierPathWithOvalInRect:circle].CGPath;
+             shapeNode.fillColor = SKColor.greenColor;
+             shapeNode.strokeColor = nil;
+             shapeNode.position = location;
+             shapeNode.xScale=0.1;
+             shapeNode.yScale=0.1;
+             [self addChild:shapeNode];
+             [shapeNode runAction:[SKAction  scaleTo:1 duration:0.15]completion:^{
+             [self.arrayOfClickableCircles addObject:shapeNode];
+             [self.arrayOfTimesToDissappear addObject:[NSDecimalNumber numberWithDouble:CACurrentMediaTime() + self.timeToDissappear]];
+             } ];
+             NSLog(@"TimeTODissappear - %f",CACurrentMediaTime() + self.timeToDissappear);
+             */
         }
-        
-        /*
-         CGRect circle = CGRectMake(-55, -55, 110.0,110.0);
-         SKShapeNode *shapeNode = [[SKShapeNode alloc] init];
-         shapeNode.path = [UIBezierPath bezierPathWithOvalInRect:circle].CGPath;
-         shapeNode.fillColor = SKColor.greenColor;
-         shapeNode.strokeColor = nil;
-         shapeNode.position = location;
-         shapeNode.xScale=0.1;
-         shapeNode.yScale=0.1;
-         [self addChild:shapeNode];
-         [shapeNode runAction:[SKAction  scaleTo:1 duration:0.15]completion:^{
-         [self.arrayOfClickableCircles addObject:shapeNode];
-         [self.arrayOfTimesToDissappear addObject:[NSDecimalNumber numberWithDouble:CACurrentMediaTime() + self.timeToDissappear]];
-         } ];
-         NSLog(@"TimeTODissappear - %f",CACurrentMediaTime() + self.timeToDissappear);
-         */
     }
 }
 -(void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -141,16 +152,18 @@
 }
 
 -(void)lose{
+    self.lost = YES;
     SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     
     myLabel.text =[NSString stringWithFormat: @"You Lose"];
     myLabel.fontSize = 65;
     myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
                                    CGRectGetMidY(self.frame));
-    
+    myLabel.fontColor = [UIColor blackColor];
     [self addChild:myLabel];
     
     myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+    myLabel.fontColor = [UIColor blackColor];
     
     myLabel.text =[NSString stringWithFormat: @"Score - %d",self.score];
     myLabel.fontSize = 65;
@@ -163,7 +176,8 @@
     myLabel.text =[NSString stringWithFormat: @" High Score - %d",200];
     myLabel.fontSize = 65;
     myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-                                   CGRectGetMidY(self.frame)-15000);
+                                   CGRectGetMidY(self.frame)-175);
+    myLabel.fontColor = [UIColor blackColor];
     
     [self addChild:myLabel];
     
@@ -172,6 +186,7 @@
 }
 
 -(void) spawnGreen{
+    NSLog(@"SPAWN GREEN");
     BOOL valid = NO;
     CGPoint location;
     while (!valid){
@@ -210,7 +225,7 @@
     
 }
 -(void)spawnRed{
-    
+    NSLog(@"SPAWN RED");
     BOOL valid = NO;
     CGPoint location;
     while (!valid){
@@ -248,7 +263,7 @@
 }
 
 -(void)spawnGolden{
-    
+    NSLog(@"SPAWN GOLDEN");
     BOOL valid = NO;
     CGPoint location;
     while (!valid){
@@ -292,7 +307,8 @@
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
     
-    if (self.started){
+    if (self.started && !self.lost)
+    {
         BOOL greenAdded=NO;
         if(self.spawnTime ==0){
             self.spawnTime = CACurrentMediaTime();
@@ -339,9 +355,7 @@
         if(self.lastTime<firstTimeToDissappear && firstTimeToDissappear < currentTime){
             //NSLog(@"firstTime - %f currentTime - %f",firstTimeToDissappear,currentTime);
             [shapeToDissappear runAction:[SKAction scaleTo:0 duration:0.1] completion:^{
-                if (shapeToDissappear.fillColor == SKColor.greenColor){
-                    //[self lose];
-                }
+                [self lose];
                 [shapeToDissappear removeFromParent];
                 [self.arrayOfClickableCircles removeObject:shapeToDissappear];
             }];
@@ -376,14 +390,6 @@
     }
 }
 
--(void)applicationWillResignActive:(UIApplication *)application{
-    NSLog(@"app will resign called");
-    [self lose];
-}
--(void)applicationDidEnterBackground:(UIApplication *)application{
-    NSLog(@"app entered background");
-    [self lose];
-}
 
 
 
