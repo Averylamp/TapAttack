@@ -7,10 +7,11 @@
 //
 
 #import "GameScene.h"
-@interface GameScene()
+@interface GameScene()<UIApplicationDelegate>
 @property double lastTime;
 @property double numberOfUpdates;
-@property double score;
+@property int score;
+@property SKLabelNode *scoreLabel;
 @property double spawnRate;
 @property double spawnTime;
 @property int redSpawnRate;
@@ -26,10 +27,24 @@
 @implementation GameScene
 
 -(void)didMoveToView:(SKView *)view {
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    CGFloat screenScale = [[UIScreen mainScreen] scale];
+    CGSize screenSize = CGSizeMake(screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
+    self.screenSize = screenSize;
+    
     /* Setup your scene here */
     self.spawnTime = 0;
+    
+    self.scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkboard SE"];
+    self.scoreLabel.text = @"Score - 0";
+    self.scoreLabel.fontSize = 60.0f;
+    self.scoreLabel.fontColor = [UIColor blackColor];
+    self.scoreLabel.position = CGPointMake(CGRectGetMidX(self.frame),
+                                           self.screenSize.height - 60);
+    [self addChild:self.scoreLabel];
+    
     SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-    myLabel.color = [UIColor blackColor];
+    myLabel.fontColor = [UIColor blackColor];
     myLabel.text = @"3";
     myLabel.fontSize = 200;
     myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
@@ -38,6 +53,7 @@
     
     myLabel.yScale = 0.25;
     [self addChild:myLabel];
+    
     
     [myLabel runAction: [SKAction scaleTo:1.0 duration:1] completion:^{
         myLabel.text = @"2";
@@ -68,18 +84,34 @@
     self.spawnRate = .75;
     self.timeToDissappear = 1.5;
     self.timeToDissappearRate = .5;
-    CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    CGFloat screenScale = [[UIScreen mainScreen] scale];
-    CGSize screenSize = CGSizeMake(screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
-    self.screenSize = screenSize;
+    
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     
     for (UITouch *touch in touches) {
-        CGPoint location = [touch locationInNode:self];
         
+        
+        CGPoint positionInScene = [touch locationInNode:self];
+        SKShapeNode *touchedNode = (SKShapeNode *)[self nodeAtPoint:positionInScene];
+        if (touchedNode){
+            if ([[touchedNode name]  isEqualToString:@"Green Node"]){
+                //[self lose];
+                int x = [self.arrayOfClickableCircles indexOfObject:touchedNode];
+                if (x<[self.arrayOfTimesToDissappear count]) {
+                    [self.arrayOfTimesToDissappear removeObjectAtIndex:x];
+                }
+                [self.arrayOfClickableCircles  removeObjectAtIndex:x];
+                [touchedNode removeAllActions];
+                [touchedNode removeFromParent];
+                self.score = self.score + 1;
+            }
+            if([[touchedNode name]isEqualToString:@"Golden Node"]){
+                [touchedNode removeFromParent];
+                self.score = self.score + arc4random() %30 + 20;
+            }
+        }
         
         /*
          CGRect circle = CGRectMake(-55, -55, 110.0,110.0);
@@ -111,14 +143,31 @@
 -(void)lose{
     SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     
-    myLabel.text =[NSString stringWithFormat: @"You Lose\nYour final score was %f",self.score];
+    myLabel.text =[NSString stringWithFormat: @"You Lose"];
     myLabel.fontSize = 65;
     myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
                                    CGRectGetMidY(self.frame));
     
     [self addChild:myLabel];
     
+    myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     
+    myLabel.text =[NSString stringWithFormat: @"Score - %d",self.score];
+    myLabel.fontSize = 65;
+    myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
+                                   CGRectGetMidY(self.frame)-100);
+    
+    [self addChild:myLabel];
+    myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+    
+    myLabel.text =[NSString stringWithFormat: @" High Score - %d",200];
+    myLabel.fontSize = 65;
+    myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
+                                   CGRectGetMidY(self.frame)-15000);
+    
+    [self addChild:myLabel];
+    
+    NSLog(@"YOU LOSE");
     
 }
 
@@ -126,24 +175,25 @@
     BOOL valid = NO;
     CGPoint location;
     while (!valid){
-        int x= (arc4random() % (int)(self.screenSize.width - 110)) + 55, y = (arc4random() % (int) (self.screenSize.height - 110)) + 55;
+        int x= (arc4random() % (int)(self.screenSize.width - 130)) + 65, y = (arc4random() % (int) (self.screenSize.height - 130)) + 65;
         valid = YES;
         for(SKShapeNode *s in self.arrayOfClickableCircles){
-            if(ABS(x-s.position.x)<110&&ABS(y-s.position.y)<110){
+            if(ABS(x-s.position.x)<110&&ABS(y-s.position.y)<120){
                 valid = NO;
                 NSLog(@"TOO CLOSE");
             }
         }
         for(SKShapeNode *s in self.arrayOfRedCircles){
-            if(ABS(x-s.position.x)<120&&ABS(y-s.position.y)<120){
+            if(ABS(x-s.position.x)<120&&ABS(y-s.position.y)<130){
                 valid = NO;
                 NSLog(@"TOO CLOSE");
             }
         }
         location = CGPointMake(x, y);
     }
-    CGRect circle = CGRectMake(-55, -55, 110.0,110.0);
+    CGRect circle = CGRectMake(-65, -65, 130.0,130.0);
     SKShapeNode *shapeNode = [[SKShapeNode alloc] init];
+    shapeNode.name = @"Green Node";
     shapeNode.path = [UIBezierPath bezierPathWithOvalInRect:circle].CGPath;
     shapeNode.fillColor = SKColor.greenColor;
     shapeNode.strokeColor = nil;
@@ -167,13 +217,13 @@
         int x= (arc4random() % (int)(self.screenSize.width - 130)) + 65, y = (arc4random() % (int) (self.screenSize.height - 130)) + 65;
         valid = YES;
         for(SKShapeNode *s in self.arrayOfClickableCircles){
-            if(ABS(x-s.position.x)<120&&ABS(y-s.position.y)<120){
+            if(ABS(x-s.position.x)<130 && ABS(y-s.position.y)<130){
                 valid = NO;
                 //NSLog(@"TOO CLOSE");
             }
         }
         for(SKShapeNode *s in self.arrayOfRedCircles){
-            if(ABS(x-s.position.x)<90&&ABS(y-s.position.y)<90){
+            if(ABS(x-s.position.x)<90 && ABS(y-s.position.y)<90){
                 valid = NO;
                 NSLog(@"RED TOO CLOSE");
             }
@@ -182,6 +232,7 @@
     }
     CGRect circle = CGRectMake(-65, -65, 130.0,130.0);
     SKShapeNode *shapeNode = [[SKShapeNode alloc] init];
+    shapeNode.name = @"Red Node";
     shapeNode.path = [UIBezierPath bezierPathWithOvalInRect:circle].CGPath;
     shapeNode.fillColor = SKColor.redColor;
     shapeNode.strokeColor = nil;
@@ -195,6 +246,47 @@
         
     } ];
 }
+
+-(void)spawnGolden{
+    
+    BOOL valid = NO;
+    CGPoint location;
+    while (!valid){
+        int x= (arc4random() % (int)(self.screenSize.width - 250)) + 125, y = (arc4random() % (int) (self.screenSize.height - 250)) + 125;
+        valid = YES;
+        for(SKShapeNode *s in self.arrayOfClickableCircles){
+            if(ABS(x-s.position.x)<130 && ABS(y-s.position.y)<130){
+                valid = NO;
+                //NSLog(@"TOO CLOSE");
+            }
+        }
+        for(SKShapeNode *s in self.arrayOfRedCircles){
+            if(ABS(x-s.position.x)<90 && ABS(y-s.position.y)<90){
+                valid = NO;
+                NSLog(@"RED TOO CLOSE");
+            }
+        }
+        location = CGPointMake(x, y);
+    }
+    CGRect circle = CGRectMake(-40, -40, 80.0,80.0);
+    SKShapeNode *shapeNode = [[SKShapeNode alloc] init];
+    shapeNode.name = @"Golden Node";
+    shapeNode.path = [UIBezierPath bezierPathWithOvalInRect:circle].CGPath;
+    shapeNode.fillColor = [SKColor colorWithRed:255.0f green:180.0f blue:0.0f alpha:1.0f];
+    shapeNode.strokeColor = nil;
+    shapeNode.position = location;
+    shapeNode.xScale=0.2;
+    shapeNode.yScale=0.2;
+    [self addChild:shapeNode];
+    [shapeNode runAction:[SKAction  scaleTo:1 duration:0.25]completion:^{
+        [shapeNode runAction:[SKAction scaleTo:1.2 duration:0.4] completion:^{
+            [shapeNode runAction:[SKAction scaleTo:0.0f duration:.25]];
+        }];
+    } ];
+    [shapeNode runAction:[SKAction moveByX:(arc4random()%350)-175 y:(arc4random()%350)-175 duration:.65]];
+    
+}
+
 
 
 -(void)update:(CFTimeInterval)currentTime {
@@ -223,9 +315,10 @@
         
         if(self.lastTime < self.spawnTime && self.spawnTime < currentTime){
             [self spawnGreen];
-            double chanceOfRedSpawn =  1-(.30  / (1 + 20 *pow(M_E, -.0008 * (self.numberOfUpdates* 2))));
+            //double chanceOfRedSpawn =  1-(.30  / (1 + 20 *pow(M_E, -.0008 * (self.numberOfUpdates* 2))));
+            double chanceOfRedSpawn = .6 +( self.numberOfUpdates/100000.0);
             if(self.numberOfUpdates > 600){
-                NSLog(@"Chance of Red Spawn - %f" , chanceOfRedSpawn);
+                //NSLog(@"Chance of Red Spawn - %f" , chanceOfRedSpawn);
                 if (arc4random() %100 > chanceOfRedSpawn * 100) {
                     [self spawnRed];
                 }
@@ -262,19 +355,38 @@
         shapeToDissappear = (SKShapeNode *)[self.arrayOfRedCircles firstObject];
         if(self.lastTime<firstTimeToDissappear && firstTimeToDissappear < currentTime){
             //NSLog(@"firstTime - %f currentTime - %f",firstTimeToDissappear,currentTime);
-            [shapeToDissappear runAction:[SKAction scaleTo:0 duration:0.25] completion:^{
+            [shapeToDissappear runAction:[SKAction scaleTo:0 duration:.1] completion:^{
                 [shapeToDissappear removeFromParent];
                 [self.arrayOfRedCircles removeObject:shapeToDissappear];
             }];
             [self.arrayOfRedTimesToDissappear removeObject:timeInArray];
             
         }
+        int t = (int)self.numberOfUpdates % 100;
+        if(arc4random() % 100 == t && self.numberOfUpdates > 200){
+            [self spawnGolden];
+        }
         
         
         
+        self.timeToDissappear =ABS( 1.5 - (self.numberOfUpdates / 20000));
+        //NSLog(@"Time to dissappear - %f",self.timeToDissappear);
+        self.scoreLabel.text = [NSString stringWithFormat:@"Score - %d",self.score];
         self.lastTime= currentTime;
     }
 }
+
+-(void)applicationWillResignActive:(UIApplication *)application{
+    NSLog(@"app will resign called");
+    [self lose];
+}
+-(void)applicationDidEnterBackground:(UIApplication *)application{
+    NSLog(@"app entered background");
+    [self lose];
+}
+
+
+
 
 
 @end

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>E33DCBEB-D5F3-4C05-8048-A227C3719CA1</string>
+	<key>IDESourceControlProjectName</key>
+	<string>GreenRedBlackGame</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>30FCF99C086323FD85AE1A9C80FCAA5F60472E08</key>
+		<string>https://bitbucket.org/averylamp/galagagame.git</string>
+		<key>860F35A70AB75D0878CEC13D87B5640FC43C8625</key>
+		<string>https://bitbucket.org/averylamp/tap-attack.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>GreenRedBlackGame.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>30FCF99C086323FD85AE1A9C80FCAA5F60472E08</key>
+		<string>../../../..</string>
+		<key>860F35A70AB75D0878CEC13D87B5640FC43C8625</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://bitbucket.org/averylamp/tap-attack.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>860F35A70AB75D0878CEC13D87B5640FC43C8625</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>30FCF99C086323FD85AE1A9C80FCAA5F60472E08</string>
+			<key>IDESourceControlWCCName</key>
+			<string>..</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>860F35A70AB75D0878CEC13D87B5640FC43C8625</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Tap%20Attack!</string>
+		</dict>
+	</array>
+</dict>
+</plist>

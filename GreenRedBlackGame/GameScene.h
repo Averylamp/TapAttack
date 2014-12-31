@@ -10,4 +10,5 @@
 
 @interface GameScene : SKScene
 @property CGSize screenSize;
+-(void)lose;
 @end

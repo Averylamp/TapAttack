@@ -181,6 +181,7 @@
 				TargetAttributes = {
 					BB2F65241A4F3FEE00E4AD79 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = 9XWYL3K4YT;
 					};
 					BB2F65421A4F3FEE00E4AD79 = {
 						CreatedOnToolsVersion = 6.2;
@@ -430,6 +431,7 @@
 				BB2F654F1A4F3FEE00E4AD79 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BB2F65501A4F3FEE00E4AD79 /* Build configuration list for PBXNativeTarget "GreenRedBlackGameTests" */ = {
 			isa = XCConfigurationList;
@@ -438,6 +440,7 @@
 				BB2F65521A4F3FEE00E4AD79 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

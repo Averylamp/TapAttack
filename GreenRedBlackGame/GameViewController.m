@@ -38,6 +38,7 @@
 }
 
 
+
 -(void) viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
     // Configure the view.
@@ -54,7 +55,7 @@
     // Create and configure the scene.
     GameScene *scene = [GameScene unarchiveFromFile:@"GameScene"];
     scene.size  = screenSize;
-    [scene setBackgroundColor:[UIColor grayColor]];
+    [scene setBackgroundColor:[UIColor whiteColor]];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
     // Present the scene.
