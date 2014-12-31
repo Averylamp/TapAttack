@@ -34,21 +34,32 @@
 {
     [super viewDidLoad];
 
+
+}
+
+
+-(void) viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
     // Configure the view.
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    CGFloat screenScale = [[UIScreen mainScreen] scale];
+    CGSize screenSize = CGSizeMake(screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
+    
+    
     SKView * skView = (SKView *)self.view;
     skView.showsFPS = YES;
     skView.showsNodeCount = YES;
     /* Sprite Kit applies additional optimizations to improve rendering performance */
     skView.ignoresSiblingOrder = YES;
-    
     // Create and configure the scene.
     GameScene *scene = [GameScene unarchiveFromFile:@"GameScene"];
+    scene.size  = screenSize;
+    [scene setBackgroundColor:[UIColor grayColor]];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
     // Present the scene.
     [skView presentScene:scene];
 }
-
 - (BOOL)shouldAutorotate
 {
     return YES;

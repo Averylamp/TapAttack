@@ -9,5 +9,5 @@
 #import <SpriteKit/SpriteKit.h>
 
 @interface GameScene : SKScene
-
+@property CGSize screenSize;
 @end
