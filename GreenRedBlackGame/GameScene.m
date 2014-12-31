@@ -210,7 +210,7 @@
         }
         self.redLastNumberOfUpdates = self.redLastNumberOfUpdates + 1;
         if(self.numberOfUpdates ==600 || (self.numberOfUpdates > 600 &&(int) self.redLastNumberOfUpdates % (int)self.redSpawnRate==0)){
-            NSLog(@"SPAWN RED");
+            //NSLog(@"SPAWN RED");
             if(!greenAdded){
                 self.redLastNumberOfUpdates = 1;
                 self.redSpawnRate = self.redSpawnRate -19;
