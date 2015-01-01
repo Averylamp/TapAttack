@@ -182,6 +182,9 @@
     [self addChild:myLabel];
     
     NSLog(@"YOU LOSE");
+    [self.view presentScene:nil];
+    [self.viewController settupMenu];
+    
     
 }
 

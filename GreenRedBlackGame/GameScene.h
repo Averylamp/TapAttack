@@ -7,8 +7,9 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
-
+#import "GameViewController.h"
 @interface GameScene : SKScene
 @property CGSize screenSize;
+@property GameViewController *viewController;
 -(void)lose;
 @end

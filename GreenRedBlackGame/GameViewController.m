@@ -33,15 +33,56 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    [self.view setBackgroundColor:[UIColor whiteColor]];
+    
+    [self settupMenu];
+    
+}
+-(void)settupMenu{
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    CGFloat screenScale = [[UIScreen mainScreen] scale];
+    CGSize screenSize = CGSizeMake(screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
+    
+    self.screenSize = CGSizeMake(screenBounds.size.width, screenBounds.size.height);
+    NSLog(@"Screen Size - %f , %f",self.screenSize.width,self.screenSize.height);
+    
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.screenSize.width, self.screenSize.height/3.5)];
+    titleLabel.text = @"Tap Attack!";
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.textColor = [UIColor blackColor];
+    titleLabel.font = [UIFont fontWithName:@"Party LET" size:50.0f];
+    [self.view addSubview:titleLabel];
+    UIButton *testbutton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 400, 400)];
+    testbutton.backgroundColor = [UIColor blackColor];
+    //[self.view addSubview:testbutton];
+    
+    UIButton *playButton = [[UIButton alloc]initWithFrame:CGRectMake( self.screenSize.width/4, self.screenSize.height*2 /3 , self.screenSize.width/2, 60 )];
+    
+    [playButton setBackgroundColor:[UIColor blueColor]];
+    //DIVISION BUTTON TAG IS 1
+    //GRADIENT
+    
+    CAGradientLayer *btnGradient = [CAGradientLayer layer];
+    btnGradient.frame = CGRectMake(0,0, playButton.frame.size.width, playButton.frame.size.height);
+    btnGradient.colors = [NSArray arrayWithObjects:
+                          (id)[[UIColor colorWithRed:10.0f / 255.0f green:19.0f / 255.0f blue:190.0f / 255.0f alpha:1.0f] CGColor],(id)[[UIColor colorWithRed:38.0f / 255.0f green:29.0f / 232.0f blue:102.0f / 255.0f alpha:1.0f] CGColor],                                          nil];
+    //[divisionButton.layer insertSublayer:btnGradient atIndex:0];
+    
+    [playButton setBackgroundImage:[self imageFromLayer:btnGradient] forState:UIControlStateNormal];
+    [playButton setBackgroundImage:[self imageFromLayer:btnGradient] forState:UIControlStateHighlighted];
+    
+    btnGradient.colors = [NSArray arrayWithObjects:
+                          (id)[[UIColor colorWithRed:38.0f / 255.0f green:100.0f / 100.0f blue:102.0f / 255.0f alpha:1.0f] CGColor],(id)[[UIColor colorWithRed:10.0f / 255.0f green:200.0f / 255.0f blue:100.0f / 255.0f alpha:1.0f] CGColor],nil];
+    [playButton setBackgroundImage:[self imageFromLayer:btnGradient] forState:UIControlStateSelected];
+    playButton.titleLabel.text = @"Play";
+    playButton.titleLabel.textColor = [SKColor whiteColor];
+    [playButton addTarget:self action:@selector(play:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:playButton];
 
 }
 
-
-
--(void) viewWillLayoutSubviews{
-    [super viewWillLayoutSubviews];
-    // Configure the view.
+-(void)play: (UIButton *)sender{
+    [[self.view subviews]makeObjectsPerformSelector:@selector(removeFromSuperview)];
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     CGFloat screenScale = [[UIScreen mainScreen] scale];
     CGSize screenSize = CGSizeMake(screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
@@ -57,13 +98,35 @@
     scene.size  = screenSize;
     [scene setBackgroundColor:[UIColor whiteColor]];
     scene.scaleMode = SKSceneScaleModeAspectFill;
-    
+    scene.viewController = self;
     // Present the scene.
     [skView presentScene:scene];
 }
+
+-(void) viewWillLayoutSubviews{
+    [super viewWillLayoutSubviews];
+    // Configure the view.
+    
+    
+}
+
+- (UIImage *)imageFromLayer:(CALayer *)layer
+{
+    UIGraphicsBeginImageContext([layer frame].size);
+    
+    [layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *outputImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return outputImage;
+}
+
+
+
 - (BOOL)shouldAutorotate
 {
-    return YES;
+    return NO;
 }
 
 - (NSUInteger)supportedInterfaceOrientations
