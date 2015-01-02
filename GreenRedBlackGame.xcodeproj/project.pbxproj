@@ -17,8 +17,9 @@
 		BB2F653E1A4F3FEE00E4AD79 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB2F653C1A4F3FEE00E4AD79 /* LaunchScreen.xib */; };
 		BB2F654A1A4F3FEE00E4AD79 /* GreenRedBlackGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2F65491A4F3FEE00E4AD79 /* GreenRedBlackGameTests.m */; };
 		BB2F65571A4FBB3C00E4AD79 /* menuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2F65561A4FBB3C00E4AD79 /* menuViewController.m */; };
+		BB41C5921A565480009280DA /* LoseScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = BB41C5911A565480009280DA /* LoseScene.sks */; };
+		BB41C5951A5654C4009280DA /* LoseScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BB41C5941A5654C4009280DA /* LoseScene.m */; };
 		BB5612761A560DDE00897598 /* MenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = BB5612751A560DDE00897598 /* MenuScene.sks */; };
-		BB56127A1A560E7B00897598 /* SceneKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB5612791A560E7B00897598 /* SceneKit.framework */; };
 		BB56127D1A56427C00897598 /* MenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BB56127C1A56427C00897598 /* MenuScene.m */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,9 @@
 		BB2F65491A4F3FEE00E4AD79 /* GreenRedBlackGameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GreenRedBlackGameTests.m; sourceTree = "<group>"; };
 		BB2F65551A4FBB3C00E4AD79 /* menuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = menuViewController.h; sourceTree = "<group>"; };
 		BB2F65561A4FBB3C00E4AD79 /* menuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = menuViewController.m; sourceTree = "<group>"; };
+		BB41C5911A565480009280DA /* LoseScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LoseScene.sks; sourceTree = "<group>"; };
+		BB41C5931A5654C4009280DA /* LoseScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoseScene.h; sourceTree = "<group>"; };
+		BB41C5941A5654C4009280DA /* LoseScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoseScene.m; sourceTree = "<group>"; };
 		BB5612751A560DDE00897598 /* MenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MenuScene.sks; sourceTree = "<group>"; };
 		BB5612771A560E4900897598 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 		BB5612791A560E7B00897598 /* SceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SceneKit.framework; path = System/Library/Frameworks/SceneKit.framework; sourceTree = SDKROOT; };
@@ -63,7 +67,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB56127A1A560E7B00897598 /* SceneKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +113,9 @@
 				BB56127B1A56427C00897598 /* MenuScene.h */,
 				BB56127C1A56427C00897598 /* MenuScene.m */,
 				BB5612751A560DDE00897598 /* MenuScene.sks */,
+				BB41C5931A5654C4009280DA /* LoseScene.h */,
+				BB41C5941A5654C4009280DA /* LoseScene.m */,
+				BB41C5911A565480009280DA /* LoseScene.sks */,
 				BB2F65371A4F3FEE00E4AD79 /* Main.storyboard */,
 				BB2F65551A4FBB3C00E4AD79 /* menuViewController.h */,
 				BB2F65561A4FBB3C00E4AD79 /* menuViewController.m */,
@@ -228,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB2F653E1A4F3FEE00E4AD79 /* LaunchScreen.xib in Resources */,
+				BB41C5921A565480009280DA /* LoseScene.sks in Resources */,
 				BB2F653B1A4F3FEE00E4AD79 /* Images.xcassets in Resources */,
 				BB2F65331A4F3FEE00E4AD79 /* GameScene.sks in Resources */,
 				BB5612761A560DDE00897598 /* MenuScene.sks in Resources */,
@@ -253,6 +260,7 @@
 				BB2F652E1A4F3FEE00E4AD79 /* AppDelegate.m in Sources */,
 				BB2F65311A4F3FEE00E4AD79 /* GameScene.m in Sources */,
 				BB56127D1A56427C00897598 /* MenuScene.m in Sources */,
+				BB41C5951A5654C4009280DA /* LoseScene.m in Sources */,
 				BB2F652B1A4F3FEE00E4AD79 /* main.m in Sources */,
 				BB2F65571A4FBB3C00E4AD79 /* menuViewController.m in Sources */,
 			);

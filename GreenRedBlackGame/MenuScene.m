@@ -7,6 +7,7 @@
 //
 
 #import "MenuScene.h"
+
 @interface  MenuScene()
 @property CGSize screenSize;
 @end
@@ -14,42 +15,37 @@
 
 -(void)didMoveToView:(SKView *)view
 {
+    if ([self.view isKindOfClass:[SKView class]]) {
+        NSLog(@"IT IS A SKVIEW");
+    }else{
+        NSLog(@"IT IS A UIVIEW");
+    }
+    SKView * skView = (SKView *)self.view;
     
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     CGFloat screenScale = [[UIScreen mainScreen] scale];
-    //CGSize screenSize = CGSizeMake(screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
-    self.screenSize = CGSizeMake(screenBounds.size.width, screenBounds.size.height);
+    CGSize screenSize = CGSizeMake(screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
+    //self.screenSize = CGSizeMake(screenBounds.size.width, screenBounds.size.height);
+    self.screenSize= screenSize;
     NSLog(@"Screen Size - %f , %f",self.screenSize.width,self.screenSize.height);
     SKLabelNode *titleLabel = [[SKLabelNode alloc]initWithFontNamed:@"Party LET"];
     //UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.screenSize.width, self.screenSize.height/3.5)];
     titleLabel.text = @"Tap Attack!";
     //titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.fontColor = [UIColor blackColor];
-    titleLabel.fontSize = 50.0f;
-    titleLabel.position = CGPointMake(self.screenSize.width/2, self.screenSize.height/7);
+    titleLabel.fontSize = 125.0f;
+    titleLabel.position = CGPointMake(self.screenSize.width/2,self.screenSize.height - self.screenSize.height/7);
     //titleLabel.font = [UIFont fontWithName:@"Party LET" size:50.0f];
-    [self.view addSubview:titleLabel];
+    [self addChild:titleLabel];
     
-    UIButton *testbutton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 400, 400)];
-    testbutton.backgroundColor = [UIColor blackColor];
     SKSpriteNode * playButton = [[SKSpriteNode alloc]initWithImageNamed:@"playButton"];
     playButton.position = CGPointMake(self.screenSize.width / 2, self.screenSize.height/3);
+    playButton.xScale = 2.5;
+    playButton.yScale = 2.5;
     playButton.name = @"playButton";
-    //[self.view addSubview:playButton];
+    [self addChild:playButton];
     NSLog(@"HERE");
     
-}
-
-- (UIImage *)imageFromLayer:(CALayer *)layer
-{
-    UIGraphicsBeginImageContext([layer frame].size);
-    
-    [layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *outputImage = UIGraphicsGetImageFromCurrentImageContext();
-    
-    UIGraphicsEndImageContext();
-    
-    return outputImage;
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -58,7 +54,7 @@
     SKNode *node = [self nodeAtPoint:location];
     
     if([node.name isEqualToString:@"playButton"]){
-        [self.viewController play];
+        [self.viewController play:nil];
     }
     
     

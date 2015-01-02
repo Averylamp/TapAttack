@@ -38,17 +38,22 @@
     appDelegate.gameScene = self;
     
     self.lost = NO;
-    
+    if ([self.view isKindOfClass:[SKView class]]) {
+        NSLog(@"IT IS A SKVIEW");
+    }else{
+        NSLog(@"IT IS A UIVIEW");
+    }
     /* Setup your scene here */
     self.spawnTime = 0;
     
-    self.scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkboard SE"];
+    self.scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"DIN Condensed"];
     self.scoreLabel.text = @"Score - 0";
-    self.scoreLabel.fontSize = 60.0f;
+    self.scoreLabel.fontSize = 100.0f;
     self.scoreLabel.fontColor = [UIColor blackColor];
     self.scoreLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-                                           self.screenSize.height - 60);
+                                           self.screenSize.height - 90);
     [self addChild:self.scoreLabel];
+    
     
     SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     myLabel.fontColor = [UIColor blackColor];
@@ -119,7 +124,7 @@
                     self.score = self.score + arc4random() %30 + 20;
                 }
                 if([[touchedNode name]isEqualToString:@"Red Node"]){
-                    [self lose];
+                    [self lose:@"You touched a red"];
                 }
             }
             
@@ -151,17 +156,18 @@
     
 }
 
--(void)lose{
+-(void)lose:(NSString *)loseMessage{
     self.lost = YES;
+    NSLog(loseMessage);
     SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     
-    myLabel.text =[NSString stringWithFormat: @"You Lose"];
-    myLabel.fontSize = 65;
+    myLabel.text = loseMessage;
+    myLabel.fontSize = 40;
+    myLabel.fontColor = SKColor.blackColor;
     myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
                                    CGRectGetMidY(self.frame));
-    myLabel.fontColor = [UIColor blackColor];
     [self addChild:myLabel];
-    
+    /*
     myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     myLabel.fontColor = [UIColor blackColor];
     
@@ -180,10 +186,10 @@
     myLabel.fontColor = [UIColor blackColor];
     
     [self addChild:myLabel];
-    
+    */
     NSLog(@"YOU LOSE");
-    sleep(3000);
-    [self.viewController menu];
+    //sleep(3);
+    [self.viewController menu:nil];
     
     
 }
@@ -229,6 +235,7 @@
 }
 -(void)spawnRed{
     NSLog(@"SPAWN RED");
+    
     BOOL valid = NO;
     CGPoint location;
     while (!valid){
@@ -358,7 +365,7 @@
         if(self.lastTime<firstTimeToDissappear && firstTimeToDissappear < currentTime){
             //NSLog(@"firstTime - %f currentTime - %f",firstTimeToDissappear,currentTime);
             [shapeToDissappear runAction:[SKAction scaleTo:0 duration:0.1] completion:^{
-                [self lose];
+                [self lose:@"You missed a green"];
                 [shapeToDissappear removeFromParent];
                 [self.arrayOfClickableCircles removeObject:shapeToDissappear];
             }];

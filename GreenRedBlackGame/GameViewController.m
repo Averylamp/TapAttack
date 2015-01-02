@@ -9,7 +9,7 @@
 #import "GameViewController.h"
 #import "GameScene.h"
 #import "MenuScene.h"
-
+#import "LoseScene.h"
 @implementation SKScene (Unarchive)
 
 + (instancetype)unarchiveFromFile:(NSString *)file {
@@ -97,7 +97,7 @@
     CGFloat screenScale = [[UIScreen mainScreen] scale];
     CGSize screenSize = CGSizeMake(screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
     
-    
+
     SKView * skView = (SKView *)self.view;
     skView.showsFPS = YES;
     skView.showsNodeCount = YES;
@@ -137,6 +137,28 @@
     [skView presentScene:scene];
 }
 
+-(void)loseScene: (UIButton *)sender{
+    [[self.view subviews]makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    CGFloat screenScale = [[UIScreen mainScreen] scale];
+    CGSize screenSize = CGSizeMake(screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
+    
+    
+    SKView * skView = (SKView *)self.view;
+    skView.showsFPS = YES;
+    skView.showsNodeCount = YES;
+    /* Sprite Kit applies additional optimizations to improve rendering performance */
+    skView.ignoresSiblingOrder = YES;
+    // Create and configure the scene.
+    LoseScene *scene = [LoseScene unarchiveFromFile:@"LoseScene"];
+    scene.size  = screenSize;
+    [scene setBackgroundColor:[UIColor whiteColor]];
+    scene.scaleMode = SKSceneScaleModeAspectFill;
+    scene.viewController = self;
+    // Present the scene.
+    [skView presentScene:scene];
+}
 
 -(void) viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
