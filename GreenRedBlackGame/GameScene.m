@@ -24,7 +24,7 @@
 @property NSMutableArray *arrayOfRedCircles;
 @property NSMutableArray *arrayOfRedTimesToDissappear;
 @property BOOL started;
-@property BOOL lost;
+
 @end
 @implementation GameScene
 
@@ -33,7 +33,7 @@
     CGFloat screenScale = [[UIScreen mainScreen] scale];
     CGSize screenSize = CGSizeMake(screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
     self.screenSize = screenSize;
-    
+    self.active = YES;
     AppDelegate *appDelegate = [[UIApplication sharedApplication]delegate];
     appDelegate.gameScene = self;
     
@@ -98,6 +98,10 @@
     self.timeToDissappearRate = .5;
     
 }
+
+
+
+
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
@@ -189,7 +193,9 @@
     */
     NSLog(@"YOU LOSE");
     //sleep(3);
-    [self.viewController menu:nil];
+    self.active = NO;
+    self.viewController.lastScore = self.score;
+    [self.viewController loseScene:nil];
     
     
 }

@@ -10,6 +10,7 @@
 
 @interface  MenuScene()
 @property CGSize screenSize;
+@property SKSpriteNode *playButton;
 @end
 @implementation MenuScene
 
@@ -20,7 +21,7 @@
     }else{
         NSLog(@"IT IS A UIVIEW");
     }
-    SKView * skView = (SKView *)self.view;
+    
     
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     CGFloat screenScale = [[UIScreen mainScreen] scale];
@@ -43,6 +44,7 @@
     playButton.xScale = 2.5;
     playButton.yScale = 2.5;
     playButton.name = @"playButton";
+    self.playButton = playButton;
     [self addChild:playButton];
     NSLog(@"HERE");
     
@@ -54,10 +56,34 @@
     SKNode *node = [self nodeAtPoint:location];
     
     if([node.name isEqualToString:@"playButton"]){
-        [self.viewController play:nil];
+        SKSpriteNode *playButton = (SKSpriteNode *)node;
+        [playButton runAction: [SKAction scaleTo:2.8 duration:0.15]];
     }
+}
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
+    UITouch * touch = (UITouch *)[[touches allObjects]firstObject];
+    CGPoint location = [touch locationInNode:self];
+    SKNode *node = [self nodeAtPoint:location];
     
+    if(![node.name isEqualToString:@"playButton"]){
+        [self.playButton runAction: [SKAction scaleTo:2.5 duration:0.15]];
+    }
+}
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch * touch = (UITouch *)[[touches allObjects]firstObject];
+    CGPoint location = [touch locationInNode:self];
+    SKNode *node = [self nodeAtPoint:location];
     
+    if([node.name isEqualToString:@"playButton"]){
+        
+        [self.playButton runAction: [SKAction scaleTo:2.5 duration:0.1]];
+        [self.viewController play:nil];
+    
+    }else{
+        [self.playButton runAction: [SKAction scaleTo:2.5 duration:0.15]];
+    }
 }
 
 @end

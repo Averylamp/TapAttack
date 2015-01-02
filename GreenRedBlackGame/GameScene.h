@@ -10,6 +10,8 @@
 #import "GameViewController.h"
 @interface GameScene : SKScene
 @property CGSize screenSize;
+@property BOOL lost;
+@property BOOL active;
 @property GameViewController *viewController;
--(void)lose;
+-(void)lose:(NSString *)loseMessage;
 @end

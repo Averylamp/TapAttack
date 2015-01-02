@@ -18,8 +18,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    CGFloat screenScale = [[UIScreen mainScreen] scale];
-    CGSize screenSize = CGSizeMake(screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
+    //CGFloat screenScale = [[UIScreen mainScreen] scale];
+    //CGSize screenSize = CGSizeMake(screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
     
     self.screenSize = CGSizeMake(screenBounds.size.width, screenBounds.size.height);
     NSLog(@"Screen Size - %f , %f",self.screenSize.width,self.screenSize.height);

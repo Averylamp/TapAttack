@@ -11,6 +11,9 @@
 
 @interface GameViewController : UIViewController
 @property   CGSize screenSize;
+@property int lastScore;
 -(void)menu:(UIButton *)sender;
 -(void)play:(UIButton *)sender;
+-(void)loseScene:(UIButton *)sender;
+
 @end
