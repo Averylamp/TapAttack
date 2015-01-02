@@ -8,6 +8,7 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "GameViewController.h"
+#import "RWGameData.h"
 @interface GameScene : SKScene
 @property CGSize screenSize;
 @property BOOL lost;

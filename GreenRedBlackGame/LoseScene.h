@@ -8,6 +8,7 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "GameViewController.h"
+#import "RWGameData.h"
 @interface LoseScene : SKScene
 @property  GameViewController* viewController;
 @end

@@ -37,10 +37,10 @@
     SKSpriteNode *backgroundButton = [[SKSpriteNode alloc]initWithImageNamed:@"loseScreenButtonBackground"];
     scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"DIN Condensed"];
     CGPoint position = CGPointMake(self.screenSize.width/2, self.screenSize.height- 280);
-    backgroundButton.xScale = 2;
+    backgroundButton.xScale = 2.1;
     backgroundButton.yScale = 1.8;
     backgroundButton.position = position;
-    scoreLabel.text = [NSString stringWithFormat:@"SCORE:%d",self.viewController.lastScore];
+    scoreLabel.text = [NSString stringWithFormat:@"SCORE : %d",self.viewController.lastScore];
     scoreLabel.fontSize = 80.0f;
     position = CGPointMake(self.screenSize.width/2, self.screenSize.height- 310);
     scoreLabel.position = position;
@@ -54,7 +54,7 @@
     position = CGPointMake(self.screenSize.width/2, self.screenSize.height - 420);
     scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"DIN Condensed"];
     backgroundButton = [[SKSpriteNode alloc]initWithImageNamed:@"loseScreenButtonBackground"];
-    backgroundButton.xScale = 2;
+    backgroundButton.xScale = 2.1;
     backgroundButton.yScale = 1.8;
     backgroundButton.position= position;
     scoreLabel.text = @"SHARE";
@@ -71,7 +71,7 @@
     position = CGPointMake(self.screenSize.width/2, self.screenSize.height - 560);
     scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"DIN Condensed"];
     backgroundButton = [[SKSpriteNode alloc]initWithImageNamed:@"loseScreenButtonBackground"];
-    backgroundButton.xScale = 2;
+    backgroundButton.xScale = 2.1;
     backgroundButton.yScale = 1.8;
     backgroundButton.position= position;
     scoreLabel.text = @"BACK HOME";
@@ -88,7 +88,7 @@
     position = CGPointMake(self.screenSize.width/2, self.screenSize.height - 700);
     scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"DIN Condensed"];
     backgroundButton = [[SKSpriteNode alloc]initWithImageNamed:@"loseScreenButtonBackground"];
-    backgroundButton.xScale = 2;
+    backgroundButton.xScale = 2.1;
     backgroundButton.yScale = 1.8;
     backgroundButton.position= position;
     scoreLabel.text = @"TRY AGAIN";
@@ -101,13 +101,28 @@
     self.againBackground = backgroundButton;
     [self addChild:backgroundButton];
     [self  addChild:scoreLabel];
+    
+    scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"DIN Condensed"];
+    scoreLabel.text = @"HIGH SCORE";
+    scoreLabel.fontColor = SKColor.blackColor;
+    scoreLabel.fontSize = 70.0f;
+    scoreLabel.position = CGPointMake(self.screenSize.width/2, self.screenSize.height-820);
+    [self addChild:scoreLabel];
+    
+    scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"DIN Condensed"];
+    scoreLabel.text = [NSString stringWithFormat: @"%d",  [RWGameData sharedGameData].highScore];
+    scoreLabel.fontColor = SKColor.blackColor;
+    scoreLabel.fontSize = 90.0f;
+    scoreLabel.position = CGPointMake(self.screenSize.width/2, self.screenSize.height-890);
+    [self addChild:scoreLabel];
+    
 }
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch * touch = (UITouch *)[[touches allObjects]firstObject];
     CGPoint location = [touch locationInNode:self];
     SKNode *node = [self nodeAtPoint:location];
-    SKAction *growb = [SKAction scaleXTo:2.4 y:2 duration:0.2];
+    SKAction *growb = [SKAction scaleXTo:2.5 y:2 duration:0.2];
     SKAction *growl = [SKAction scaleTo:1.2 duration:0.2];
     if([node.name isEqualToString:@"share"]){
         [self.shareBackground runAction:growb];
@@ -129,7 +144,7 @@
     UITouch * touch = (UITouch *)[[touches allObjects]firstObject];
     CGPoint location = [touch locationInNode:self];
     SKNode *node = [self nodeAtPoint:location];
-    SKAction *shrinkb = [SKAction scaleXTo:2.0 y:1.8 duration:0.2];
+    SKAction *shrinkb = [SKAction scaleXTo:2.1 y:1.8 duration:0.2];
     SKAction *shrinkl = [SKAction scaleTo:1 duration:0.2];
     if(![node.name isEqualToString:@"share"]){
         [self.shareBackground runAction:shrinkb];
@@ -150,7 +165,7 @@
     UITouch * touch = (UITouch *)[[touches allObjects]firstObject];
     CGPoint location = [touch locationInNode:self];
     SKNode *node = [self nodeAtPoint:location];
-    SKAction *shrinkb = [SKAction scaleXTo:2.0 y:1.8 duration:0.2];
+    SKAction *shrinkb = [SKAction scaleXTo:2.1 y:1.8 duration:0.2];
     SKAction *shrinkl = [SKAction scaleTo:1 duration:0.2];
     if([node.name isEqualToString:@"share"]){
         

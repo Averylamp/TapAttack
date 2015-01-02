@@ -164,36 +164,19 @@
     self.lost = YES;
     NSLog(loseMessage);
     SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-    
+    /*
     myLabel.text = loseMessage;
     myLabel.fontSize = 40;
     myLabel.fontColor = SKColor.blackColor;
     myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
                                    CGRectGetMidY(self.frame));
     [self addChild:myLabel];
-    /*
-    myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-    myLabel.fontColor = [UIColor blackColor];
-    
-    myLabel.text =[NSString stringWithFormat: @"Score - %d",self.score];
-    myLabel.fontSize = 65;
-    myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-                                   CGRectGetMidY(self.frame)-100);
-    
-    [self addChild:myLabel];
-    myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-    
-    myLabel.text =[NSString stringWithFormat: @" High Score - %d",200];
-    myLabel.fontSize = 65;
-    myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-                                   CGRectGetMidY(self.frame)-175);
-    myLabel.fontColor = [UIColor blackColor];
-    
-    [self addChild:myLabel];
     */
     NSLog(@"YOU LOSE");
     //sleep(3);
     self.active = NO;
+    [RWGameData sharedGameData].highScore = MAX([RWGameData sharedGameData].highScore, self.score);
+    [[RWGameData sharedGameData]save];
     self.viewController.lastScore = self.score;
     [self.viewController loseScene:nil];
     
