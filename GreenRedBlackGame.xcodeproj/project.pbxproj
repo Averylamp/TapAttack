@@ -20,6 +20,8 @@
 		BB41C5921A565480009280DA /* LoseScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = BB41C5911A565480009280DA /* LoseScene.sks */; };
 		BB41C5951A5654C4009280DA /* LoseScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BB41C5941A5654C4009280DA /* LoseScene.m */; };
 		BB41C5981A567AA4009280DA /* RWGameData.m in Sources */ = {isa = PBXBuildFile; fileRef = BB41C5971A567AA4009280DA /* RWGameData.m */; };
+		BB41C59B1A569032009280DA /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB41C59A1A569032009280DA /* AVFoundation.framework */; };
+		BB41C59D1A56980B009280DA /* ClickSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = BB41C59C1A56980B009280DA /* ClickSound.wav */; };
 		BB5612761A560DDE00897598 /* MenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = BB5612751A560DDE00897598 /* MenuScene.sks */; };
 		BB56127D1A56427C00897598 /* MenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BB56127C1A56427C00897598 /* MenuScene.m */; };
 /* End PBXBuildFile section */
@@ -58,6 +60,8 @@
 		BB41C5941A5654C4009280DA /* LoseScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoseScene.m; sourceTree = "<group>"; };
 		BB41C5961A567AA4009280DA /* RWGameData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWGameData.h; sourceTree = "<group>"; };
 		BB41C5971A567AA4009280DA /* RWGameData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWGameData.m; sourceTree = "<group>"; };
+		BB41C59A1A569032009280DA /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		BB41C59C1A56980B009280DA /* ClickSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ClickSound.wav; sourceTree = "<group>"; };
 		BB5612751A560DDE00897598 /* MenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MenuScene.sks; sourceTree = "<group>"; };
 		BB5612771A560E4900897598 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 		BB5612791A560E7B00897598 /* SceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SceneKit.framework; path = System/Library/Frameworks/SceneKit.framework; sourceTree = SDKROOT; };
@@ -70,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB41C59B1A569032009280DA /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +91,7 @@
 		BB2F651C1A4F3FEE00E4AD79 = {
 			isa = PBXGroup;
 			children = (
+				BB41C59A1A569032009280DA /* AVFoundation.framework */,
 				BB5612791A560E7B00897598 /* SceneKit.framework */,
 				BB5612771A560E4900897598 /* SpriteKit.framework */,
 				BB2F65271A4F3FEE00E4AD79 /* GreenRedBlackGame */,
@@ -125,6 +131,7 @@
 				BB2F65551A4FBB3C00E4AD79 /* menuViewController.h */,
 				BB2F65561A4FBB3C00E4AD79 /* menuViewController.m */,
 				BB2F653A1A4F3FEE00E4AD79 /* Images.xcassets */,
+				BB41C5991A568F06009280DA /* Sounds */,
 				BB2F653C1A4F3FEE00E4AD79 /* LaunchScreen.xib */,
 				BB2F65281A4F3FEE00E4AD79 /* Supporting Files */,
 			);
@@ -155,6 +162,14 @@
 				BB2F65481A4F3FEE00E4AD79 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BB41C5991A568F06009280DA /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				BB41C59C1A56980B009280DA /* ClickSound.wav */,
+			);
+			name = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -239,6 +254,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB2F653E1A4F3FEE00E4AD79 /* LaunchScreen.xib in Resources */,
+				BB41C59D1A56980B009280DA /* ClickSound.wav in Resources */,
 				BB41C5921A565480009280DA /* LoseScene.sks in Resources */,
 				BB2F653B1A4F3FEE00E4AD79 /* Images.xcassets in Resources */,
 				BB2F65331A4F3FEE00E4AD79 /* GameScene.sks in Resources */,

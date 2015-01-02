@@ -46,7 +46,7 @@
     playButton.name = @"playButton";
     self.playButton = playButton;
     [self addChild:playButton];
-    NSLog(@"HERE");
+    //NSLog(@"HERE");
     
 }
 

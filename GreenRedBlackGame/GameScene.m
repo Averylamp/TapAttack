@@ -8,6 +8,7 @@
 
 #import "GameScene.h"
 #import "AppDelegate.h"
+#import <AVFoundation/AVFoundation.h>
 @interface GameScene()
 @property double lastTime;
 @property double numberOfUpdates;
@@ -24,11 +25,20 @@
 @property NSMutableArray *arrayOfRedCircles;
 @property NSMutableArray *arrayOfRedTimesToDissappear;
 @property BOOL started;
-
+@property SystemSoundID clickSound;
 @end
 @implementation GameScene
 
+
 -(void)didMoveToView:(SKView *)view {
+    NSString * soundFilePath = [[NSBundle mainBundle] pathForResource:@"ClickSound" ofType:@"wav"];
+    NSLog(soundFilePath);
+    NSLog(@"HERE");
+    NSURL *soundURL = [NSURL fileURLWithPath:soundFilePath];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundURL, &_clickSound);
+    
+    
+    
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     CGFloat screenScale = [[UIScreen mainScreen] scale];
     CGSize screenSize = CGSizeMake(screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
@@ -114,6 +124,7 @@
             if (touchedNode){
                 if ([[touchedNode name]  isEqualToString:@"Green Node"]){
                     //[self lose];
+                    AudioServicesPlaySystemSound(self.clickSound);
                     int x = [self.arrayOfClickableCircles indexOfObject:touchedNode];
                     if (x<[self.arrayOfTimesToDissappear count]) {
                         [self.arrayOfTimesToDissappear removeObjectAtIndex:x];
