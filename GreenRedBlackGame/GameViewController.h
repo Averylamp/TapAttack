@@ -11,5 +11,6 @@
 
 @interface GameViewController : UIViewController
 @property   CGSize screenSize;
--(void)settupMenu;
+-(void)menu;
+-(void)play;
 @end

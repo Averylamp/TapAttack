@@ -8,6 +8,7 @@
 
 #import "GameViewController.h"
 #import "GameScene.h"
+#import "MenuScene.h"
 
 @implementation SKScene (Unarchive)
 
@@ -33,15 +34,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.view setBackgroundColor:[UIColor whiteColor]];
-    
-    [self settupMenu];
+    [self menu:nil];
+    //[self settupMenu];
     
 }
+
+/*
 -(void)settupMenu{
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     CGFloat screenScale = [[UIScreen mainScreen] scale];
-    CGSize screenSize = CGSizeMake(screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
+    //CGSize screenSize = CGSizeMake(screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
     
     self.screenSize = CGSizeMake(screenBounds.size.width, screenBounds.size.height);
     NSLog(@"Screen Size - %f , %f",self.screenSize.width,self.screenSize.height);
@@ -54,11 +56,14 @@
     [self.view addSubview:titleLabel];
     UIButton *testbutton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 400, 400)];
     testbutton.backgroundColor = [UIColor blackColor];
-    //[self.view addSubview:testbutton];
     
+    SKSpriteNode * playButton = [[SKSpriteNode alloc]initWithImageNamed:@"playButton"];
+    playButton.position = CGPointMake(self.screenSize.width / 2, self.screenSize.height/3);
+    //[self.view addSubview:testbutton];
+ 
     UIButton *playButton = [[UIButton alloc]initWithFrame:CGRectMake( self.screenSize.width/4, self.screenSize.height*2 /3 , self.screenSize.width/2, 60 )];
     
-    [playButton setBackgroundColor:[UIColor blueColor]];
+    [playButton setBackgroundColor:[UIColor whiteColor]];
     //DIVISION BUTTON TAG IS 1
     //GRADIENT
     
@@ -66,7 +71,7 @@
     btnGradient.frame = CGRectMake(0,0, playButton.frame.size.width, playButton.frame.size.height);
     btnGradient.colors = [NSArray arrayWithObjects:
                           (id)[[UIColor colorWithRed:10.0f / 255.0f green:19.0f / 255.0f blue:190.0f / 255.0f alpha:1.0f] CGColor],(id)[[UIColor colorWithRed:38.0f / 255.0f green:29.0f / 232.0f blue:102.0f / 255.0f alpha:1.0f] CGColor],                                          nil];
-    //[divisionButton.layer insertSublayer:btnGradient atIndex:0];
+    //[playButton.layer insertSublayer:btnGradient atIndex:0];
     
     [playButton setBackgroundImage:[self imageFromLayer:btnGradient] forState:UIControlStateNormal];
     [playButton setBackgroundImage:[self imageFromLayer:btnGradient] forState:UIControlStateHighlighted];
@@ -74,15 +79,20 @@
     btnGradient.colors = [NSArray arrayWithObjects:
                           (id)[[UIColor colorWithRed:38.0f / 255.0f green:100.0f / 100.0f blue:102.0f / 255.0f alpha:1.0f] CGColor],(id)[[UIColor colorWithRed:10.0f / 255.0f green:200.0f / 255.0f blue:100.0f / 255.0f alpha:1.0f] CGColor],nil];
     [playButton setBackgroundImage:[self imageFromLayer:btnGradient] forState:UIControlStateSelected];
+     
     playButton.titleLabel.text = @"Play";
-    playButton.titleLabel.textColor = [SKColor whiteColor];
-    [playButton addTarget:self action:@selector(play:) forControlEvents:UIControlEventTouchUpInside];
+    playButton.titleLabel.textColor = [SKColor blackColor];
+ 
+    
     [self.view addSubview:playButton];
 
 }
+*/
+
 
 -(void)play: (UIButton *)sender{
     [[self.view subviews]makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     CGFloat screenScale = [[UIScreen mainScreen] scale];
     CGSize screenSize = CGSizeMake(screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
@@ -103,8 +113,34 @@
     [skView presentScene:scene];
 }
 
+-(void)menu:(UIButton * )sender
+{
+    [[self.view subviews]makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    CGFloat screenScale = [[UIScreen mainScreen] scale];
+    CGSize screenSize = CGSizeMake(screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
+    
+    
+    SKView * skView = (SKView *)self.view;
+    skView.showsFPS = YES;
+    skView.showsNodeCount = YES;
+    /* Sprite Kit applies additional optimizations to improve rendering performance */
+    skView.ignoresSiblingOrder = YES;
+    // Create and configure the scene.
+    MenuScene *scene = [MenuScene unarchiveFromFile:@"MenuScene"];
+    scene.size  = screenSize;
+    [scene setBackgroundColor:[UIColor whiteColor]];
+    scene.scaleMode = SKSceneScaleModeAspectFill;
+    scene.viewController = self;
+    // Present the scene.
+    [skView presentScene:scene];
+}
+
+
 -(void) viewWillLayoutSubviews{
     [super viewWillLayoutSubviews];
+    
     // Configure the view.
     
     
