@@ -26,18 +26,26 @@
 @property NSMutableArray *arrayOfRedTimesToDissappear;
 @property BOOL started;
 @property SystemSoundID clickSound;
+@property SystemSoundID redClickSound;
+@property SystemSoundID goldenClickSound;
 @end
 @implementation GameScene
 
 
 -(void)didMoveToView:(SKView *)view {
-    NSString * soundFilePath = [[NSBundle mainBundle] pathForResource:@"ClickSound" ofType:@"wav"];
+    NSString * soundFilePath = [[NSBundle mainBundle] pathForResource:@"partnersinrhyme_CLICK13A" ofType:@"mp3"];
     NSLog(soundFilePath);
     NSLog(@"HERE");
     NSURL *soundURL = [NSURL fileURLWithPath:soundFilePath];
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundURL, &_clickSound);
     
-    
+    soundFilePath = [[NSBundle mainBundle] pathForResource:@"FartSound" ofType:@"mp3"];
+    soundURL = [NSURL fileURLWithPath:soundFilePath];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundURL, &_redClickSound);
+
+    soundFilePath = [[NSBundle mainBundle] pathForResource:@"Powerup20" ofType:@"wav"];
+    soundURL = [NSURL fileURLWithPath:soundFilePath];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundURL, &_goldenClickSound);
     
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     CGFloat screenScale = [[UIScreen mainScreen] scale];
@@ -136,9 +144,11 @@
                 }
                 if([[touchedNode name]isEqualToString:@"Golden Node"]){
                     [touchedNode removeFromParent];
+                    AudioServicesPlaySystemSound(self.goldenClickSound);
                     self.score = self.score + arc4random() %30 + 20;
                 }
                 if([[touchedNode name]isEqualToString:@"Red Node"]){
+                    AudioServicesPlaySystemSound(self.redClickSound);
                     [self lose:@"You touched a red"];
                 }
             }
@@ -217,13 +227,16 @@
     }
     CGRect circle = CGRectMake(-65, -65, 130.0,130.0);
     SKShapeNode *shapeNode = [[SKShapeNode alloc] init];
+    
+    
+    double imageMultiplierx = 1.0, imageMultipliery = 1.0;
     shapeNode.name = @"Green Node";
     shapeNode.path = [UIBezierPath bezierPathWithOvalInRect:circle].CGPath;
     shapeNode.fillColor = SKColor.greenColor;
     shapeNode.strokeColor = nil;
     shapeNode.position = location;
-    shapeNode.xScale=0.1;
-    shapeNode.yScale=0.1;
+    shapeNode.xScale=0.1*imageMultiplierx;
+    shapeNode.yScale=0.1*imageMultipliery;
     [self addChild:shapeNode];
     [self.arrayOfClickableCircles addObject:shapeNode];
     [self.arrayOfTimesToDissappear addObject:[NSDecimalNumber numberWithDouble:CACurrentMediaTime() + self.timeToDissappear + .15]];
@@ -400,7 +413,15 @@
     }
 }
 
-
+-(SKSpriteNode *)returnRandomCirclePhoto
+{
+    
+    
+    
+    
+    //SKSpriteNode *sprite= [[SKSpriteNode alloc]initWithImageNamed:];
+    return nil;
+}
 
 
 

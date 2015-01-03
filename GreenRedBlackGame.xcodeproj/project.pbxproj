@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB0B2C141A57133000AC7D50 /* GlassBreaking.m4a in Resources */ = {isa = PBXBuildFile; fileRef = BB0B2C131A57133000AC7D50 /* GlassBreaking.m4a */; };
 		BB2F652B1A4F3FEE00E4AD79 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2F652A1A4F3FEE00E4AD79 /* main.m */; };
 		BB2F652E1A4F3FEE00E4AD79 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2F652D1A4F3FEE00E4AD79 /* AppDelegate.m */; };
 		BB2F65311A4F3FEE00E4AD79 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2F65301A4F3FEE00E4AD79 /* GameScene.m */; };
@@ -24,6 +25,9 @@
 		BB41C59D1A56980B009280DA /* ClickSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = BB41C59C1A56980B009280DA /* ClickSound.wav */; };
 		BB5612761A560DDE00897598 /* MenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = BB5612751A560DDE00897598 /* MenuScene.sks */; };
 		BB56127D1A56427C00897598 /* MenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BB56127C1A56427C00897598 /* MenuScene.m */; };
+		BBE0DF3D1A578A9900CDDABA /* partnersinrhyme_CLICK13A.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BBE0DF3C1A578A9900CDDABA /* partnersinrhyme_CLICK13A.mp3 */; };
+		BBE0DF401A57932E00CDDABA /* FartSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BBE0DF3E1A57932E00CDDABA /* FartSound.mp3 */; };
+		BBE0DF411A57932E00CDDABA /* Powerup20.wav in Resources */ = {isa = PBXBuildFile; fileRef = BBE0DF3F1A57932E00CDDABA /* Powerup20.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BB0B2C131A57133000AC7D50 /* GlassBreaking.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = GlassBreaking.m4a; sourceTree = "<group>"; };
 		BB2F65251A4F3FEE00E4AD79 /* GreenRedBlackGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GreenRedBlackGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB2F65291A4F3FEE00E4AD79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB2F652A1A4F3FEE00E4AD79 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -67,6 +72,9 @@
 		BB5612791A560E7B00897598 /* SceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SceneKit.framework; path = System/Library/Frameworks/SceneKit.framework; sourceTree = SDKROOT; };
 		BB56127B1A56427C00897598 /* MenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuScene.h; sourceTree = "<group>"; };
 		BB56127C1A56427C00897598 /* MenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuScene.m; sourceTree = "<group>"; };
+		BBE0DF3C1A578A9900CDDABA /* partnersinrhyme_CLICK13A.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = partnersinrhyme_CLICK13A.mp3; sourceTree = "<group>"; };
+		BBE0DF3E1A57932E00CDDABA /* FartSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = FartSound.mp3; sourceTree = "<group>"; };
+		BBE0DF3F1A57932E00CDDABA /* Powerup20.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Powerup20.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +175,10 @@
 		BB41C5991A568F06009280DA /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				BBE0DF3E1A57932E00CDDABA /* FartSound.mp3 */,
+				BBE0DF3F1A57932E00CDDABA /* Powerup20.wav */,
+				BBE0DF3C1A578A9900CDDABA /* partnersinrhyme_CLICK13A.mp3 */,
+				BB0B2C131A57133000AC7D50 /* GlassBreaking.m4a */,
 				BB41C59C1A56980B009280DA /* ClickSound.wav */,
 			);
 			name = Sounds;
@@ -256,9 +268,13 @@
 				BB2F653E1A4F3FEE00E4AD79 /* LaunchScreen.xib in Resources */,
 				BB41C59D1A56980B009280DA /* ClickSound.wav in Resources */,
 				BB41C5921A565480009280DA /* LoseScene.sks in Resources */,
+				BBE0DF411A57932E00CDDABA /* Powerup20.wav in Resources */,
+				BBE0DF3D1A578A9900CDDABA /* partnersinrhyme_CLICK13A.mp3 in Resources */,
 				BB2F653B1A4F3FEE00E4AD79 /* Images.xcassets in Resources */,
+				BBE0DF401A57932E00CDDABA /* FartSound.mp3 in Resources */,
 				BB2F65331A4F3FEE00E4AD79 /* GameScene.sks in Resources */,
 				BB5612761A560DDE00897598 /* MenuScene.sks in Resources */,
+				BB0B2C141A57133000AC7D50 /* GlassBreaking.m4a in Resources */,
 				BB2F65391A4F3FEE00E4AD79 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -406,10 +422,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = GreenRedBlackGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -418,10 +437,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = GreenRedBlackGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

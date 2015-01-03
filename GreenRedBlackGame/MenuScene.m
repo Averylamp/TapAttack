@@ -48,6 +48,11 @@
     [self addChild:playButton];
     //NSLog(@"HERE");
     
+    SKSpriteNode *sprite = [[SKSpriteNode alloc]initWithImageNamed:@"SealFace"];
+    sprite.position = CGPointMake(self.screenSize.width/2,self.screenSize.height/2);
+    
+    [self addChild:sprite];
+    
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
