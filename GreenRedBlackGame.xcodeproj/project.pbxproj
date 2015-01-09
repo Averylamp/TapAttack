@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BB0B2C141A57133000AC7D50 /* GlassBreaking.m4a in Resources */ = {isa = PBXBuildFile; fileRef = BB0B2C131A57133000AC7D50 /* GlassBreaking.m4a */; };
+		BB2B990B1A60816C000E0797 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB2B990A1A60816C000E0797 /* FacebookSDK.framework */; };
 		BB2F652B1A4F3FEE00E4AD79 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2F652A1A4F3FEE00E4AD79 /* main.m */; };
 		BB2F652E1A4F3FEE00E4AD79 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2F652D1A4F3FEE00E4AD79 /* AppDelegate.m */; };
 		BB2F65311A4F3FEE00E4AD79 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2F65301A4F3FEE00E4AD79 /* GameScene.m */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		BB0B2C131A57133000AC7D50 /* GlassBreaking.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = GlassBreaking.m4a; sourceTree = "<group>"; };
+		BB2B990A1A60816C000E0797 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		BB2F65251A4F3FEE00E4AD79 /* GreenRedBlackGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GreenRedBlackGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB2F65291A4F3FEE00E4AD79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB2F652A1A4F3FEE00E4AD79 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB41C59B1A569032009280DA /* AVFoundation.framework in Frameworks */,
+				BB2B990B1A60816C000E0797 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +102,7 @@
 		BB2F651C1A4F3FEE00E4AD79 = {
 			isa = PBXGroup;
 			children = (
+				BB2B990A1A60816C000E0797 /* FacebookSDK.framework */,
 				BB41C59A1A569032009280DA /* AVFoundation.framework */,
 				BB5612791A560E7B00897598 /* SceneKit.framework */,
 				BB5612771A560E4900897598 /* SpriteKit.framework */,
@@ -424,6 +428,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = GreenRedBlackGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -439,6 +447,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = GreenRedBlackGame/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
