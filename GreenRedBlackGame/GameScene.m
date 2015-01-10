@@ -8,6 +8,7 @@
 
 #import "GameScene.h"
 #import "AppDelegate.h"
+#import "UIImage+Mask.h"
 #import <AVFoundation/AVFoundation.h>
 @interface GameScene()
 @property double lastTime;
@@ -31,10 +32,10 @@
 @end
 @implementation GameScene
 
-
+static double const savedImageMultiplier = 4.0/3.0;
 -(void)didMoveToView:(SKView *)view {
     NSString * soundFilePath = [[NSBundle mainBundle] pathForResource:@"partnersinrhyme_CLICK13A" ofType:@"mp3"];
-    NSLog(soundFilePath);
+    //NSLog(soundFilePath);
     NSLog(@"HERE");
     NSURL *soundURL = [NSURL fileURLWithPath:soundFilePath];
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundURL, &_clickSound);
@@ -42,7 +43,7 @@
     soundFilePath = [[NSBundle mainBundle] pathForResource:@"FartSound" ofType:@"mp3"];
     soundURL = [NSURL fileURLWithPath:soundFilePath];
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundURL, &_redClickSound);
-
+    
     soundFilePath = [[NSBundle mainBundle] pathForResource:@"Powerup20" ofType:@"wav"];
     soundURL = [NSURL fileURLWithPath:soundFilePath];
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundURL, &_goldenClickSound);
@@ -130,7 +131,7 @@
             CGPoint positionInScene = [touch locationInNode:self];
             SKShapeNode *touchedNode = (SKShapeNode *)[self nodeAtPoint:positionInScene];
             if (touchedNode){
-                if ([[touchedNode name]  isEqualToString:@"Green Node"]){
+                if ([[touchedNode name]  isEqualToString:@"Green Node"]||[[touchedNode name]  isEqualToString:@"Green Node with Image"]||[[touchedNode name]  isEqualToString:@"Green Node with Saved Image"]){
                     //[self lose];
                     AudioServicesPlaySystemSound(self.clickSound);
                     int x = [self.arrayOfClickableCircles indexOfObject:touchedNode];
@@ -141,6 +142,9 @@
                     [touchedNode removeAllActions];
                     [touchedNode removeFromParent];
                     self.score = self.score + 1;
+                    if ([[touchedNode name]  isEqualToString:@"Green Node with Image"]) {
+                        self.score = self.score + 1;
+                    }
                 }
                 if([[touchedNode name]isEqualToString:@"Golden Node"]){
                     [touchedNode removeFromParent];
@@ -183,16 +187,16 @@
 
 -(void)lose:(NSString *)loseMessage{
     self.lost = YES;
-    NSLog(loseMessage);
-    SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+    //NSLog(loseMessage);
+    //SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     /*
-    myLabel.text = loseMessage;
-    myLabel.fontSize = 40;
-    myLabel.fontColor = SKColor.blackColor;
-    myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-                                   CGRectGetMidY(self.frame));
-    [self addChild:myLabel];
-    */
+     myLabel.text = loseMessage;
+     myLabel.fontSize = 40;
+     myLabel.fontColor = SKColor.blackColor;
+     myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
+     CGRectGetMidY(self.frame));
+     [self addChild:myLabel];
+     */
     NSLog(@"YOU LOSE");
     //sleep(3);
     self.active = NO;
@@ -225,22 +229,42 @@
         }
         location = CGPointMake(x, y);
     }
-    CGRect circle = CGRectMake(-65, -65, 130.0,130.0);
-    SKShapeNode *shapeNode = [[SKShapeNode alloc] init];
-    
-    
-    double imageMultiplierx = 1.0, imageMultipliery = 1.0;
-    shapeNode.name = @"Green Node";
-    shapeNode.path = [UIBezierPath bezierPathWithOvalInRect:circle].CGPath;
-    shapeNode.fillColor = SKColor.greenColor;
-    shapeNode.strokeColor = nil;
-    shapeNode.position = location;
-    shapeNode.xScale=0.1*imageMultiplierx;
-    shapeNode.yScale=0.1*imageMultipliery;
-    [self addChild:shapeNode];
-    [self.arrayOfClickableCircles addObject:shapeNode];
+    SKNode *node;
+    if (YES) {
+        node = [self returnRandomCirclePhoto];
+        node.position = location;
+        node.xScale = 0.1;
+        node.yScale = 0.1;
+        if ([[node name]  isEqualToString:@"Green Node with Saved Image"]) {
+            node.xScale = node.xScale * savedImageMultiplier;
+            node.yScale = node.yScale * savedImageMultiplier;
+        }
+    }else{
+        //ShapeNode
+        CGRect circle = CGRectMake(-65, -65, 130.0,130.0);
+        node = [[SKShapeNode alloc] init];
+        
+        
+        node.name = @"Green Node";
+        ((SKShapeNode*)node).path = [UIBezierPath bezierPathWithOvalInRect:circle].CGPath;
+        ((SKShapeNode*)node).fillColor = SKColor.greenColor;
+        ((SKShapeNode*)node).strokeColor = nil;
+        ((SKShapeNode*)node).position = location;
+        ((SKShapeNode*)node).xScale=0.1;
+        ((SKShapeNode*)node).yScale=0.1;
+        
+    }
+    node.zPosition = 2;
+    [self addChild:node];
+    [self.arrayOfClickableCircles addObject:node];
     [self.arrayOfTimesToDissappear addObject:[NSDecimalNumber numberWithDouble:CACurrentMediaTime() + self.timeToDissappear + .15]];
-    [shapeNode runAction:[SKAction  scaleTo:1 duration:0.15]completion:^{
+    
+    
+    double scaleNum = 1;
+    if([[node name]  isEqualToString:@"Green Node with Saved Image"]){
+        scaleNum = scaleNum * savedImageMultiplier;
+    }
+    [node runAction:[SKAction  scaleTo:scaleNum duration:0.15]completion:^{
         
     } ];
     //NSLog(@"TimeTODissappear - %f",CACurrentMediaTime() + self.timeToDissappear);
@@ -315,6 +339,7 @@
     shapeNode.position = location;
     shapeNode.xScale=0.2;
     shapeNode.yScale=0.2;
+    shapeNode.zPosition = 1;
     [self addChild:shapeNode];
     [shapeNode runAction:[SKAction  scaleTo:1 duration:0.25]completion:^{
         [shapeNode runAction:[SKAction scaleTo:1.2 duration:0.4] completion:^{
@@ -377,7 +402,11 @@
         SKShapeNode *shapeToDissappear = (SKShapeNode *)[self.arrayOfClickableCircles firstObject];
         if(self.lastTime<firstTimeToDissappear && firstTimeToDissappear < currentTime){
             //NSLog(@"firstTime - %f currentTime - %f",firstTimeToDissappear,currentTime);
-            [shapeToDissappear runAction:[SKAction scaleTo:0 duration:0.1] completion:^{
+            double scaleNum = 0.1;
+            if([[shapeToDissappear name]  isEqualToString:@"Green Node with Saved Image"]){
+                scaleNum = scaleNum * savedImageMultiplier;
+            }
+            [shapeToDissappear runAction:[SKAction scaleTo:0 duration:scaleNum] completion:^{
                 [self lose:@"You missed a green"];
                 [shapeToDissappear removeFromParent];
                 [self.arrayOfClickableCircles removeObject:shapeToDissappear];
@@ -413,15 +442,37 @@
     }
 }
 
++(NSArray*)arrayOfCircleImageNames{
+    return [NSArray arrayWithObjects:@"SealFace",@"OwlFace", @"LemurFace",@"DogFace",@"DogFace2",@"BirdFace",nil];
+}
+
 -(SKSpriteNode *)returnRandomCirclePhoto
 {
+    NSString *imageName;
+    SKSpriteNode *sprite;
+    NSLog(@"Local - %d  Saved - %d",[[GameScene arrayOfCircleImageNames]count], [[RWGameData sharedGameData].takenPhotos count]);
+    //int index =(arc4random()%([[GameScene arrayOfCircleImageNames]count]+[[RWGameData sharedGameData].takenPhotos count]));
+    int index =(arc4random()%([[RWGameData sharedGameData].takenPhotos count])) + [[GameScene arrayOfCircleImageNames] count];
     
     
+    if (index< [[GameScene arrayOfCircleImageNames]count]) {
+        imageName = [[GameScene arrayOfCircleImageNames]objectAtIndex:index];
+        sprite= [[SKSpriteNode alloc]initWithImageNamed:imageName];
+        sprite.name = @"Green Node with Image";
+    }else{
+        index  = index - [[GameScene arrayOfCircleImageNames]count];
+        UIImage *image = ((UIImage*)[[RWGameData sharedGameData].takenPhotos objectAtIndex:index])  ;
+        image = [image imageWithSize:CGSizeMake(140, 140) andMask:[UIImage imageNamed:@"25_mask.png"]];
+        sprite = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImage:image]];
+        sprite.name = @"Green Node with Saved Image";
+    }
     
     
-    //SKSpriteNode *sprite= [[SKSpriteNode alloc]initWithImageNamed:];
-    return nil;
+    sprite.size = CGSizeMake(135, 135);
+    return sprite;
 }
+
+
 
 
 

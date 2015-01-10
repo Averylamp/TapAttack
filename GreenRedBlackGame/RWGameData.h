@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <UIKit/UIKit.h>
 @interface RWGameData : NSObject<NSCoding>
 @property int highScore;
-
+@property (nonatomic) NSArray* takenPhotos;
 +(instancetype)sharedGameData;
 -(void)save;
 @end

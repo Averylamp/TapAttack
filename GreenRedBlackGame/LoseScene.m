@@ -7,8 +7,11 @@
 //
 
 #import "LoseScene.h"
+#import <QuartzCore/QuartzCore.h>
+
 @interface  LoseScene()
-@property  CGSize screenSize;
+@property CGSize screenSize;
+@property CGSize screenBounds;
 @property SKLabelNode *scoreLabel;
 @property SKSpriteNode *scoreBackground;
 @property SKLabelNode *shareLabel;
@@ -23,6 +26,7 @@
 -(void)didMoveToView:(SKView *)view
 {
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    self.screenBounds = screenBounds.size;
     CGFloat screenScale = [[UIScreen mainScreen] scale];
     CGSize screenSize = CGSizeMake(screenBounds.size.width * screenScale, screenBounds.size.height * screenScale);
     
@@ -122,8 +126,8 @@
     UITouch * touch = (UITouch *)[[touches allObjects]firstObject];
     CGPoint location = [touch locationInNode:self];
     SKNode *node = [self nodeAtPoint:location];
-    SKAction *growb = [SKAction scaleXTo:2.5 y:2 duration:0.2];
-    SKAction *growl = [SKAction scaleTo:1.2 duration:0.2];
+    SKAction *growb = [SKAction scaleXTo:2.5 y:2 duration:0.15];
+    SKAction *growl = [SKAction scaleTo:1.2 duration:0.15];
     if([node.name isEqualToString:@"share"]){
         [self.shareBackground runAction:growb];
         [self.shareLabel runAction:growl];
@@ -168,7 +172,13 @@
     SKAction *shrinkb = [SKAction scaleXTo:2.1 y:1.8 duration:0.2];
     SKAction *shrinkl = [SKAction scaleTo:1 duration:0.2];
     if([node.name isEqualToString:@"share"]){
-        
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(self.screenBounds.width/8,self.screenBounds.height/3, self.screenBounds.width*3/4, self.screenBounds.height/3)];
+        view.backgroundColor = [UIColor colorWithRed:128.0f green:128.0f blue:128.0f alpha:1.0f];
+        view.layer.cornerRadius = 7;
+        view.layer.masksToBounds = YES;
+        view.layer.borderColor = [UIColor blackColor].CGColor;
+        view.layer.borderWidth = 4.0f;
+        [self.view addSubview:view];
     }else{
         [self.shareBackground runAction:shrinkb];
         [self.shareLabel runAction:shrinkl];

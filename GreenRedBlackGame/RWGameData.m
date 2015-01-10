@@ -11,7 +11,7 @@
 @implementation RWGameData
 
 static NSString* const SSGameDataHighScoreKey = @"highScore";
-
+static NSString* const SSGameDataPilotPhotoKey = @"pilotPhoto";
 -(void)reset
 {
 
@@ -27,9 +27,21 @@ static NSString* const SSGameDataHighScoreKey = @"highScore";
     return sharedInstance;
 }
 
+-(NSArray *)takenPhotos{
+    if(!_takenPhotos){
+        NSLog(@"Here");
+        _takenPhotos = [[NSArray alloc]init];
+    }
+    return _takenPhotos;
+}
+
 -(void)encodeWithCoder:(NSCoder *)aCoder
 {
    [aCoder encodeDouble:self.highScore forKey: SSGameDataHighScoreKey];
+    if (self.takenPhotos) {
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.takenPhotos];
+        [aCoder encodeObject:data forKey: SSGameDataPilotPhotoKey];
+    }
 }
 
 - (instancetype)initWithCoder:(NSCoder *)decoder
@@ -37,6 +49,10 @@ static NSString* const SSGameDataHighScoreKey = @"highScore";
     self = [self init];
     if (self) {
         _highScore = [decoder decodeDoubleForKey: SSGameDataHighScoreKey];
+        NSData* imageData = [decoder decodeObjectForKey: SSGameDataPilotPhotoKey];
+        if (imageData) {
+            self.takenPhotos= [NSKeyedUnarchiver unarchiveObjectWithData:imageData];
+        }
     }
     return self;
 }

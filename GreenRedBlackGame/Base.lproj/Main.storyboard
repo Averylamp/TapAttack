@@ -5,34 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
     </dependencies>
     <scenes>
-        <!--MenuTitle-->
-        <scene sceneID="2tC-cQ-lwO">
-            <objects>
-                <viewController title="MenuTitle" id="apa-98-uIt" customClass="menuViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="YzP-YX-s5P"/>
-                        <viewControllerLayoutGuide type="bottom" id="nzn-WF-RmJ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Tpv-nH-c5p">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score:32" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dOB-qm-Se6">
-                                <rect key="frame" x="34" y="184" width="253" height="137"/>
-                                <fontDescription key="fontDescription" name="DINCondensed-Bold" family="DIN Condensed" pointSize="40"/>
-                                <color key="textColor" red="1" green="0.70589185421232747" blue="0.32600855232452775" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="P4w-jF-T9U" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-324" y="197"/>
-        </scene>
         <!--Game View Controller-->
         <scene sceneID="CtS-rA-C9T">
             <objects>

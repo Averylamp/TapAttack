@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		BB0B2C141A57133000AC7D50 /* GlassBreaking.m4a in Resources */ = {isa = PBXBuildFile; fileRef = BB0B2C131A57133000AC7D50 /* GlassBreaking.m4a */; };
 		BB2B990B1A60816C000E0797 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB2B990A1A60816C000E0797 /* FacebookSDK.framework */; };
+		BB2B99101A609530000E0797 /* UIImage+Mask.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2B990E1A609530000E0797 /* UIImage+Mask.m */; };
+		BB2B99141A60DBBA000E0797 /* 25_mask.png in Resources */ = {isa = PBXBuildFile; fileRef = BB2B99131A60DBBA000E0797 /* 25_mask.png */; };
 		BB2F652B1A4F3FEE00E4AD79 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2F652A1A4F3FEE00E4AD79 /* main.m */; };
 		BB2F652E1A4F3FEE00E4AD79 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2F652D1A4F3FEE00E4AD79 /* AppDelegate.m */; };
 		BB2F65311A4F3FEE00E4AD79 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2F65301A4F3FEE00E4AD79 /* GameScene.m */; };
@@ -44,6 +46,9 @@
 /* Begin PBXFileReference section */
 		BB0B2C131A57133000AC7D50 /* GlassBreaking.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = GlassBreaking.m4a; sourceTree = "<group>"; };
 		BB2B990A1A60816C000E0797 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		BB2B990D1A609530000E0797 /* UIImage+Mask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Mask.h"; sourceTree = "<group>"; };
+		BB2B990E1A609530000E0797 /* UIImage+Mask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Mask.m"; sourceTree = "<group>"; };
+		BB2B99131A60DBBA000E0797 /* 25_mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 25_mask.png; path = ../25_mask.png; sourceTree = "<group>"; };
 		BB2F65251A4F3FEE00E4AD79 /* GreenRedBlackGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GreenRedBlackGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB2F65291A4F3FEE00E4AD79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB2F652A1A4F3FEE00E4AD79 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -138,11 +143,14 @@
 				BB41C5941A5654C4009280DA /* LoseScene.m */,
 				BB41C5961A567AA4009280DA /* RWGameData.h */,
 				BB41C5971A567AA4009280DA /* RWGameData.m */,
+				BB2B990D1A609530000E0797 /* UIImage+Mask.h */,
+				BB2B990E1A609530000E0797 /* UIImage+Mask.m */,
 				BB41C5911A565480009280DA /* LoseScene.sks */,
 				BB2F65371A4F3FEE00E4AD79 /* Main.storyboard */,
 				BB2F65551A4FBB3C00E4AD79 /* menuViewController.h */,
 				BB2F65561A4FBB3C00E4AD79 /* menuViewController.m */,
 				BB2F653A1A4F3FEE00E4AD79 /* Images.xcassets */,
+				BB2B99131A60DBBA000E0797 /* 25_mask.png */,
 				BB41C5991A568F06009280DA /* Sounds */,
 				BB2F653C1A4F3FEE00E4AD79 /* LaunchScreen.xib */,
 				BB2F65281A4F3FEE00E4AD79 /* Supporting Files */,
@@ -273,6 +281,7 @@
 				BB41C59D1A56980B009280DA /* ClickSound.wav in Resources */,
 				BB41C5921A565480009280DA /* LoseScene.sks in Resources */,
 				BBE0DF411A57932E00CDDABA /* Powerup20.wav in Resources */,
+				BB2B99141A60DBBA000E0797 /* 25_mask.png in Resources */,
 				BBE0DF3D1A578A9900CDDABA /* partnersinrhyme_CLICK13A.mp3 in Resources */,
 				BB2F653B1A4F3FEE00E4AD79 /* Images.xcassets in Resources */,
 				BBE0DF401A57932E00CDDABA /* FartSound.mp3 in Resources */,
@@ -303,6 +312,7 @@
 				BB56127D1A56427C00897598 /* MenuScene.m in Sources */,
 				BB41C5981A567AA4009280DA /* RWGameData.m in Sources */,
 				BB41C5951A5654C4009280DA /* LoseScene.m in Sources */,
+				BB2B99101A609530000E0797 /* UIImage+Mask.m in Sources */,
 				BB2F652B1A4F3FEE00E4AD79 /* main.m in Sources */,
 				BB2F65571A4FBB3C00E4AD79 /* menuViewController.m in Sources */,
 			);

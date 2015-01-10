@@ -32,6 +32,19 @@
 	</array>
 	<key>UIStatusBarHidden</key>
 	<true/>
+	<key>FacebookAppID</key>
+	<string>330383537167093</string>
+	<key>FacebookDisplayName</key>
+	<string>Tap Attack!</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string></string>
+			</array>
+		</dict>
+	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
