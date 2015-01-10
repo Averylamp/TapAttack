@@ -18,11 +18,7 @@
 
 -(void)didMoveToView:(SKView *)view
 {
-    if ([self.view isKindOfClass:[SKView class]]) {
-        NSLog(@"IT IS A SKVIEW");
-    }else{
-        NSLog(@"IT IS A UIVIEW");
-    }
+
     
     
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
@@ -63,6 +59,8 @@
     takePhoto.fontColor = [SKColor blackColor];
     [self addChild:takePhoto];
     
+    [self settupAllSpriteNodes];
+    
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -76,7 +74,18 @@
     }
     if([node.name isEqualToString:@"TakePhotoButton"]){
         [self performSelector:@selector(takePhoto) withObject:nil afterDelay:0.3];
-        
+    }
+    if([[node.name substringToIndex:10]isEqualToString:@"Green Node"]){
+        int zpos = [[[RWGameData sharedGameData].activeSpriteDictionary valueForKey:node.name] intValue];
+        if(zpos ==2){
+            zpos = 1;
+            ((SKShapeNode*)[[node children] firstObject]).fillColor = SKColor.redColor;
+        }else{
+            zpos = 2;
+            ((SKShapeNode*)[[node children] firstObject]).fillColor = SKColor.greenColor;
+        }
+        [[RWGameData sharedGameData].activeSpriteDictionary setValue:[NSNumber numberWithInt:zpos] forKey:node.name];
+        [[RWGameData sharedGameData]save];
     }
 }
 
@@ -86,7 +95,7 @@
     
     [imagePickerController setSourceType:UIImagePickerControllerSourceTypeCamera];
     imagePickerController.delegate = self;
-
+    
     UIWindow* appWindow = [UIApplication sharedApplication].windows.firstObject;
     [appWindow.rootViewController presentViewController:imagePickerController animated:YES completion:nil];
 }
@@ -115,11 +124,7 @@
         [self.playButton runAction: [SKAction scaleTo:2.5 duration:0.15]];
     }
 }
--(void)update:(NSTimeInterval)currentTime{
-    if(self.paused){
-        return;
-    }
-}
+
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     
@@ -129,21 +134,21 @@
                                    
                                    UIImage* photoTaken = info[UIImagePickerControllerOriginalImage];
                                    NSLog(@"Image Size %f , %f", photoTaken.size.width, photoTaken.size.height);
-
+                                   
                                    //UIImage* pilotImage =photoTaken;
-                                  // UIImage* pilotImage =[photoTaken imageWithSize: CGSizeMake(140, 140) andMask:[UIImage imageNamed:@"25_mask.png"]];
+                                   // UIImage* pilotImage =[photoTaken imageWithSize: CGSizeMake(140, 140) andMask:[UIImage imageNamed:@"25_mask.png"]];
                                    UIImage *pilotImage = [self squareImageFromImage:photoTaken scaledToSize:400];
                                    //NSData *imageData = UIImagePNGRepresentation(pilotImage);
                                    NSLog(@"Image Size %f , %f", pilotImage.size.width, pilotImage.size.height);
                                    NSMutableArray *takenPhotos = [[RWGameData sharedGameData].takenPhotos mutableCopy];
-
+                                   
                                    [takenPhotos addObject:pilotImage];
-                                                                      NSLog(@"Number of savedPhotos - %d",[takenPhotos count]);
+                                   NSLog(@"Number of savedPhotos - %d",[takenPhotos count]);
                                    [RWGameData sharedGameData].takenPhotos = takenPhotos;
                                    [[RWGameData sharedGameData] save];
                                    
                                    
-                                   
+                                   [self settupAllSpriteNodes];
                                    self.paused = NO;
                                }];
 }
@@ -189,4 +194,136 @@
     
     return image;
 }
+
+-(void)settupAllSpriteNodes
+{
+    SKSpriteNode *sprite;
+    
+    NSMutableArray *allSprites = [[RWGameData sharedGameData].allSprites mutableCopy];
+    for(NSString *s in [MenuScene arrayOfCircleImageNames]){
+        sprite= [[SKSpriteNode alloc]initWithImageNamed:s];
+        sprite.name = [@"Green Node with Image " stringByAppendingString:s];
+        sprite.size = CGSizeMake(135, 135);
+        if(![allSprites containsObject:sprite]){
+            [allSprites addObject:sprite];
+        }
+        if(![[RWGameData sharedGameData].activeSpriteDictionary objectForKey:sprite.name]){
+            [[RWGameData sharedGameData].activeSpriteDictionary setValue:[NSNumber numberWithInt:2] forKey:sprite.name];
+        }
+    }
+    for(UIImage *i in [RWGameData sharedGameData].takenPhotos){
+        UIImage *temp = [i imageWithSize:CGSizeMake(140, 140) andMask:[UIImage imageNamed:@"25_mask.png"]];
+        NSData *data = UIImagePNGRepresentation(temp);
+        data = [data subdataWithRange:NSMakeRange(0, 800)];
+        NSLog(@"Data - %@ " , data);
+        sprite = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImage:temp]];
+        sprite.name = [NSString stringWithFormat: @"Green Node with Saved Image %@",data];
+        //NSLog(sprite.name);
+        sprite.size = CGSizeMake(135, 135);
+        sprite.xScale = 4.0/3.0;
+        sprite.yScale = 4.0/3.0;
+        if(![allSprites containsObject:sprite]){
+            [allSprites addObject:sprite];
+        }
+        if(![[RWGameData sharedGameData].activeSpriteDictionary objectForKey:sprite.name]){
+            [[RWGameData sharedGameData].activeSpriteDictionary setValue:[NSNumber numberWithInt:2] forKey:sprite.name];
+        }
+    }
+    
+    [RWGameData sharedGameData].allSprites = allSprites;
+    NSLog(@"Num of Total Sprites - %d", [[RWGameData sharedGameData].allSprites count]);
+    [[RWGameData sharedGameData]save];
+    [self createRowOfSpritesAtHeight: 600];
+    
+}
+-(void)createRowOfSpritesAtHeight:(int) height
+{
+    int currentwidth = 0;
+    NSString *lastName1 = @"a",*lastName2 = @"b",*lastName3 = @"c";
+    while (currentwidth < self.screenSize.width +3000) {
+        
+        int index = arc4random() % [[RWGameData sharedGameData].allSprites count];
+        SKSpriteNode *sprite = [[[RWGameData sharedGameData].allSprites objectAtIndex:index] copy];
+        while ([sprite.name isEqualToString:lastName1]||[sprite.name isEqualToString:lastName2]||[sprite.name isEqualToString:lastName3]) {
+            int index = arc4random() % [[RWGameData sharedGameData].allSprites count];
+            sprite = [[[RWGameData sharedGameData].allSprites objectAtIndex:index] copy];
+        }
+        lastName3 = lastName2;
+        lastName2 = lastName1;
+        lastName1 = sprite.name;
+        
+        sprite = [self returnNodeWithBackground:sprite];
+        
+        
+        SKAction *action = [SKAction moveByX:-100 y:0 duration:1.5];
+        SKAction *repeatAction = [SKAction repeatActionForever:action];
+        [sprite runAction:repeatAction];
+        
+        sprite.position = CGPointMake(currentwidth, height);
+        currentwidth += 165;
+        [self addChild:sprite];
+    }
+    
+    
+    
+    
+}
+
+-(SKSpriteNode *)returnNodeWithBackground:(SKSpriteNode *)sprite
+{
+    int zpos = [((NSNumber *)[[RWGameData sharedGameData].activeSpriteDictionary valueForKey:sprite.name])intValue];
+    if (zpos ==2) {
+        sprite.zPosition = 2;
+        CGRect circle = CGRectMake(-75, -75, 150.0,150.0);
+        SKShapeNode *node = [[SKShapeNode alloc] init];
+        node.name = @"Green Back Circle";
+        ((SKShapeNode*)node).path = [UIBezierPath bezierPathWithOvalInRect:circle].CGPath;
+        ((SKShapeNode*)node).fillColor = SKColor.greenColor;
+        ((SKShapeNode*)node).strokeColor = nil;
+        node.position = CGPointZero;
+        ((SKShapeNode*)node).xScale=1.0;
+        ((SKShapeNode*)node).yScale=1.0;
+        if([[sprite name]length]>21){
+            if ([[[sprite name]substringToIndex:21]  isEqualToString:@"Green Node with Saved"]) {
+                node.xScale = 3.0/4.0;
+                node.yScale = 3.0/4.0;
+            }
+        }
+        node.zPosition = -4;
+        [sprite addChild:node];
+    }else if(zpos ==1){
+        sprite.zPosition = 1;
+        CGRect circle = CGRectMake(-75, -75, 150.0,150.0);
+        SKShapeNode *node = [[SKShapeNode alloc] init];
+        node.name = @"Red Back Circle";
+        ((SKShapeNode*)node).path = [UIBezierPath bezierPathWithOvalInRect:circle].CGPath;
+        ((SKShapeNode*)node).fillColor = SKColor.redColor;
+        ((SKShapeNode*)node).strokeColor = nil;
+        node.position = CGPointZero;
+        ((SKShapeNode*)node).xScale=1.0;
+        ((SKShapeNode*)node).yScale=1.0;
+        if([[sprite name]length]>15){
+            if ([[[sprite name]substringToIndex:15]  isEqualToString:@"Green Node with"]) {
+                node.xScale = 3.0/4.0;
+                node.yScale = 3.0/4.0;
+            }
+        }
+        node.zPosition = -4;
+        [sprite addChild:node];
+    }
+    return sprite;
+}
+
+
++(NSArray*)arrayOfCircleImageNames{
+    return [NSArray arrayWithObjects:@"SealFace",@"OwlFace", @"LemurFace",@"DogFace",@"DogFace2",@"BirdFace",nil];
+}
+
+-(void)update:(NSTimeInterval)currentTime{
+    if(self.paused){
+        return;
+    }
+}
+
+
 @end

@@ -57,12 +57,7 @@ static double const savedImageMultiplier = 4.0/3.0;
     appDelegate.gameScene = self;
     
     self.lost = NO;
-    if ([self.view isKindOfClass:[SKView class]]) {
-        NSLog(@"IT IS A SKVIEW");
-    }else{
-        NSLog(@"IT IS A UIVIEW");
-    }
-    /* Setup your scene here */
+    
     self.spawnTime = 0;
     
     self.scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"DIN Condensed"];
@@ -131,7 +126,7 @@ static double const savedImageMultiplier = 4.0/3.0;
             CGPoint positionInScene = [touch locationInNode:self];
             SKShapeNode *touchedNode = (SKShapeNode *)[self nodeAtPoint:positionInScene];
             if (touchedNode){
-                if ([[touchedNode name]  isEqualToString:@"Green Node"]||[[touchedNode name]  isEqualToString:@"Green Node with Image"]||[[touchedNode name]  isEqualToString:@"Green Node with Saved Image"]){
+                if ([[[touchedNode name]substringToIndex:10]  isEqualToString:@"Green Node"]){
                     //[self lose];
                     AudioServicesPlaySystemSound(self.clickSound);
                     int x = [self.arrayOfClickableCircles indexOfObject:touchedNode];
@@ -142,8 +137,10 @@ static double const savedImageMultiplier = 4.0/3.0;
                     [touchedNode removeAllActions];
                     [touchedNode removeFromParent];
                     self.score = self.score + 1;
-                    if ([[touchedNode name]  isEqualToString:@"Green Node with Image"]) {
-                        self.score = self.score + 1;
+                    if([[touchedNode name]length]>15){
+                        if ([[[touchedNode name]substringToIndex:15]  isEqualToString:@"Green Node with"]) {
+                            self.score = self.score + 1;
+                        }
                     }
                 }
                 if([[touchedNode name]isEqualToString:@"Golden Node"]){
@@ -180,7 +177,7 @@ static double const savedImageMultiplier = 4.0/3.0;
     UITouch * touch = (UITouch *)[[touches allObjects]firstObject];
     CGPoint location = [touch locationInNode:self];
     
-    NSLog(@"Position x - %f , y - %f", location.x, location.y);
+    //NSLog(@"Position x - %f , y - %f", location.x, location.y);
     
     
 }
@@ -209,7 +206,7 @@ static double const savedImageMultiplier = 4.0/3.0;
 }
 
 -(void) spawnGreen{
-    NSLog(@"SPAWN GREEN");
+    //NSLog(@"SPAWN GREEN");
     BOOL valid = NO;
     CGPoint location;
     while (!valid){
@@ -218,19 +215,19 @@ static double const savedImageMultiplier = 4.0/3.0;
         for(SKShapeNode *s in self.arrayOfClickableCircles){
             if(ABS(x-s.position.x)<110&&ABS(y-s.position.y)<120){
                 valid = NO;
-                NSLog(@"TOO CLOSE");
+                //NSLog(@"TOO CLOSE");
             }
         }
         for(SKShapeNode *s in self.arrayOfRedCircles){
             if(ABS(x-s.position.x)<120&&ABS(y-s.position.y)<130){
                 valid = NO;
-                NSLog(@"TOO CLOSE");
+                //NSLog(@"TOO CLOSE");
             }
         }
         location = CGPointMake(x, y);
     }
     SKNode *node;
-    if (YES) {
+    if (arc4random()%3==1|| arc4random()%3 ==1) {
         node = [self returnRandomCirclePhoto];
         node.position = location;
         node.xScale = 0.1;
@@ -271,7 +268,7 @@ static double const savedImageMultiplier = 4.0/3.0;
     
 }
 -(void)spawnRed{
-    NSLog(@"SPAWN RED");
+    //NSLog(@"SPAWN RED");
     
     BOOL valid = NO;
     CGPoint location;
@@ -287,7 +284,7 @@ static double const savedImageMultiplier = 4.0/3.0;
         for(SKShapeNode *s in self.arrayOfRedCircles){
             if(ABS(x-s.position.x)<90 && ABS(y-s.position.y)<90){
                 valid = NO;
-                NSLog(@"RED TOO CLOSE");
+                //NSLog(@"RED TOO CLOSE");
             }
         }
         location = CGPointMake(x, y);
@@ -310,7 +307,7 @@ static double const savedImageMultiplier = 4.0/3.0;
 }
 
 -(void)spawnGolden{
-    NSLog(@"SPAWN GOLDEN");
+    //NSLog(@"SPAWN GOLDEN");
     BOOL valid = NO;
     CGPoint location;
     while (!valid){
@@ -325,7 +322,7 @@ static double const savedImageMultiplier = 4.0/3.0;
         for(SKShapeNode *s in self.arrayOfRedCircles){
             if(ABS(x-s.position.x)<90 && ABS(y-s.position.y)<90){
                 valid = NO;
-                NSLog(@"RED TOO CLOSE");
+                //NSLog(@"RED TOO CLOSE");
             }
         }
         location = CGPointMake(x, y);
@@ -451,8 +448,8 @@ static double const savedImageMultiplier = 4.0/3.0;
     NSString *imageName;
     SKSpriteNode *sprite;
     NSLog(@"Local - %d  Saved - %d",[[GameScene arrayOfCircleImageNames]count], [[RWGameData sharedGameData].takenPhotos count]);
-    //int index =(arc4random()%([[GameScene arrayOfCircleImageNames]count]+[[RWGameData sharedGameData].takenPhotos count]));
-    int index =(arc4random()%([[RWGameData sharedGameData].takenPhotos count])) + [[GameScene arrayOfCircleImageNames] count];
+    int index =(arc4random()%([[GameScene arrayOfCircleImageNames]count]+[[RWGameData sharedGameData].takenPhotos count]));
+    //int index =(arc4random()%([[RWGameData sharedGameData].takenPhotos count])) + [[GameScene arrayOfCircleImageNames] count];
     
     
     if (index< [[GameScene arrayOfCircleImageNames]count]) {

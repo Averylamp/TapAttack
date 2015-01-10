@@ -11,6 +11,9 @@
 @interface RWGameData : NSObject<NSCoding>
 @property int highScore;
 @property (nonatomic) NSArray* takenPhotos;
+@property (nonatomic) NSArray* allSprites;
+@property (nonatomic) NSArray* inUseLocalSprites;
+@property (nonatomic) NSMutableDictionary* activeSpriteDictionary;
 +(instancetype)sharedGameData;
 -(void)save;
 @end
