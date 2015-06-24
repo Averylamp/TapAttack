@@ -57,9 +57,9 @@
     takePhoto.text = @"Add your own circles";
     takePhoto.position = CGPointMake(self.screenSize.width/2,40);
     takePhoto.fontColor = [SKColor blackColor];
-    [self addChild:takePhoto];
+    //[self addChild:takePhoto];
     
-    [self settupAllSpriteNodes];
+    //[self settupAllSpriteNodes];
     
 }
 

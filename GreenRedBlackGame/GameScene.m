@@ -29,6 +29,15 @@
 @property SystemSoundID clickSound;
 @property SystemSoundID redClickSound;
 @property SystemSoundID goldenClickSound;
+
+@property NSMutableArray *colorArray;
+@property double colorSwitchTime;
+@property BOOL doubleActivated;
+@property BOOL colorSwitching;
+@property double timeToSwitchColor;
+
+@property double timeToDeactivateDouble;
+
 @end
 @implementation GameScene
 
@@ -111,6 +120,12 @@ static double const savedImageMultiplier = 4.0/3.0;
     self.timeToDissappear = 1.5;
     self.timeToDissappearRate = .5;
     
+    self.colorArray = [[NSMutableArray alloc]init];
+    [self.colorArray addObjectsFromArray:[NSArray arrayWithObjects:[UIColor colorWithRed:0.176f green:0.145f blue:0.333f alpha:1.00f],[UIColor colorWithRed:0.910f green:0.482f blue:0.173f alpha:1.00f],[UIColor colorWithRed:0.333f green:0.749f blue:0.976f alpha:1.00f],[UIColor colorWithRed:0.800f green:0.757f blue:0.847f alpha:1.00f],[UIColor colorWithRed:0.992f green:0.357f blue:0.976f alpha:1.00f], nil]];
+    self.colorSwitching = YES;
+    self.doubleActivated = NO;
+    self.colorSwitchTime = 5;
+    
 }
 
 
@@ -126,6 +141,18 @@ static double const savedImageMultiplier = 4.0/3.0;
             CGPoint positionInScene = [touch locationInNode:self];
             SKShapeNode *touchedNode = (SKShapeNode *)[self nodeAtPoint:positionInScene];
             if (touchedNode){
+                if([[touchedNode name]isEqualToString:@"Red Node"]){
+                    AudioServicesPlaySystemSound(self.redClickSound);
+                    [self lose:@"You touched a red"];
+                    return;
+                }
+                if ([[touchedNode name]isEqualToString:@"Blue Node"]) {
+                    self.doubleActivated = true;
+                    self.timeToDeactivateDouble = CACurrentMediaTime() + 10;
+                    [touchedNode removeAllActions];
+                    [touchedNode removeFromParent];
+                    return;
+                }
                 if ([[[touchedNode name]substringToIndex:10]  isEqualToString:@"Green Node"]){
                     //[self lose];
                     AudioServicesPlaySystemSound(self.clickSound);
@@ -137,21 +164,25 @@ static double const savedImageMultiplier = 4.0/3.0;
                     [touchedNode removeAllActions];
                     [touchedNode removeFromParent];
                     self.score = self.score + 1;
+                    if(self.doubleActivated){
+                        self.score = self.score + 1;
+                    }
                     if([[touchedNode name]length]>15){
                         if ([[[touchedNode name]substringToIndex:15]  isEqualToString:@"Green Node with"]) {
                             self.score = self.score + 1;
+                            
                         }
                     }
                 }
                 if([[touchedNode name]isEqualToString:@"Golden Node"]){
                     [touchedNode removeFromParent];
                     AudioServicesPlaySystemSound(self.goldenClickSound);
-                    self.score = self.score + arc4random() %30 + 20;
+                    self.score = self.score + 15;
+                    if(self.doubleActivated){
+                        self.score = self.score + 15;
+                    }
                 }
-                if([[touchedNode name]isEqualToString:@"Red Node"]){
-                    AudioServicesPlaySystemSound(self.redClickSound);
-                    [self lose:@"You touched a red"];
-                }
+                
             }
             
             /*
@@ -227,7 +258,9 @@ static double const savedImageMultiplier = 4.0/3.0;
         location = CGPointMake(x, y);
     }
     SKNode *node;
-    if (arc4random()%3==1|| arc4random()%3 ==1) {
+    
+    if(NO){
+    //if (arc4random()%3==1|| arc4random()%3 ==1) {
         node = [self returnRandomCirclePhoto];
         node.position = location;
         node.xScale = 0.1;
@@ -304,6 +337,47 @@ static double const savedImageMultiplier = 4.0/3.0;
     [shapeNode runAction:[SKAction  scaleTo:1 duration:0.25]completion:^{
         
     } ];
+    
+    
+}
+
+-(void)spawnBlue{
+    //NSLog(@"SPAWN RED");
+    
+    BOOL valid = NO;
+    CGPoint location;
+    while (!valid){
+        int x= (arc4random() % (int)(self.screenSize.width - 130)) + 65, y = (arc4random() % (int) (self.screenSize.height - 130)) + 65;
+        valid = YES;
+        for(SKShapeNode *s in self.arrayOfClickableCircles){
+            if(ABS(x-s.position.x)<130 && ABS(y-s.position.y)<130){
+                valid = NO;
+                //NSLog(@"TOO CLOSE");
+            }
+        }
+        for(SKShapeNode *s in self.arrayOfRedCircles){
+            if(ABS(x-s.position.x)<90 && ABS(y-s.position.y)<90){
+                valid = NO;
+                //NSLog(@"RED TOO CLOSE");
+            }
+        }
+        location = CGPointMake(x, y);
+    }
+    
+    UIImage *powerImage = [UIImage imageNamed:@"Times2PowerUp"];
+    powerImage = [powerImage imageWithSize:CGSizeMake(200, 200) andMask:[UIImage imageNamed:@"25_mask.png"]];
+    SKTexture *texture = [SKTexture textureWithImage:powerImage];
+    SKSpriteNode *powerNode = [[SKSpriteNode alloc] initWithTexture: texture];
+    powerNode.name = @"Blue Node";
+    powerNode.position = location;
+    powerNode.xScale=1;
+    powerNode.yScale=1;
+    [self addChild:powerNode];
+    [powerNode runAction:[SKAction  scaleTo:0 duration:1.2]completion:^{
+        [powerNode removeFromParent];
+    } ];
+    
+    
 }
 
 -(void)spawnGolden{
@@ -352,11 +426,32 @@ static double const savedImageMultiplier = 4.0/3.0;
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
     
+    double caTime = CACurrentMediaTime();
+    
+    if (caTime > self.timeToSwitchColor || (self.doubleActivated &&  self.colorSwitchTime/ 40 < self.timeToSwitchColor - caTime)) {
+        self.colorSwitching = true;
+        if (self.doubleActivated) {
+            [UIView animateWithDuration:self.colorSwitchTime / 40 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                [self  setBackgroundColor:[self.colorArray objectAtIndex:arc4random() % self.colorArray.count]];
+            } completion:^(BOOL finished) {
+                
+            }];
+            self.timeToSwitchColor = caTime+ self.colorSwitchTime/40;
+        }else{
+            [UIView animateWithDuration:self.colorSwitchTime delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                self.backgroundColor = [self.colorArray objectAtIndex:arc4random() % self.colorArray.count];
+            } completion:^(BOOL finished) {
+
+            }];
+            self.timeToSwitchColor = caTime + self.colorSwitchTime;
+        }
+    }
+    
     if (self.started && !self.lost)
     {
         BOOL greenAdded=NO;
         if(self.spawnTime ==0){
-            self.spawnTime = CACurrentMediaTime();
+            self.spawnTime = caTime;
             [self spawnGreen];
             self.spawnTime = self.spawnTime + self.spawnRate;
             greenAdded = YES;
@@ -430,6 +525,16 @@ static double const savedImageMultiplier = 4.0/3.0;
             [self spawnGolden];
         }
         
+        if(arc4random() % 300 == t && self.numberOfUpdates > 300){
+            if (!self.doubleActivated) {
+                [self spawnBlue];
+            }
+            
+        }
+        if (caTime>self.timeToDeactivateDouble && self.timeToDeactivateDouble != 0) {
+            self.doubleActivated = NO;
+            self.timeToDeactivateDouble = 0;
+        }
         
         
         self.timeToDissappear =ABS( 1.5 - (self.numberOfUpdates / 20000));
