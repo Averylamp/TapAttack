@@ -71,17 +71,19 @@ static double const savedImageMultiplier = 4.0/3.0;
     
     self.scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"DIN Condensed"];
     self.scoreLabel.text = @"Score - 0";
-    self.scoreLabel.fontSize = 100.0f;
+    self.scoreLabel.fontSize = 100.0f* screenScale / 2;
     self.scoreLabel.fontColor = [UIColor blackColor];
     self.scoreLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-                                           self.screenSize.height - 90);
+                                           self.screenSize.height - 90* screenScale / 2);
+
+
     [self addChild:self.scoreLabel];
     
     
     SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     myLabel.fontColor = [UIColor blackColor];
     myLabel.text = @"3";
-    myLabel.fontSize = 200;
+    myLabel.fontSize = 200* screenScale / 2;
     myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
                                    CGRectGetMidY(self.frame));
     myLabel.xScale = 0.25;

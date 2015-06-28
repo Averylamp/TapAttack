@@ -30,17 +30,19 @@
     SKLabelNode *titleLabel = [[SKLabelNode alloc]initWithFontNamed:@"Party LET"];
     //UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.screenSize.width, self.screenSize.height/3.5)];
     titleLabel.text = @"Tap Attack!";
+    titleLabel.xScale =  screenScale / 2;
+    titleLabel.yScale =  screenScale / 2;
     //titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.fontColor = [UIColor blackColor];
     titleLabel.fontSize = 125.0f;
-    titleLabel.position = CGPointMake(self.screenSize.width/2,self.screenSize.height - self.screenSize.height/7);
+    titleLabel.position = CGPointMake(self.screenSize.width/2,self.screenSize.height - self.screenSize.height/6  * screenScale / 2);
     //titleLabel.font = [UIFont fontWithName:@"Party LET" size:50.0f];
     [self addChild:titleLabel];
     
     SKSpriteNode * playButton = [[SKSpriteNode alloc]initWithImageNamed:@"playButton"];
     playButton.position = CGPointMake(self.screenSize.width / 2, self.screenSize.height/3);
-    playButton.xScale = 2.5;
-    playButton.yScale = 2.5;
+    playButton.xScale = 2.5* screenScale / 2;
+    playButton.yScale = 2.5* screenScale / 2;
     playButton.name = @"playButton";
     self.playButton = playButton;
     [self addChild:playButton];
@@ -64,13 +66,15 @@
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    CGFloat screenScale = [[UIScreen mainScreen] scale];
+
     UITouch * touch = (UITouch *)[[touches allObjects]firstObject];
     CGPoint location = [touch locationInNode:self];
     SKNode *node = [self nodeAtPoint:location];
     
     if([node.name isEqualToString:@"playButton"]){
         SKSpriteNode *playButton = (SKSpriteNode *)node;
-        [playButton runAction: [SKAction scaleTo:2.8 duration:0.15]];
+        [playButton runAction: [SKAction scaleTo:2.8 * screenScale / 2 duration:0.15]];
     }
     if([node.name isEqualToString:@"TakePhotoButton"]){
         [self performSelector:@selector(takePhoto) withObject:nil afterDelay:0.3];
@@ -111,17 +115,18 @@
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    CGFloat screenScale = [[UIScreen mainScreen] scale];
     UITouch * touch = (UITouch *)[[touches allObjects]firstObject];
     CGPoint location = [touch locationInNode:self];
     SKNode *node = [self nodeAtPoint:location];
     
     if([node.name isEqualToString:@"playButton"]){
         
-        [self.playButton runAction: [SKAction scaleTo:2.5 duration:0.1]];
+        [self.playButton runAction: [SKAction scaleTo:2.5 * screenScale / 2 duration:0.1]];
         [self.viewController play:nil];
         
     }else{
-        [self.playButton runAction: [SKAction scaleTo:2.5 duration:0.15]];
+        [self.playButton runAction: [SKAction scaleTo:2.5 * screenScale / 2 duration:0.15]];
     }
 }
 

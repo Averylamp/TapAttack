@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "860F35A70AB75D0878CEC13D87B5640FC43C8625",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "30FCF99C086323FD85AE1A9C80FCAA5F60472E08" : 0,
+    "860F35A70AB75D0878CEC13D87B5640FC43C8625" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "E33DCBEB-D5F3-4C05-8048-A227C3719CA1",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "30FCF99C086323FD85AE1A9C80FCAA5F60472E08" : "",
+    "860F35A70AB75D0878CEC13D87B5640FC43C8625" : "Tap%20Attack!"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "GreenRedBlackGame",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 203,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "GreenRedBlackGame.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/averylamp\/galagagame.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "30FCF99C086323FD85AE1A9C80FCAA5F60472E08"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/bitbucket.org\/averylamp\/tap-attack.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "860F35A70AB75D0878CEC13D87B5640FC43C8625"
+    }
+  ]
+}
