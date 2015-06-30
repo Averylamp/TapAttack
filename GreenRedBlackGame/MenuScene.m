@@ -148,7 +148,7 @@
                                    NSMutableArray *takenPhotos = [[RWGameData sharedGameData].takenPhotos mutableCopy];
                                    
                                    [takenPhotos addObject:pilotImage];
-                                   NSLog(@"Number of savedPhotos - %d",[takenPhotos count]);
+                                   NSLog(@"Number of savedPhotos - %lu",(unsigned long)[takenPhotos count]);
                                    [RWGameData sharedGameData].takenPhotos = takenPhotos;
                                    [[RWGameData sharedGameData] save];
                                    
@@ -236,7 +236,7 @@
     }
     
     [RWGameData sharedGameData].allSprites = allSprites;
-    NSLog(@"Num of Total Sprites - %d", [[RWGameData sharedGameData].allSprites count]);
+    NSLog(@"Num of Total Sprites - %lu", (unsigned long)[[RWGameData sharedGameData].allSprites count]);
     [[RWGameData sharedGameData]save];
     [self createRowOfSpritesAtHeight: 600];
     

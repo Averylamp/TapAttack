@@ -197,6 +197,13 @@
         view.layer.borderColor = [UIColor blackColor].CGColor;
         view.layer.borderWidth = 4.0f;
         
+        UIButton *facebookLink = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, view.frame.size.width / 3, view.frame.size.width / 3)];
+        [facebookLink setBackgroundImage:[UIImage imageNamed:@"facebook_icon"] forState:UIControlStateNormal];
+        facebookLink.center = CGPointMake(view.frame.size.width / 4,view.frame.size.height/2);
+        [facebookLink addTarget:self action:@selector(facebookClicked) forControlEvents:UIControlEventTouchUpInside];
+        [view addSubview:facebookLink ];
+        
+        
         UIButton * exitShareView = [[UIButton alloc]initWithFrame:CGRectMake(view.frame.size.width - 40, 0, 40, 40)];
         [self.shareView addSubview:exitShareView];
         [exitShareView addTarget:self action:@selector(exitShare) forControlEvents:UIControlEventTouchUpInside];
@@ -219,6 +226,37 @@
     }else{
         
     }
+}
+
+-(void)facebookClicked{
+    if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) //check if Facebook Account is linked
+    {
+        self.mySLComposerSheet = [[SLComposeViewController alloc] init]; //initiate the Social Controller
+        self.mySLComposerSheet = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook]; //Tell him with what social plattform to use it, e.g. facebook or twitter
+//        [self.mySLComposerSheet setInitialText:[NSString stringWithFormat:@"I just scored big time in Tap Attack!"]]; //the message you want to post
+        //[self.mySLComposerSheet addImage:yourimage]; //an image you could post
+        //for more instance methodes, go here:https://developer.apple.com/library/ios/#documentation/NetworkingInternet/Reference/SLComposeViewController_Class/Reference/Reference.html#//apple_ref/doc/uid/TP40012205
+
+        [self.viewController presentViewController:self.mySLComposerSheet animated:YES completion:nil];
+    }
+    [self.mySLComposerSheet setCompletionHandler:^(SLComposeViewControllerResult result) {
+        NSString *output;
+        switch (result) {
+            case SLComposeViewControllerResultCancelled:
+                output = @"Post Cancelled";
+                break;
+            case SLComposeViewControllerResultDone:
+                output = @"Post Successfull";
+                break;
+            default:
+                break;
+        } //check if everything worked properly. Give out a message on the state.
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Facebook" message:output delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+    }];
+}
+-(void)twitterClicked{
+    
 }
 
 -(void)exitShare{

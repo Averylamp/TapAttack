@@ -9,6 +9,11 @@
 #import <SpriteKit/SpriteKit.h>
 #import "GameViewController.h"
 #import "RWGameData.h"
+#import <Social/Social.h>
 @interface LoseScene : SKScene
 @property  GameViewController* viewController;
+
+
+@property SLComposeViewController *mySLComposerSheet;
+
 @end

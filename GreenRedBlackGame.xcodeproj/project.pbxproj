@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		BB0B2C141A57133000AC7D50 /* GlassBreaking.m4a in Resources */ = {isa = PBXBuildFile; fileRef = BB0B2C131A57133000AC7D50 /* GlassBreaking.m4a */; };
-		BB2B990B1A60816C000E0797 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB2B990A1A60816C000E0797 /* FacebookSDK.framework */; };
 		BB2B99101A609530000E0797 /* UIImage+Mask.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2B990E1A609530000E0797 /* UIImage+Mask.m */; };
 		BB2B99141A60DBBA000E0797 /* 25_mask.png in Resources */ = {isa = PBXBuildFile; fileRef = BB2B99131A60DBBA000E0797 /* 25_mask.png */; };
 		BB2F652B1A4F3FEE00E4AD79 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2F652A1A4F3FEE00E4AD79 /* main.m */; };
@@ -28,6 +27,8 @@
 		BB41C59D1A56980B009280DA /* ClickSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = BB41C59C1A56980B009280DA /* ClickSound.wav */; };
 		BB5612761A560DDE00897598 /* MenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = BB5612751A560DDE00897598 /* MenuScene.sks */; };
 		BB56127D1A56427C00897598 /* MenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BB56127C1A56427C00897598 /* MenuScene.m */; };
+		BB630F2E1B41E0B400E83319 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB630F2D1B41E0B400E83319 /* Social.framework */; };
+		BB630F301B41E61200E83319 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB630F2F1B41E61200E83319 /* GameKit.framework */; };
 		BBE0DF3D1A578A9900CDDABA /* partnersinrhyme_CLICK13A.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BBE0DF3C1A578A9900CDDABA /* partnersinrhyme_CLICK13A.mp3 */; };
 		BBE0DF401A57932E00CDDABA /* FartSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BBE0DF3E1A57932E00CDDABA /* FartSound.mp3 */; };
 		BBE0DF411A57932E00CDDABA /* Powerup20.wav in Resources */ = {isa = PBXBuildFile; fileRef = BBE0DF3F1A57932E00CDDABA /* Powerup20.wav */; };
@@ -45,7 +46,6 @@
 
 /* Begin PBXFileReference section */
 		BB0B2C131A57133000AC7D50 /* GlassBreaking.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = GlassBreaking.m4a; sourceTree = "<group>"; };
-		BB2B990A1A60816C000E0797 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		BB2B990D1A609530000E0797 /* UIImage+Mask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Mask.h"; sourceTree = "<group>"; };
 		BB2B990E1A609530000E0797 /* UIImage+Mask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Mask.m"; sourceTree = "<group>"; };
 		BB2B99131A60DBBA000E0797 /* 25_mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 25_mask.png; path = ../25_mask.png; sourceTree = "<group>"; };
@@ -79,6 +79,8 @@
 		BB5612791A560E7B00897598 /* SceneKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SceneKit.framework; path = System/Library/Frameworks/SceneKit.framework; sourceTree = SDKROOT; };
 		BB56127B1A56427C00897598 /* MenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuScene.h; sourceTree = "<group>"; };
 		BB56127C1A56427C00897598 /* MenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuScene.m; sourceTree = "<group>"; };
+		BB630F2D1B41E0B400E83319 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		BB630F2F1B41E61200E83319 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		BBE0DF3C1A578A9900CDDABA /* partnersinrhyme_CLICK13A.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = partnersinrhyme_CLICK13A.mp3; sourceTree = "<group>"; };
 		BBE0DF3E1A57932E00CDDABA /* FartSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = FartSound.mp3; sourceTree = "<group>"; };
 		BBE0DF3F1A57932E00CDDABA /* Powerup20.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Powerup20.wav; sourceTree = "<group>"; };
@@ -89,8 +91,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB630F2E1B41E0B400E83319 /* Social.framework in Frameworks */,
 				BB41C59B1A569032009280DA /* AVFoundation.framework in Frameworks */,
-				BB2B990B1A60816C000E0797 /* FacebookSDK.framework in Frameworks */,
+				BB630F301B41E61200E83319 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,7 +110,8 @@
 		BB2F651C1A4F3FEE00E4AD79 = {
 			isa = PBXGroup;
 			children = (
-				BB2B990A1A60816C000E0797 /* FacebookSDK.framework */,
+				BB630F2F1B41E61200E83319 /* GameKit.framework */,
+				BB630F2D1B41E0B400E83319 /* Social.framework */,
 				BB41C59A1A569032009280DA /* AVFoundation.framework */,
 				BB5612791A560E7B00897598 /* SceneKit.framework */,
 				BB5612771A560E4900897598 /* SpriteKit.framework */,
@@ -246,6 +250,11 @@
 					BB2F65241A4F3FEE00E4AD79 = {
 						CreatedOnToolsVersion = 6.2;
 						DevelopmentTeam = 9XWYL3K4YT;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+						};
 					};
 					BB2F65421A4F3FEE00E4AD79 = {
 						CreatedOnToolsVersion = 6.2;

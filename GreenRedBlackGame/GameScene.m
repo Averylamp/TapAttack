@@ -158,7 +158,7 @@ static double const savedImageMultiplier = 4.0/3.0;
                 if ([[[touchedNode name]substringToIndex:10]  isEqualToString:@"Green Node"]){
                     //[self lose];
                     AudioServicesPlaySystemSound(self.clickSound);
-                    int x = [self.arrayOfClickableCircles indexOfObject:touchedNode];
+                    int x = (int) [self.arrayOfClickableCircles indexOfObject:touchedNode];
                     if (x<[self.arrayOfTimesToDissappear count]) {
                         [self.arrayOfTimesToDissappear removeObjectAtIndex:x];
                     }
@@ -207,8 +207,8 @@ static double const savedImageMultiplier = 4.0/3.0;
     }
 }
 -(void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-    UITouch * touch = (UITouch *)[[touches allObjects]firstObject];
-    CGPoint location = [touch locationInNode:self];
+    //UITouch * touch = (UITouch *)[[touches allObjects]firstObject];
+    //CGPoint location = [touch locationInNode:self];
     
     //NSLog(@"Position x - %f , y - %f", location.x, location.y);
     
@@ -239,6 +239,7 @@ static double const savedImageMultiplier = 4.0/3.0;
 }
 
 -(void) spawnGreen{
+    return;
     //NSLog(@"SPAWN GREEN");
     BOOL valid = NO;
     CGPoint location;
@@ -304,6 +305,7 @@ static double const savedImageMultiplier = 4.0/3.0;
 }
 -(void)spawnRed{
     //NSLog(@"SPAWN RED");
+    return;
     
     BOOL valid = NO;
     CGPoint location;
@@ -345,7 +347,7 @@ static double const savedImageMultiplier = 4.0/3.0;
 
 -(void)spawnBlue{
     //NSLog(@"SPAWN RED");
-    
+    return;
     BOOL valid = NO;
     CGPoint location;
     while (!valid){
@@ -383,9 +385,11 @@ static double const savedImageMultiplier = 4.0/3.0;
 }
 
 -(void)spawnGolden{
-    //NSLog(@"SPAWN GOLDEN");
+    NSLog(@"SPAWN GOLDEN");
     BOOL valid = NO;
     CGPoint location;
+    
+    
     while (!valid){
         int x= (arc4random() % (int)(self.screenSize.width - 250)) + 125, y = (arc4random() % (int) (self.screenSize.height - 250)) + 125;
         valid = YES;
@@ -402,25 +406,34 @@ static double const savedImageMultiplier = 4.0/3.0;
             }
         }
         location = CGPointMake(x, y);
+        NSLog(@"Valid - %hhd",valid);
     }
+    
+    
+    
+    
     CGRect circle = CGRectMake(-40, -40, 80.0,80.0);
-    SKShapeNode *shapeNode = [[SKShapeNode alloc] init];
+    SKShapeNode *shapeNode = [SKShapeNode node];
     shapeNode.name = @"Golden Node";
     shapeNode.path = [UIBezierPath bezierPathWithOvalInRect:circle].CGPath;
     shapeNode.fillColor = [SKColor colorWithRed:255.0f green:180.0f blue:0.0f alpha:1.0f];
     shapeNode.strokeColor = nil;
     shapeNode.position = location;
-    shapeNode.xScale=0.2;
-    shapeNode.yScale=0.2;
+    shapeNode.xScale=0;
+    shapeNode.yScale=0;
     shapeNode.zPosition = 1;
-    [self addChild:shapeNode];
-    [shapeNode runAction:[SKAction  scaleTo:1 duration:0.25]completion:^{
-        [shapeNode runAction:[SKAction scaleTo:1.2 duration:0.4] completion:^{
-            [shapeNode runAction:[SKAction scaleTo:0.0f duration:.25]];
-        }];
-    } ];
-    [shapeNode runAction:[SKAction moveByX:(arc4random()%350)-175 y:(arc4random()%350)-175 duration:.65]];
     
+     SKAction *growShrinkAction = [SKAction sequence:@[ [SKAction  scaleTo:1 duration:0.25],[SKAction scaleTo:1.2 duration:0.4] ,[SKAction scaleTo:0.0f duration:.25] ]];
+    
+    SKAction *moveAction = [SKAction moveByX:(arc4random()%350)-175 y:(arc4random()%350)-175 duration:.65];
+    
+    SKAction *fullAction = [SKAction group:@[growShrinkAction, moveAction]];
+    [shapeNode runAction:fullAction completion:^{
+        [shapeNode removeFromParent];
+    }];
+    
+    
+    [self addChild:shapeNode];
 }
 
 
@@ -433,12 +446,12 @@ static double const savedImageMultiplier = 4.0/3.0;
     if (caTime > self.timeToSwitchColor || (self.doubleActivated &&  self.colorSwitchTime/ 40 < self.timeToSwitchColor - caTime)) {
         self.colorSwitching = true;
         if (self.doubleActivated) {
-            [UIView animateWithDuration:self.colorSwitchTime / 40 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            [UIView animateWithDuration:self.colorSwitchTime / 35 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 [self  setBackgroundColor:[self.colorArray objectAtIndex:arc4random() % self.colorArray.count]];
             } completion:^(BOOL finished) {
                 
             }];
-            self.timeToSwitchColor = caTime+ self.colorSwitchTime/40;
+            self.timeToSwitchColor = caTime+ self.colorSwitchTime/35;
         }else{
             [UIView animateWithDuration:self.colorSwitchTime delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 self.backgroundColor = [self.colorArray objectAtIndex:arc4random() % self.colorArray.count];
@@ -524,6 +537,7 @@ static double const savedImageMultiplier = 4.0/3.0;
         }
         int t = (int)self.numberOfUpdates % 100;
         if(arc4random() % 100 == t && self.numberOfUpdates > 200){
+            NSLog(@"rand - %d", t);
             [self spawnGolden];
         }
         
@@ -554,7 +568,7 @@ static double const savedImageMultiplier = 4.0/3.0;
 {
     NSString *imageName;
     SKSpriteNode *sprite;
-    NSLog(@"Local - %d  Saved - %d",[[GameScene arrayOfCircleImageNames]count], [[RWGameData sharedGameData].takenPhotos count]);
+    NSLog(@"Local - %lu  Saved - %lu",(unsigned long)[[GameScene arrayOfCircleImageNames]count], (unsigned long)[[RWGameData sharedGameData].takenPhotos count]);
     int index =(arc4random()%([[GameScene arrayOfCircleImageNames]count]+[[RWGameData sharedGameData].takenPhotos count]));
     //int index =(arc4random()%([[RWGameData sharedGameData].takenPhotos count])) + [[GameScene arrayOfCircleImageNames] count];
     
@@ -564,7 +578,7 @@ static double const savedImageMultiplier = 4.0/3.0;
         sprite= [[SKSpriteNode alloc]initWithImageNamed:imageName];
         sprite.name = @"Green Node with Image";
     }else{
-        index  = index - [[GameScene arrayOfCircleImageNames]count];
+        index  = index - (int) [[GameScene arrayOfCircleImageNames]count];
         UIImage *image = ((UIImage*)[[RWGameData sharedGameData].takenPhotos objectAtIndex:index])  ;
         image = [image imageWithSize:CGSizeMake(140, 140) andMask:[UIImage imageNamed:@"25_mask.png"]];
         sprite = [SKSpriteNode spriteNodeWithTexture:[SKTexture textureWithImage:image]];
