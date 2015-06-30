@@ -13,12 +13,13 @@
 @property CGSize screenSize;
 @property SKSpriteNode *playButton;
 @property NSMutableArray *allNodes;
+@property   UIView *instructionsView;
 @end
 @implementation MenuScene
 
 -(void)didMoveToView:(SKView *)view
 {
-
+   
     
     
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
@@ -62,6 +63,53 @@
     //[self addChild:takePhoto];
     
     //[self settupAllSpriteNodes];
+    
+    BOOL firstUse = YES;
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"firstUse"]) {
+        firstUse = ((NSNumber*)[[NSUserDefaults standardUserDefaults] objectForKey:@"firstUse"]).boolValue;
+    }
+
+    if (firstUse) {
+        NSLog(@"Setting Queue");
+        int64_t delayInSeconds = 2.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            NSLog(@"Setup instructions");
+            [self setupInstructions];
+        });
+
+        
+    }
+    
+}
+
+-(void)setupInstructions{
+    
+    UIView *instructionsView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width  * 0.9, self.view.frame.size.height * 0.82)];
+    instructionsView.layer.borderColor = [UIColor blackColor].CGColor;
+    instructionsView.layer.borderWidth = 2;
+    instructionsView.center = self.view.center;
+    instructionsView.backgroundColor = [UIColor whiteColor];
+    self.instructionsView = instructionsView;
+    [self.viewController.view insertSubview:instructionsView atIndex:0];
+    
+    UIButton *exitButton = [[UIButton alloc]initWithFrame:CGRectMake(instructionsView.frame.size.width - 35, 12, 30, 30)];
+    [exitButton setBackgroundImage:[UIImage imageNamed:@"exitButton"] forState:UIControlStateNormal];
+    [exitButton addTarget:self action:@selector(exitInstructionsPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.instructionsView addSubview: exitButton];
+    
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, instructionsView.frame.size.width, 50)];
+    titleLabel.text = @"How to Play";
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.font = [UIFont fontWithName:@"Panton-Black" size:40];
+    [self.instructionsView addSubview: titleLabel];
+    
+    
+}
+
+-(void) exitInstructionsPressed{
+    [self.instructionsView removeFromSuperview];
+    
     
 }
 

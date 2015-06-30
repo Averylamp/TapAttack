@@ -239,7 +239,7 @@ static double const savedImageMultiplier = 4.0/3.0;
 }
 
 -(void) spawnGreen{
-    return;
+
     //NSLog(@"SPAWN GREEN");
     BOOL valid = NO;
     CGPoint location;
@@ -305,7 +305,7 @@ static double const savedImageMultiplier = 4.0/3.0;
 }
 -(void)spawnRed{
     //NSLog(@"SPAWN RED");
-    return;
+
     
     BOOL valid = NO;
     CGPoint location;
@@ -347,7 +347,7 @@ static double const savedImageMultiplier = 4.0/3.0;
 
 -(void)spawnBlue{
     //NSLog(@"SPAWN RED");
-    return;
+
     BOOL valid = NO;
     CGPoint location;
     while (!valid){
@@ -385,7 +385,7 @@ static double const savedImageMultiplier = 4.0/3.0;
 }
 
 -(void)spawnGolden{
-    NSLog(@"SPAWN GOLDEN");
+//    NSLog(@"SPAWN GOLDEN");
     BOOL valid = NO;
     CGPoint location;
     
@@ -537,7 +537,7 @@ static double const savedImageMultiplier = 4.0/3.0;
         }
         int t = (int)self.numberOfUpdates % 100;
         if(arc4random() % 100 == t && self.numberOfUpdates > 200){
-            NSLog(@"rand - %d", t);
+//            NSLog(@"rand - %d", t);
             [self spawnGolden];
         }
         

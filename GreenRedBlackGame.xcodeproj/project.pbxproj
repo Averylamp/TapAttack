@@ -29,6 +29,15 @@
 		BB56127D1A56427C00897598 /* MenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = BB56127C1A56427C00897598 /* MenuScene.m */; };
 		BB630F2E1B41E0B400E83319 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB630F2D1B41E0B400E83319 /* Social.framework */; };
 		BB630F301B41E61200E83319 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB630F2F1B41E61200E83319 /* GameKit.framework */; };
+		BB630F441B42420E00E83319 /* Panton-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = BB630F3B1B42420E00E83319 /* Panton-Black.otf */; };
+		BB630F451B42420E00E83319 /* Panton-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = BB630F3C1B42420E00E83319 /* Panton-Bold.otf */; };
+		BB630F461B42420E00E83319 /* Panton-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = BB630F3D1B42420E00E83319 /* Panton-ExtraBold.otf */; };
+		BB630F471B42420E00E83319 /* Panton-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = BB630F3E1B42420E00E83319 /* Panton-ExtraLight.otf */; };
+		BB630F481B42420E00E83319 /* Panton-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = BB630F3F1B42420E00E83319 /* Panton-Heavy.otf */; };
+		BB630F491B42420E00E83319 /* Panton-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = BB630F401B42420E00E83319 /* Panton-Light.otf */; };
+		BB630F4A1B42420E00E83319 /* Panton-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = BB630F411B42420E00E83319 /* Panton-Regular.otf */; };
+		BB630F4B1B42420E00E83319 /* Panton-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = BB630F421B42420E00E83319 /* Panton-SemiBold.otf */; };
+		BB630F4C1B42420E00E83319 /* Panton-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = BB630F431B42420E00E83319 /* Panton-Thin.otf */; };
 		BBE0DF3D1A578A9900CDDABA /* partnersinrhyme_CLICK13A.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BBE0DF3C1A578A9900CDDABA /* partnersinrhyme_CLICK13A.mp3 */; };
 		BBE0DF401A57932E00CDDABA /* FartSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BBE0DF3E1A57932E00CDDABA /* FartSound.mp3 */; };
 		BBE0DF411A57932E00CDDABA /* Powerup20.wav in Resources */ = {isa = PBXBuildFile; fileRef = BBE0DF3F1A57932E00CDDABA /* Powerup20.wav */; };
@@ -81,6 +90,15 @@
 		BB56127C1A56427C00897598 /* MenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuScene.m; sourceTree = "<group>"; };
 		BB630F2D1B41E0B400E83319 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		BB630F2F1B41E61200E83319 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		BB630F3B1B42420E00E83319 /* Panton-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Panton-Black.otf"; path = "GreenRedBlackGame/Panton-Black.otf"; sourceTree = "<group>"; };
+		BB630F3C1B42420E00E83319 /* Panton-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Panton-Bold.otf"; path = "GreenRedBlackGame/Panton-Bold.otf"; sourceTree = "<group>"; };
+		BB630F3D1B42420E00E83319 /* Panton-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Panton-ExtraBold.otf"; path = "GreenRedBlackGame/Panton-ExtraBold.otf"; sourceTree = "<group>"; };
+		BB630F3E1B42420E00E83319 /* Panton-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Panton-ExtraLight.otf"; path = "GreenRedBlackGame/Panton-ExtraLight.otf"; sourceTree = "<group>"; };
+		BB630F3F1B42420E00E83319 /* Panton-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Panton-Heavy.otf"; path = "GreenRedBlackGame/Panton-Heavy.otf"; sourceTree = "<group>"; };
+		BB630F401B42420E00E83319 /* Panton-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Panton-Light.otf"; path = "GreenRedBlackGame/Panton-Light.otf"; sourceTree = "<group>"; };
+		BB630F411B42420E00E83319 /* Panton-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Panton-Regular.otf"; path = "GreenRedBlackGame/Panton-Regular.otf"; sourceTree = "<group>"; };
+		BB630F421B42420E00E83319 /* Panton-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Panton-SemiBold.otf"; path = "GreenRedBlackGame/Panton-SemiBold.otf"; sourceTree = "<group>"; };
+		BB630F431B42420E00E83319 /* Panton-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Panton-Thin.otf"; path = "GreenRedBlackGame/Panton-Thin.otf"; sourceTree = "<group>"; };
 		BBE0DF3C1A578A9900CDDABA /* partnersinrhyme_CLICK13A.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = partnersinrhyme_CLICK13A.mp3; sourceTree = "<group>"; };
 		BBE0DF3E1A57932E00CDDABA /* FartSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = FartSound.mp3; sourceTree = "<group>"; };
 		BBE0DF3F1A57932E00CDDABA /* Powerup20.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Powerup20.wav; sourceTree = "<group>"; };
@@ -110,6 +128,7 @@
 		BB2F651C1A4F3FEE00E4AD79 = {
 			isa = PBXGroup;
 			children = (
+				BB630F4D1B42421400E83319 /* Panton */,
 				BB630F2F1B41E61200E83319 /* GameKit.framework */,
 				BB630F2D1B41E0B400E83319 /* Social.framework */,
 				BB41C59A1A569032009280DA /* AVFoundation.framework */,
@@ -200,6 +219,22 @@
 			name = Sounds;
 			sourceTree = "<group>";
 		};
+		BB630F4D1B42421400E83319 /* Panton */ = {
+			isa = PBXGroup;
+			children = (
+				BB630F3B1B42420E00E83319 /* Panton-Black.otf */,
+				BB630F3C1B42420E00E83319 /* Panton-Bold.otf */,
+				BB630F3D1B42420E00E83319 /* Panton-ExtraBold.otf */,
+				BB630F3E1B42420E00E83319 /* Panton-ExtraLight.otf */,
+				BB630F3F1B42420E00E83319 /* Panton-Heavy.otf */,
+				BB630F401B42420E00E83319 /* Panton-Light.otf */,
+				BB630F411B42420E00E83319 /* Panton-Regular.otf */,
+				BB630F421B42420E00E83319 /* Panton-SemiBold.otf */,
+				BB630F431B42420E00E83319 /* Panton-Thin.otf */,
+			);
+			name = Panton;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -287,17 +322,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB2F653E1A4F3FEE00E4AD79 /* LaunchScreen.xib in Resources */,
+				BB630F4A1B42420E00E83319 /* Panton-Regular.otf in Resources */,
 				BB41C59D1A56980B009280DA /* ClickSound.wav in Resources */,
+				BB630F491B42420E00E83319 /* Panton-Light.otf in Resources */,
 				BB41C5921A565480009280DA /* LoseScene.sks in Resources */,
 				BBE0DF411A57932E00CDDABA /* Powerup20.wav in Resources */,
+				BB630F481B42420E00E83319 /* Panton-Heavy.otf in Resources */,
 				BB2B99141A60DBBA000E0797 /* 25_mask.png in Resources */,
+				BB630F471B42420E00E83319 /* Panton-ExtraLight.otf in Resources */,
 				BBE0DF3D1A578A9900CDDABA /* partnersinrhyme_CLICK13A.mp3 in Resources */,
 				BB2F653B1A4F3FEE00E4AD79 /* Images.xcassets in Resources */,
 				BBE0DF401A57932E00CDDABA /* FartSound.mp3 in Resources */,
+				BB630F4C1B42420E00E83319 /* Panton-Thin.otf in Resources */,
+				BB630F441B42420E00E83319 /* Panton-Black.otf in Resources */,
 				BB2F65331A4F3FEE00E4AD79 /* GameScene.sks in Resources */,
 				BB5612761A560DDE00897598 /* MenuScene.sks in Resources */,
 				BB0B2C141A57133000AC7D50 /* GlassBreaking.m4a in Resources */,
+				BB630F451B42420E00E83319 /* Panton-Bold.otf in Resources */,
 				BB2F65391A4F3FEE00E4AD79 /* Main.storyboard in Resources */,
+				BB630F4B1B42420E00E83319 /* Panton-SemiBold.otf in Resources */,
+				BB630F461B42420E00E83319 /* Panton-ExtraBold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

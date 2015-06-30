@@ -50,5 +50,17 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Panton-Heavy.otf</string>
+		<string>Panton-SemiBold.otf</string>
+		<string>Panton-Black.otf</string>
+		<string>Panton-Bold.otf</string>
+		<string>Panton-ExtraBold.otf</string>
+		<string>Panton-ExtraLight.otf</string>
+		<string>Panton-Light.otf</string>
+		<string>Panton-Regular.otf</string>
+		<string>Panton-Thin.otf</string>
+	</array>
 </dict>
 </plist>
