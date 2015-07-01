@@ -282,6 +282,8 @@
     
     int playNumber = ((NSNumber *)[[NSUserDefaults standardUserDefaults]objectForKey:@"play_Number"]).intValue;
     
+    int highScore = [RWGameData sharedGameData].highScore;
+    
     NSLog(@"All greens - %d", ((NSNumber *)[[NSUserDefaults standardUserDefaults]objectForKey:@"green_Number"]).intValue);
     NSLog(@"All yellows - %d", ((NSNumber *)[[NSUserDefaults standardUserDefaults]objectForKey:@"yellow_Number"]).intValue);
     NSLog(@"All blues - %d", ((NSNumber *)[[NSUserDefaults standardUserDefaults]objectForKey:@"blue_Number"]).intValue);
@@ -331,11 +333,24 @@
         achievementIdentifier = @"Yellow_0";
         progressPercent = 100;
         progressInAchievement = YES;
-    }else if (playNumber <= 10){
+    }else if (yellowNumber <= 10){
         achievementIdentifier = @"Yellow_1";
         progressPercent = playNumber * 100 / 10;
         progressInAchievement = YES;
+    }else if (yellowNumber <= 25){
+        achievementIdentifier = @"Yellow_2";
+        progressPercent = playNumber * 100 / 25;
+        progressInAchievement = YES;
+    }else if (yellowNumber <= 100){
+        achievementIdentifier = @"Yellow_3";
+        progressPercent = playNumber * 100 / 100;
+        progressInAchievement = YES;
+    }else if (yellowNumber <= 1000){
+        achievementIdentifier = @"Yellow_4";
+        progressPercent = playNumber * 100 / 1000;
+        progressInAchievement = YES;
     }
+    
     
     if (achievementIdentifier) {
         yellowAchievement = [[GKAchievement alloc]initWithIdentifier:achievementIdentifier];
@@ -345,6 +360,106 @@
         yellowAchievement.showsCompletionBanner = YES;
 
         [achievementsToReport addObject:yellowAchievement];
+    }
+    
+    
+    
+    
+    progressInAchievement = NO;
+    achievementIdentifier = nil;
+    progressPercent = 0.0;
+    GKAchievement *blueAchievement = nil;
+    if (blueNumber == 1) {
+        achievementIdentifier = @"Blue_0";
+        progressPercent = 100;
+        progressInAchievement = YES;
+    }else if (blueNumber <= 10){
+        achievementIdentifier = @"Blue_1";
+        progressPercent = playNumber * 100 / 10;
+        progressInAchievement = YES;
+    }else if (blueNumber <= 25){
+        achievementIdentifier = @"Blue_2";
+        progressPercent = playNumber * 100 / 25;
+        progressInAchievement = YES;
+    }else if (blueNumber <= 100){
+        achievementIdentifier = @"Blue_3";
+        progressPercent = playNumber * 100 / 100;
+        progressInAchievement = YES;
+    }else if (blueNumber <= 1000){
+        achievementIdentifier = @"Blue_4";
+        progressPercent = playNumber * 100 / 1000;
+        progressInAchievement = YES;
+    }
+    
+    
+    if (achievementIdentifier) {
+        blueAchievement = [[GKAchievement alloc]initWithIdentifier:achievementIdentifier];
+        if (progressInAchievement) {
+            blueAchievement.percentComplete = progressPercent;
+        }
+        blueAchievement.showsCompletionBanner = YES;
+        
+        [achievementsToReport addObject:blueAchievement];
+    }
+
+    NSLog(@"HIGH SCORE - %d",highScore);
+    
+    progressInAchievement = NO;
+    achievementIdentifier = nil;
+    progressPercent = 0.0;
+    GKAchievement *pointsAchievement = nil;
+
+        achievementIdentifier = @"Points_0";
+        progressPercent = highScore *  100/50;
+        pointsAchievement = [[GKAchievement alloc]initWithIdentifier:achievementIdentifier];
+        pointsAchievement.showsCompletionBanner = YES;
+        pointsAchievement.percentComplete = progressPercent;
+        [achievementsToReport addObject:pointsAchievement];
+
+        achievementIdentifier = @"Points_1";
+        progressPercent = highScore * 100 / 100;
+        pointsAchievement = [[GKAchievement alloc]initWithIdentifier:achievementIdentifier];
+        pointsAchievement.showsCompletionBanner = YES;
+        pointsAchievement.percentComplete = progressPercent;
+        [achievementsToReport addObject:pointsAchievement];
+
+        achievementIdentifier = @"Points_2";
+        progressPercent = highScore * 100 / 200;
+        pointsAchievement = [[GKAchievement alloc]initWithIdentifier:achievementIdentifier];
+        pointsAchievement.showsCompletionBanner = YES;
+        pointsAchievement.percentComplete = progressPercent;
+        [achievementsToReport addObject:pointsAchievement];
+
+        achievementIdentifier = @"Points_3";
+        progressPercent = highScore * 100 / 300;
+        pointsAchievement = [[GKAchievement alloc]initWithIdentifier:achievementIdentifier];
+        pointsAchievement.showsCompletionBanner = YES;
+        pointsAchievement.percentComplete = progressPercent;
+        [achievementsToReport addObject:pointsAchievement];
+
+        achievementIdentifier = @"Points_4";
+        progressPercent = highScore * 100 / 400;
+        pointsAchievement = [[GKAchievement alloc]initWithIdentifier:achievementIdentifier];
+        pointsAchievement.showsCompletionBanner = YES;
+        pointsAchievement.percentComplete = progressPercent;
+        [achievementsToReport addObject:pointsAchievement];
+
+        achievementIdentifier = @"Points_5";
+        progressPercent = highScore * 100 / 500;
+        pointsAchievement = [[GKAchievement alloc]initWithIdentifier:achievementIdentifier];
+        pointsAchievement.showsCompletionBanner = YES;
+        pointsAchievement.percentComplete = progressPercent;
+        [achievementsToReport addObject:pointsAchievement];
+
+    
+    if (achievementIdentifier) {
+        
+        if (progressInAchievement) {
+            pointsAchievement.percentComplete = progressPercent;
+        }
+        pointsAchievement.showsCompletionBanner = YES;
+        
+        [achievementsToReport addObject:pointsAchievement];
     }
 
     
