@@ -28,7 +28,7 @@
 @implementation LoseScene
 
 -(void)didMoveToView:(SKView *)view
-{
+{    
     self.allowTouches = YES;
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     self.screenBounds = screenBounds.size;

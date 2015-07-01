@@ -38,6 +38,10 @@
 
 @property double timeToDeactivateDouble;
 
+@property int greenNumber;
+@property int yellowNumber;
+@property int blueNumber;
+
 @end
 @implementation GameScene
 
@@ -153,6 +157,16 @@ static double const savedImageMultiplier = 4.0/3.0;
                     self.timeToDeactivateDouble = CACurrentMediaTime() + 10;
                     [touchedNode removeAllActions];
                     [touchedNode removeFromParent];
+                    
+                    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"blue_Number"]) {
+                        NSNumber * num = [[NSUserDefaults standardUserDefaults] objectForKey:@"blue_Number"];
+                        num = [NSNumber numberWithInt:num.intValue + 1];
+                        [[NSUserDefaults standardUserDefaults]setObject:num forKey:@"blue_Number"];
+                        
+                    }else{
+                        [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithInt:1] forKey:@"blue_Number"];
+                    }
+                    [self.viewController updateAchievements];
                     return;
                 }
                 if ([[[touchedNode name]substringToIndex:10]  isEqualToString:@"Green Node"]){
@@ -163,6 +177,7 @@ static double const savedImageMultiplier = 4.0/3.0;
                         [self.arrayOfTimesToDissappear removeObjectAtIndex:x];
                     }
                     [self.arrayOfClickableCircles  removeObjectAtIndex:x];
+                    self.greenNumber = self.greenNumber + 1;
                     [touchedNode removeAllActions];
                     [touchedNode removeFromParent];
                     self.score = self.score + 1;
@@ -183,6 +198,15 @@ static double const savedImageMultiplier = 4.0/3.0;
                     if(self.doubleActivated){
                         self.score = self.score + 15;
                     }
+                    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"yellow_Number"]) {
+                        NSNumber * num = [[NSUserDefaults standardUserDefaults] objectForKey:@"yellow_Number"];
+                        num = [NSNumber numberWithInt:num.intValue + 1];
+                        [[NSUserDefaults standardUserDefaults]setObject:num forKey:@"yellow_Number"];
+                        
+                    }else{
+                        [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithInt:1] forKey:@"yellow_Number"];
+                    }
+                    [self.viewController updateAchievements];
                 }
                 
             }
@@ -230,8 +254,31 @@ static double const savedImageMultiplier = 4.0/3.0;
     NSLog(@"YOU LOSE");
     //sleep(3);
     self.active = NO;
+    
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"green_Number"]) {
+        NSNumber * numOfGreen = [[NSUserDefaults standardUserDefaults] objectForKey:@"green_Number"];
+        numOfGreen = [NSNumber numberWithInt:numOfGreen.intValue + self.greenNumber];
+        [[NSUserDefaults standardUserDefaults]setObject:numOfGreen forKey:@"green_Number"];
+
+    }else{
+        [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithInt:self.greenNumber] forKey:@"green_Number"];
+    }
+    
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"play_Number"]) {
+        NSNumber * numOfGreen = [[NSUserDefaults standardUserDefaults] objectForKey:@"play_Number"];
+        numOfGreen = [NSNumber numberWithInt:numOfGreen.intValue + 1];
+        [[NSUserDefaults standardUserDefaults]setObject:numOfGreen forKey:@"play_Number"];
+        
+    }else{
+        [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithInt:1] forKey:@"play_Number"];
+    }
+    
+    
+    
+    
     [RWGameData sharedGameData].highScore = MAX([RWGameData sharedGameData].highScore, self.score);
     [[RWGameData sharedGameData]save];
+    [self.viewController updateAchievements];
     self.viewController.lastScore = self.score;
     [self.viewController reportScore:self.score];
     [self.viewController loseScene:nil];
@@ -263,7 +310,7 @@ static double const savedImageMultiplier = 4.0/3.0;
     }
     SKNode *node;
     
-    if(NO){
+    if(/* DISABLES CODE */ (NO)){
     //if (arc4random()%3==1|| arc4random()%3 ==1) {
         node = [self returnRandomCirclePhoto];
         node.position = location;

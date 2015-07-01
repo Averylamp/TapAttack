@@ -17,5 +17,5 @@
 -(void)loseScene:(UIButton *)sender;
 
 -(void)reportScore: (int) scoreInpt;
-
+-(void)updateAchievements;
 @end

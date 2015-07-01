@@ -9,6 +9,7 @@
 #import "MenuScene.h"
 #import "UIImage+Mask.h"
 #import "RWGameData.h"
+#import <GameKit/GameKit.h>
 @interface  MenuScene()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property CGSize screenSize;
 @property SKSpriteNode *playButton;
@@ -19,6 +20,15 @@
 
 -(void)didMoveToView:(SKView *)view
 {
+    
+    [GKAchievement loadAchievementsWithCompletionHandler:^(NSArray *achievements, NSError *error) {
+        NSLog(@"count - %lu",(unsigned long)achievements.count);
+        
+        for (GKAchievement *a in achievements) {
+            NSLog(@"Achievement - %@, progress %f, completed %d",a.identifier, a.percentComplete, a.completed);
+        }
+        
+    }];
    
     
     
