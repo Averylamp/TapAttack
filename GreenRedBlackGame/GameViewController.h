@@ -16,4 +16,6 @@
 -(void)play:(UIButton *)sender;
 -(void)loseScene:(UIButton *)sender;
 
+-(void)reportScore: (int) scoreInpt;
+
 @end

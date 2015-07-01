@@ -10,6 +10,10 @@
 #import "GameScene.h"
 #import "MenuScene.h"
 #import "LoseScene.h"
+#import <GameKit/GameKit.h>
+
+
+
 @implementation SKScene (Unarchive)
 
 + (instancetype)unarchiveFromFile:(NSString *)file {
@@ -29,11 +33,21 @@
 
 @end
 
+@interface GameViewController()
+
+@property BOOL gameCenterEnabled;
+@property NSString *leaderboardIdentifier;
+
+
+
+@end
+
 @implementation GameViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self startGameCenter];
     [self menu:nil];
     //[self settupMenu];
     
@@ -204,6 +218,54 @@
 
 - (BOOL)prefersStatusBarHidden {
     return YES;
+}
+
+#pragma mark - Game Center
+
+-(void)startGameCenter{
+    [self authenticateLocalPlayer];
+}
+
+-(void)authenticateLocalPlayer{
+    GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
+    
+    localPlayer.authenticateHandler = ^(UIViewController *viewController, NSError *error){
+        if (viewController != nil) {
+            [self presentViewController:viewController animated:YES completion:nil];
+        }
+        else{
+            if ([GKLocalPlayer localPlayer].authenticated) {
+                self.gameCenterEnabled = YES;
+                
+                // Get the default leaderboard identifier.
+                [[GKLocalPlayer localPlayer] loadDefaultLeaderboardIdentifierWithCompletionHandler:^(NSString *leaderboardIdentifier, NSError *error) {
+                    
+                    if (error != nil) {
+                        NSLog(@"%@", [error localizedDescription]);
+                    }
+                    else{
+                        self.leaderboardIdentifier = leaderboardIdentifier;
+                    }
+                }];
+            }
+            
+            else{
+                self.gameCenterEnabled = NO;
+            }
+        }
+    };
+}
+
+-(void)reportScore: (int)scoreInpt{
+    
+    GKScore *score = [[GKScore alloc] initWithLeaderboardIdentifier:_leaderboardIdentifier];
+    score.value = scoreInpt;
+    
+    [GKScore reportScores:@[score] withCompletionHandler:^(NSError *error) {
+        if (error != nil) {
+            NSLog(@"%@", [error localizedDescription]);
+        }
+    }];
 }
 
 @end

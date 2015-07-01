@@ -233,6 +233,7 @@ static double const savedImageMultiplier = 4.0/3.0;
     [RWGameData sharedGameData].highScore = MAX([RWGameData sharedGameData].highScore, self.score);
     [[RWGameData sharedGameData]save];
     self.viewController.lastScore = self.score;
+    [self.viewController reportScore:self.score];
     [self.viewController loseScene:nil];
     
     
@@ -244,7 +245,7 @@ static double const savedImageMultiplier = 4.0/3.0;
     BOOL valid = NO;
     CGPoint location;
     while (!valid){
-        int x= (arc4random() % (int)(self.screenSize.width - 130)) + 65, y = (arc4random() % (int) (self.screenSize.height - 130)) + 65;
+        int x= (arc4random() % (int)(self.screenSize.width - 130)) + 65, y = (arc4random() % (int) (self.screenSize.height - 130 - 60)) + 65 ;
         valid = YES;
         for(SKShapeNode *s in self.arrayOfClickableCircles){
             if(ABS(x-s.position.x)<110&&ABS(y-s.position.y)<120){
@@ -310,7 +311,7 @@ static double const savedImageMultiplier = 4.0/3.0;
     BOOL valid = NO;
     CGPoint location;
     while (!valid){
-        int x= (arc4random() % (int)(self.screenSize.width - 130)) + 65, y = (arc4random() % (int) (self.screenSize.height - 130)) + 65;
+        int x= (arc4random() % (int)(self.screenSize.width - 130)) + 65, y = (arc4random() % (int) (self.screenSize.height - 130 - 60)) + 65;
         valid = YES;
         for(SKShapeNode *s in self.arrayOfClickableCircles){
             if(ABS(x-s.position.x)<130 && ABS(y-s.position.y)<130){
@@ -351,7 +352,7 @@ static double const savedImageMultiplier = 4.0/3.0;
     BOOL valid = NO;
     CGPoint location;
     while (!valid){
-        int x= (arc4random() % (int)(self.screenSize.width - 130)) + 65, y = (arc4random() % (int) (self.screenSize.height - 130)) + 65;
+        int x= (arc4random() % (int)(self.screenSize.width - 130)) + 65, y = (arc4random() % (int) (self.screenSize.height - 130 - 60)) + 65;
         valid = YES;
         for(SKShapeNode *s in self.arrayOfClickableCircles){
             if(ABS(x-s.position.x)<130 && ABS(y-s.position.y)<130){
@@ -406,7 +407,6 @@ static double const savedImageMultiplier = 4.0/3.0;
             }
         }
         location = CGPointMake(x, y);
-        NSLog(@"Valid - %hhd",valid);
     }
     
     
