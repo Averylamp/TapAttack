@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		BB0B2C141A57133000AC7D50 /* GlassBreaking.m4a in Resources */ = {isa = PBXBuildFile; fileRef = BB0B2C131A57133000AC7D50 /* GlassBreaking.m4a */; };
 		BB0EF3FC1B44EEB600C6AAD5 /* RedParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = BB0EF3FB1B44EEB600C6AAD5 /* RedParticle.sks */; };
+		BB0EF3FE1B45089500C6AAD5 /* Powerup3.wav in Resources */ = {isa = PBXBuildFile; fileRef = BB0EF3FD1B45089500C6AAD5 /* Powerup3.wav */; };
 		BB26681B1B44EA84006AFBBE /* GreenParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = BB2668191B44EA84006AFBBE /* GreenParticle.sks */; };
 		BB26681C1B44EA84006AFBBE /* bokeh.png in Resources */ = {isa = PBXBuildFile; fileRef = BB26681A1B44EA84006AFBBE /* bokeh.png */; };
 		BB2B99101A609530000E0797 /* UIImage+Mask.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2B990E1A609530000E0797 /* UIImage+Mask.m */; };
@@ -59,6 +60,7 @@
 /* Begin PBXFileReference section */
 		BB0B2C131A57133000AC7D50 /* GlassBreaking.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = GlassBreaking.m4a; sourceTree = "<group>"; };
 		BB0EF3FB1B44EEB600C6AAD5 /* RedParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = RedParticle.sks; sourceTree = "<group>"; };
+		BB0EF3FD1B45089500C6AAD5 /* Powerup3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Powerup3.wav; sourceTree = "<group>"; };
 		BB2668191B44EA84006AFBBE /* GreenParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GreenParticle.sks; sourceTree = "<group>"; };
 		BB26681A1B44EA84006AFBBE /* bokeh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bokeh.png; sourceTree = "<group>"; };
 		BB2B990D1A609530000E0797 /* UIImage+Mask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Mask.h"; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				BBE0DF3E1A57932E00CDDABA /* FartSound.mp3 */,
+				BB0EF3FD1B45089500C6AAD5 /* Powerup3.wav */,
 				BBE0DF3F1A57932E00CDDABA /* Powerup20.wav */,
 				BBE0DF3C1A578A9900CDDABA /* partnersinrhyme_CLICK13A.mp3 */,
 				BB0B2C131A57133000AC7D50 /* GlassBreaking.m4a */,
@@ -345,6 +348,7 @@
 				BBE0DF401A57932E00CDDABA /* FartSound.mp3 in Resources */,
 				BB630F4C1B42420E00E83319 /* Panton-Thin.otf in Resources */,
 				BB630F441B42420E00E83319 /* Panton-Black.otf in Resources */,
+				BB0EF3FE1B45089500C6AAD5 /* Powerup3.wav in Resources */,
 				BB2F65331A4F3FEE00E4AD79 /* GameScene.sks in Resources */,
 				BB5612761A560DDE00897598 /* MenuScene.sks in Resources */,
 				BB0B2C141A57133000AC7D50 /* GlassBreaking.m4a in Resources */,

@@ -29,6 +29,7 @@
 @property SystemSoundID clickSound;
 @property SystemSoundID redClickSound;
 @property SystemSoundID goldenClickSound;
+@property SystemSoundID blueClickSound;
 
 @property NSMutableArray *colorArray;
 @property double colorSwitchTime;
@@ -60,6 +61,10 @@ static double const savedImageMultiplier = 4.0/3.0;
     soundFilePath = [[NSBundle mainBundle] pathForResource:@"Powerup20" ofType:@"wav"];
     soundURL = [NSURL fileURLWithPath:soundFilePath];
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundURL, &_goldenClickSound);
+    
+    soundFilePath = [[NSBundle mainBundle] pathForResource:@"Powerup3" ofType:@"wav"];
+    soundURL = [NSURL fileURLWithPath:soundFilePath];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundURL, &_blueClickSound);
     
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     CGFloat screenScale = [[UIScreen mainScreen] scale];
@@ -127,7 +132,7 @@ static double const savedImageMultiplier = 4.0/3.0;
     self.timeToDissappearRate = .5;
     
     self.colorArray = [[NSMutableArray alloc]init];
-    [self.colorArray addObjectsFromArray:[NSArray arrayWithObjects:[UIColor colorWithRed:0.176f green:0.145f blue:0.333f alpha:1.00f],[UIColor colorWithRed:0.910f green:0.482f blue:0.173f alpha:1.00f],[UIColor colorWithRed:0.333f green:0.749f blue:0.976f alpha:1.00f],[UIColor colorWithRed:0.800f green:0.757f blue:0.847f alpha:1.00f],[UIColor colorWithRed:0.992f green:0.357f blue:0.976f alpha:1.00f], nil]];
+    [self.colorArray addObjectsFromArray:[NSArray arrayWithObjects:[UIColor colorWithRed:0.176f green:0.145f blue:0.333f alpha:1.00f],[UIColor colorWithRed:0.910f green:0.482f blue:0.173f alpha:1.00f],[UIColor colorWithRed:0.333f green:0.749f blue:0.976f alpha:1.00f],[UIColor colorWithRed:0.882f green:0.404f blue:0.765f alpha:1.00f],[UIColor colorWithRed:0.243f green:0.851f blue:1.000f alpha:1.00f],[UIColor colorWithRed:0.992f green:0.357f blue:0.976f alpha:1.00f],[UIColor colorWithRed:0.149f green:0.498f blue:0.937f alpha:1.00f], nil]];
     self.colorSwitching = YES;
     self.doubleActivated = NO;
     self.colorSwitchTime = 5;
@@ -155,6 +160,7 @@ static double const savedImageMultiplier = 4.0/3.0;
                 if ([[touchedNode name]isEqualToString:@"Blue Node"]) {
                     self.doubleActivated = true;
                     self.timeToDeactivateDouble = CACurrentMediaTime() + 10;
+                    AudioServicesPlaySystemSound(self.blueClickSound);
                     [touchedNode removeAllActions];
                     [touchedNode removeFromParent];
                     
@@ -252,8 +258,9 @@ static double const savedImageMultiplier = 4.0/3.0;
      [self addChild:myLabel];
      */
     NSLog(@"YOU LOSE");
-    //sleep(3);
+    
     self.active = NO;
+    self.paused = YES;
     
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"green_Number"]) {
         NSNumber * numOfGreen = [[NSUserDefaults standardUserDefaults] objectForKey:@"green_Number"];
@@ -281,7 +288,13 @@ static double const savedImageMultiplier = 4.0/3.0;
     [self.viewController updateAchievements];
     self.viewController.lastScore = self.score;
     [self.viewController reportScore:self.score];
-    [self.viewController loseScene:nil];
+    
+    int64_t delayInSeconds = 2.5;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [self.viewController loseScene:nil];
+        
+    });
     
     
 }
@@ -487,18 +500,20 @@ static double const savedImageMultiplier = 4.0/3.0;
 
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
-    
+    if (self.lost) {
+        return;
+    }
     double caTime = CACurrentMediaTime();
     
     if (caTime > self.timeToSwitchColor || (self.doubleActivated &&  self.colorSwitchTime/ 40 < self.timeToSwitchColor - caTime)) {
         self.colorSwitching = true;
         if (self.doubleActivated) {
-            [UIView animateWithDuration:self.colorSwitchTime / 35 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            [UIView animateWithDuration:self.colorSwitchTime / 20 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 [self  setBackgroundColor:[self.colorArray objectAtIndex:arc4random() % self.colorArray.count]];
             } completion:^(BOOL finished) {
                 
             }];
-            self.timeToSwitchColor = caTime+ self.colorSwitchTime/35;
+            self.timeToSwitchColor = caTime+ self.colorSwitchTime/20;
         }else{
             [UIView animateWithDuration:self.colorSwitchTime delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 self.backgroundColor = [self.colorArray objectAtIndex:arc4random() % self.colorArray.count];
@@ -560,9 +575,8 @@ static double const savedImageMultiplier = 4.0/3.0;
             if([[shapeToDissappear name]  isEqualToString:@"Green Node with Saved Image"]){
                 scaleNum = scaleNum * savedImageMultiplier;
             }
-            [shapeToDissappear runAction:[SKAction scaleTo:0 duration:scaleNum] completion:^{
+            [shapeToDissappear runAction:[SKAction scaleTo:0.1 duration:scaleNum] completion:^{
                 [self lose:@"You missed a green"];
-                [shapeToDissappear removeFromParent];
                 [self.arrayOfClickableCircles removeObject:shapeToDissappear];
             }];
             [self.arrayOfTimesToDissappear removeObject:timeInArray];
