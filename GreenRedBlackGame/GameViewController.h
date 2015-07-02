@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import <SpriteKit/SpriteKit.h>
+#import <GameKit/GameKit.h>
 
-@interface GameViewController : UIViewController
+@interface GameViewController : UIViewController <GKGameCenterControllerDelegate>
 @property   CGSize screenSize;
 @property int lastScore;
+
+@property NSString *leaderboardIdentifier;
+
 -(void)menu:(UIButton *)sender;
 -(void)play:(UIButton *)sender;
 -(void)loseScene:(UIButton *)sender;

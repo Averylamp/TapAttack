@@ -122,6 +122,10 @@
         
     }
     
+//    [GKAchievement resetAchievementsWithCompletionHandler:^(NSError *error) {
+//        NSLog(@"%@",error);
+//    }];
+    
 }
 
 -(void)setupInstructions{

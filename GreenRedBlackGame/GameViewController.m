@@ -10,7 +10,7 @@
 #import "GameScene.h"
 #import "MenuScene.h"
 #import "LoseScene.h"
-#import <GameKit/GameKit.h>
+
 
 
 
@@ -36,7 +36,7 @@
 @interface GameViewController()
 
 @property BOOL gameCenterEnabled;
-@property NSString *leaderboardIdentifier;
+
 
 
 
@@ -579,6 +579,10 @@
     }
     
     
+}
+
+-(void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController{
+    [gameCenterViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

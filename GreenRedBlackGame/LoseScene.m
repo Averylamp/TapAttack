@@ -8,6 +8,8 @@
 
 #import "LoseScene.h"
 #import <QuartzCore/QuartzCore.h>
+#import <GameKit/GameKit.h>
+
 
 @interface  LoseScene()
 @property CGSize screenSize;
@@ -46,7 +48,7 @@
     SKSpriteNode *backgroundButton = [[SKSpriteNode alloc]initWithImageNamed:@"loseScreenButtonBackground"];
     scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"DIN Condensed"];
     CGPoint position = CGPointMake(self.screenSize.width/2, self.screenSize.height- 280* screenScale / 2);
-    backgroundButton.xScale = 2.1 * screenScale / 2;
+    backgroundButton.xScale = 2.3 * screenScale / 2;
     backgroundButton.yScale = 1.8 * screenScale / 2;
     backgroundButton.position = position;
     scoreLabel.text = [NSString stringWithFormat:@"SCORE : %d",self.viewController.lastScore];
@@ -63,15 +65,15 @@
     position = CGPointMake(self.screenSize.width/2, self.screenSize.height - 420* screenScale / 2);
     scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"DIN Condensed"];
     backgroundButton = [[SKSpriteNode alloc]initWithImageNamed:@"loseScreenButtonBackground"];
-    backgroundButton.xScale = 2.1* screenScale / 2;
+    backgroundButton.xScale = 2.3* screenScale / 2;
     backgroundButton.yScale = 1.8* screenScale / 2;
     backgroundButton.position= position;
-    scoreLabel.text = @"SHARE";
+    scoreLabel.text = @"GAME CENTER";
     scoreLabel.fontSize = 80.0f* screenScale / 2;
     position = CGPointMake(self.screenSize.width/2, self.screenSize.height- 450* screenScale / 2);
     scoreLabel.position= position;
-    backgroundButton.name = @"share";
-    scoreLabel.name = @"share";
+    backgroundButton.name = @"Game Center";
+    scoreLabel.name = @"Game Center";
     self.shareLabel = scoreLabel;
     self.shareBackground = backgroundButton;
     [self addChild:backgroundButton];
@@ -80,7 +82,7 @@
     position = CGPointMake(self.screenSize.width/2, self.screenSize.height - 560* screenScale / 2);
     scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"DIN Condensed"];
     backgroundButton = [[SKSpriteNode alloc]initWithImageNamed:@"loseScreenButtonBackground"];
-    backgroundButton.xScale = 2.1* screenScale / 2;
+    backgroundButton.xScale = 2.3* screenScale / 2;
     backgroundButton.yScale = 1.8* screenScale / 2;
     backgroundButton.position= position;
     scoreLabel.text = @"BACK HOME";
@@ -97,7 +99,7 @@
     position = CGPointMake(self.screenSize.width/2, self.screenSize.height - 700* screenScale / 2);
     scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"DIN Condensed"];
     backgroundButton = [[SKSpriteNode alloc]initWithImageNamed:@"loseScreenButtonBackground"];
-    backgroundButton.xScale = 2.1* screenScale / 2;
+    backgroundButton.xScale = 2.3* screenScale / 2;
     backgroundButton.yScale = 1.8* screenScale / 2;
     backgroundButton.position= position;
     scoreLabel.text = @"TRY AGAIN";
@@ -135,7 +137,7 @@
     UITouch * touch = (UITouch *)[[touches allObjects]firstObject];
     CGPoint location = [touch locationInNode:self];
     SKNode *node = [self nodeAtPoint:location];
-    SKAction *growb = [SKAction scaleXTo:2.5* screenScale / 2 y:2* screenScale / 2 duration:0.15];
+    SKAction *growb = [SKAction scaleXTo:2.7* screenScale / 2 y:2* screenScale / 2 duration:0.15];
     SKAction *growl = [SKAction scaleTo:1.2 duration:0.15];
     if([node.name isEqualToString:@"share"]){
         [self.shareBackground runAction:growb];
@@ -148,6 +150,9 @@
     if([node.name isEqualToString:@"again"]){
         [self.againBackground runAction:growb];
         [self.againLabel runAction:growl];
+    }if([node.name isEqualToString:@"Game Center"]){
+        [self.shareBackground runAction:growb];
+        [self.shareLabel runAction:growl];
     }
     
 }
@@ -161,7 +166,7 @@
     UITouch * touch = (UITouch *)[[touches allObjects]firstObject];
     CGPoint location = [touch locationInNode:self];
     SKNode *node = [self nodeAtPoint:location];
-    SKAction *shrinkb = [SKAction scaleXTo:2.1* screenScale / 2 y:1.8* screenScale / 2 duration:0.2];
+    SKAction *shrinkb = [SKAction scaleXTo:2.3* screenScale / 2 y:1.8* screenScale / 2 duration:0.2];
     SKAction *shrinkl = [SKAction scaleTo:1 duration:0.2];
     if(![node.name isEqualToString:@"share"]){
         [self.shareBackground runAction:shrinkb];
@@ -174,6 +179,9 @@
     if(![node.name isEqualToString:@"again"]){
         [self.againBackground runAction:shrinkb];
         [self.againLabel runAction:shrinkl];
+    }if(![node.name isEqualToString:@"Game Center"]){
+        [self.shareBackground runAction:shrinkb];
+        [self.shareBackground runAction:shrinkl];
     }
 }
 
@@ -186,7 +194,7 @@
     UITouch * touch = (UITouch *)[[touches allObjects]firstObject];
     CGPoint location = [touch locationInNode:self];
     SKNode *node = [self nodeAtPoint:location];
-    SKAction *shrinkb = [SKAction scaleXTo:2.1 * screenScale / 2 y:1.8* screenScale / 2 duration:0.2];
+    SKAction *shrinkb = [SKAction scaleXTo:2.3 * screenScale / 2 y:1.8* screenScale / 2 duration:0.2];
     SKAction *shrinkl = [SKAction scaleTo:1 duration:0.2];
     if([node.name isEqualToString:@"share"]){
         UIView *view = [[UIView alloc]initWithFrame:CGRectMake(self.screenBounds.width/8,self.screenBounds.height/4, self.screenBounds.width*3/4, self.screenBounds.height/2)];
@@ -216,6 +224,25 @@
         [self.shareBackground runAction:shrinkb];
         [self.shareLabel runAction:shrinkl];
     }
+    if([node.name isEqualToString:@"Game Center"]){
+        GKGameCenterViewController *gcViewController = [[GKGameCenterViewController alloc] init];
+        
+        gcViewController.gameCenterDelegate = self.viewController;
+        
+        if (self.viewController.leaderboardIdentifier) {
+            gcViewController.viewState = GKGameCenterViewControllerStateLeaderboards;
+            gcViewController.leaderboardIdentifier = self.viewController.leaderboardIdentifier;
+        }
+        else{
+            gcViewController.viewState = GKGameCenterViewControllerStateAchievements;
+        }
+        
+        [self.viewController presentViewController:gcViewController animated:YES completion:nil];
+    }else{
+        [self.shareBackground runAction:shrinkb];
+        [self.shareLabel runAction:shrinkl];
+    }
+
     if([node.name isEqualToString:@"home"]){
         [self.viewController menu:nil];
     }else{
