@@ -49,7 +49,7 @@
     [super viewDidLoad];
     [self startGameCenter];
     [self menu:nil];
-
+    
     //[self settupMenu];
     
 }
@@ -362,7 +362,7 @@
             yellowAchievement.percentComplete = progressPercent;
         }
         yellowAchievement.showsCompletionBanner = YES;
-
+        
         [achievementsToReport addObject:yellowAchievement];
     }
     
@@ -405,56 +405,54 @@
         
         [achievementsToReport addObject:blueAchievement];
     }
-
-    NSLog(@"HIGH SCORE - %d",highScore);
     
     progressInAchievement = NO;
     achievementIdentifier = nil;
     progressPercent = 0.0;
     GKAchievement *pointsAchievement = nil;
-
-        achievementIdentifier = @"Points_0";
-        progressPercent = highScore *  100/50;
-        pointsAchievement = [[GKAchievement alloc]initWithIdentifier:achievementIdentifier];
-        pointsAchievement.showsCompletionBanner = YES;
-        pointsAchievement.percentComplete = progressPercent;
-        [achievementsToReport addObject:pointsAchievement];
-
-        achievementIdentifier = @"Points_1";
-        progressPercent = highScore * 100 / 100;
-        pointsAchievement = [[GKAchievement alloc]initWithIdentifier:achievementIdentifier];
-        pointsAchievement.showsCompletionBanner = YES;
-        pointsAchievement.percentComplete = progressPercent;
-        [achievementsToReport addObject:pointsAchievement];
-
-        achievementIdentifier = @"Points_2";
-        progressPercent = highScore * 100 / 200;
-        pointsAchievement = [[GKAchievement alloc]initWithIdentifier:achievementIdentifier];
-        pointsAchievement.showsCompletionBanner = YES;
-        pointsAchievement.percentComplete = progressPercent;
-        [achievementsToReport addObject:pointsAchievement];
-
-        achievementIdentifier = @"Points_3";
-        progressPercent = highScore * 100 / 300;
-        pointsAchievement = [[GKAchievement alloc]initWithIdentifier:achievementIdentifier];
-        pointsAchievement.showsCompletionBanner = YES;
-        pointsAchievement.percentComplete = progressPercent;
-        [achievementsToReport addObject:pointsAchievement];
-
-        achievementIdentifier = @"Points_4";
-        progressPercent = highScore * 100 / 400;
-        pointsAchievement = [[GKAchievement alloc]initWithIdentifier:achievementIdentifier];
-        pointsAchievement.showsCompletionBanner = YES;
-        pointsAchievement.percentComplete = progressPercent;
-        [achievementsToReport addObject:pointsAchievement];
-
-        achievementIdentifier = @"Points_5";
-        progressPercent = highScore * 100 / 500;
-        pointsAchievement = [[GKAchievement alloc]initWithIdentifier:achievementIdentifier];
-        pointsAchievement.showsCompletionBanner = YES;
-        pointsAchievement.percentComplete = progressPercent;
-        [achievementsToReport addObject:pointsAchievement];
-
+    
+    achievementIdentifier = @"Points_0";
+    progressPercent = highScore *  100/50;
+    pointsAchievement = [[GKAchievement alloc]initWithIdentifier:achievementIdentifier];
+    pointsAchievement.showsCompletionBanner = YES;
+    pointsAchievement.percentComplete = progressPercent;
+    [achievementsToReport addObject:pointsAchievement];
+    
+    achievementIdentifier = @"Points_1";
+    progressPercent = highScore * 100 / 100;
+    pointsAchievement = [[GKAchievement alloc]initWithIdentifier:achievementIdentifier];
+    pointsAchievement.showsCompletionBanner = YES;
+    pointsAchievement.percentComplete = progressPercent;
+    [achievementsToReport addObject:pointsAchievement];
+    
+    achievementIdentifier = @"Points_2";
+    progressPercent = highScore * 100 / 200;
+    pointsAchievement = [[GKAchievement alloc]initWithIdentifier:achievementIdentifier];
+    pointsAchievement.showsCompletionBanner = YES;
+    pointsAchievement.percentComplete = progressPercent;
+    [achievementsToReport addObject:pointsAchievement];
+    
+    achievementIdentifier = @"Points_3";
+    progressPercent = highScore * 100 / 300;
+    pointsAchievement = [[GKAchievement alloc]initWithIdentifier:achievementIdentifier];
+    pointsAchievement.showsCompletionBanner = YES;
+    pointsAchievement.percentComplete = progressPercent;
+    [achievementsToReport addObject:pointsAchievement];
+    
+    achievementIdentifier = @"Points_4";
+    progressPercent = highScore * 100 / 400;
+    pointsAchievement = [[GKAchievement alloc]initWithIdentifier:achievementIdentifier];
+    pointsAchievement.showsCompletionBanner = YES;
+    pointsAchievement.percentComplete = progressPercent;
+    [achievementsToReport addObject:pointsAchievement];
+    
+    achievementIdentifier = @"Points_5";
+    progressPercent = highScore * 100 / 500;
+    pointsAchievement = [[GKAchievement alloc]initWithIdentifier:achievementIdentifier];
+    pointsAchievement.showsCompletionBanner = YES;
+    pointsAchievement.percentComplete = progressPercent;
+    [achievementsToReport addObject:pointsAchievement];
+    
     
     if (achievementIdentifier) {
         
@@ -466,6 +464,64 @@
         [achievementsToReport addObject:pointsAchievement];
     }
 
+    
+    int totalDots = greenNumber + yellowNumber + blueNumber;
+    NSLog(@"Total Dots - %d",totalDots);
+    
+    progressInAchievement = NO;
+    achievementIdentifier = nil;
+    progressPercent = 0.0;
+    GKAchievement *totalDotsAchievement = nil;
+    
+    achievementIdentifier = @"Tap_0";
+    progressPercent = totalDots *  100/500;
+    totalDotsAchievement = [[GKAchievement alloc]initWithIdentifier:achievementIdentifier];
+    totalDotsAchievement.showsCompletionBanner = YES;
+    totalDotsAchievement.percentComplete = progressPercent;
+    [achievementsToReport addObject:totalDotsAchievement];
+    
+    achievementIdentifier = @"Tap_1";
+    progressPercent = totalDots * 100 / 2000;
+    totalDotsAchievement = [[GKAchievement alloc]initWithIdentifier:achievementIdentifier];
+    totalDotsAchievement.showsCompletionBanner = YES;
+    totalDotsAchievement.percentComplete = progressPercent;
+    [achievementsToReport addObject:totalDotsAchievement];
+    
+    achievementIdentifier = @"Tap_2";
+    progressPercent = totalDots * 100 / 5000;
+    totalDotsAchievement = [[GKAchievement alloc]initWithIdentifier:achievementIdentifier];
+    totalDotsAchievement.showsCompletionBanner = YES;
+    totalDotsAchievement.percentComplete = progressPercent;
+    [achievementsToReport addObject:totalDotsAchievement];
+    
+    achievementIdentifier = @"Tap_3";
+    progressPercent = totalDots * 100 / 10000;
+    totalDotsAchievement = [[GKAchievement alloc]initWithIdentifier:achievementIdentifier];
+    totalDotsAchievement.showsCompletionBanner = YES;
+    totalDotsAchievement.percentComplete = progressPercent;
+    [achievementsToReport addObject:totalDotsAchievement];
+    
+    achievementIdentifier = @"Tap_4";
+    progressPercent = totalDots * 100 / 50000;
+    totalDotsAchievement = [[GKAchievement alloc]initWithIdentifier:achievementIdentifier];
+    totalDotsAchievement.showsCompletionBanner = YES;
+    totalDotsAchievement.percentComplete = progressPercent;
+    [achievementsToReport addObject:totalDotsAchievement];
+    
+    
+    
+    if (achievementIdentifier) {
+        
+        if (progressInAchievement) {
+            totalDotsAchievement.percentComplete = progressPercent;
+        }
+        totalDotsAchievement.showsCompletionBanner = YES;
+        
+        [achievementsToReport addObject:totalDotsAchievement];
+    }
+    
+    
+    
     
     /*
      if (_currentAdditionCounter == 0) {
