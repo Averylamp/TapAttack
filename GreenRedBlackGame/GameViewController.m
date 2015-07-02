@@ -49,6 +49,7 @@
     [super viewDidLoad];
     [self startGameCenter];
     [self menu:nil];
+
     //[self settupMenu];
     
 }

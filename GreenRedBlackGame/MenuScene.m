@@ -114,6 +114,46 @@
     titleLabel.font = [UIFont fontWithName:@"Panton-Black" size:40];
     [self.instructionsView addSubview: titleLabel];
     
+    UILabel *greenInstructions = [[UILabel alloc]initWithFrame:CGRectMake(0, 90, instructionsView.frame.size.width - 7, 40)];
+    greenInstructions.text = @"Tap all Green dots";
+    greenInstructions.font = [UIFont fontWithName:@"Panton-Light" size:28];
+    greenInstructions.textAlignment = NSTextAlignmentRight;
+    [self.instructionsView addSubview:greenInstructions];
+    UIView *green = [[UIView alloc]initWithFrame:CGRectMake(5, 90, 40, 40)];
+    green.layer.cornerRadius = 20;
+    green.backgroundColor = [UIColor greenColor];
+    [self.instructionsView addSubview:green];
+
+    UILabel *redInstructions = [[UILabel alloc]initWithFrame:CGRectMake(0, 150, instructionsView.frame.size.width - 7, 40)];
+    redInstructions.text = @"Don't tap Red dots";
+    redInstructions.font = [UIFont fontWithName:@"Panton-Light" size:28];
+    redInstructions.textAlignment = NSTextAlignmentRight;
+    [self.instructionsView addSubview:redInstructions];
+    UIView *red = [[UIView alloc]initWithFrame:CGRectMake(5, 150, 40, 40)];
+    red.layer.cornerRadius = 20;
+    red.backgroundColor = [UIColor redColor];
+    [self.instructionsView addSubview:red];
+    
+    UILabel *yellowInstructions = [[UILabel alloc]initWithFrame:CGRectMake(0, 210, instructionsView.frame.size.width - 7, 40)];
+    yellowInstructions.text = @"Yellow = Extra points";
+    yellowInstructions.font = [UIFont fontWithName:@"Panton-Light" size:26];
+    yellowInstructions.textAlignment = NSTextAlignmentRight;
+    [self.instructionsView addSubview:yellowInstructions];
+    UIView *yellow = [[UIView alloc]initWithFrame:CGRectMake(5, 210, 40, 40)];
+    yellow.layer.cornerRadius = 20;
+    yellow.backgroundColor = [UIColor colorWithRed:1.0f green:180.0/255.0 blue:0.0f alpha:1.0f];
+    [self.instructionsView addSubview:yellow];
+    
+    UILabel *doubleInstructions = [[UILabel alloc]initWithFrame:CGRectMake(0, 270, instructionsView.frame.size.width - 7, 40)];
+    doubleInstructions.text = @"Double all Points";
+    doubleInstructions.font = [UIFont fontWithName:@"Panton-Light" size:28];
+    doubleInstructions.textAlignment = NSTextAlignmentRight;
+    [self.instructionsView addSubview:doubleInstructions];
+    UIImageView *doublePoints = [[UIImageView alloc]initWithFrame:CGRectMake(5, 270, 40, 40)];
+    doublePoints.image = [UIImage imageNamed:@"Times2PowerUp"];
+    doublePoints.contentMode = UIViewContentModeScaleAspectFill;
+    [self.instructionsView addSubview:doublePoints];
+    
     
 }
 
