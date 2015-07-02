@@ -339,19 +339,19 @@
         progressInAchievement = YES;
     }else if (yellowNumber <= 10){
         achievementIdentifier = @"Yellow_1";
-        progressPercent = playNumber * 100 / 10;
+        progressPercent = yellowNumber * 100 / 10;
         progressInAchievement = YES;
     }else if (yellowNumber <= 25){
         achievementIdentifier = @"Yellow_2";
-        progressPercent = playNumber * 100 / 25;
+        progressPercent = yellowNumber * 100 / 25;
         progressInAchievement = YES;
     }else if (yellowNumber <= 100){
         achievementIdentifier = @"Yellow_3";
-        progressPercent = playNumber * 100 / 100;
+        progressPercent = yellowNumber * 100 / 100;
         progressInAchievement = YES;
     }else if (yellowNumber <= 1000){
         achievementIdentifier = @"Yellow_4";
-        progressPercent = playNumber * 100 / 1000;
+        progressPercent = yellowNumber * 100 / 1000;
         progressInAchievement = YES;
     }
     
@@ -379,19 +379,19 @@
         progressInAchievement = YES;
     }else if (blueNumber <= 10){
         achievementIdentifier = @"Blue_1";
-        progressPercent = playNumber * 100 / 10;
+        progressPercent = blueNumber * 100 / 10;
         progressInAchievement = YES;
     }else if (blueNumber <= 25){
         achievementIdentifier = @"Blue_2";
-        progressPercent = playNumber * 100 / 25;
+        progressPercent = blueNumber * 100 / 25;
         progressInAchievement = YES;
     }else if (blueNumber <= 100){
         achievementIdentifier = @"Blue_3";
-        progressPercent = playNumber * 100 / 100;
+        progressPercent = blueNumber * 100 / 100;
         progressInAchievement = YES;
     }else if (blueNumber <= 1000){
         achievementIdentifier = @"Blue_4";
-        progressPercent = playNumber * 100 / 1000;
+        progressPercent = blueNumber * 100 / 1000;
         progressInAchievement = YES;
     }
     
