@@ -57,19 +57,50 @@
     playButton.name = @"playButton";
     self.playButton = playButton;
     [self addChild:playButton];
+    
+    SKLabelNode *instructionsLabel = [[SKLabelNode alloc]initWithFontNamed:@"Panton-Light"];
+    instructionsLabel.text = @"Instructions";
+    instructionsLabel.name = @"Instructions";
+    instructionsLabel.fontSize = 50;
+    instructionsLabel.fontColor = [UIColor blackColor];
+    instructionsLabel.position = CGPointMake(self.screenSize.width/2, 60);
+    [self addChild:instructionsLabel];
+    
+    NSString *burstPath =
+    [[NSBundle mainBundle] pathForResource:@"GreenParticle" ofType:@"sks"];
+    
+    SKEmitterNode *burstEmitter =
+    [NSKeyedUnarchiver unarchiveObjectWithFile:burstPath];
+    
+    burstEmitter.position = CGPointMake(self.screenSize.width / 2, self.screenSize.height/3);
+    
+    burstEmitter.zPosition = -1;
+    [self addChild:burstEmitter];
+    
+    burstPath = [[NSBundle mainBundle] pathForResource:@"RedParticle" ofType:@"sks"];
+    
+    SKEmitterNode *redEmitter =
+    [NSKeyedUnarchiver unarchiveObjectWithFile:burstPath];
+    
+    redEmitter.position = CGPointMake(self.screenSize.width / 2, self.screenSize.height/3);
+
+    redEmitter.zPosition = -1;
+    [self addChild:redEmitter];
+    
+    
     //NSLog(@"HERE");
     
-    SKSpriteNode *sprite = [[SKSpriteNode alloc]initWithImageNamed:@"SealFace"];
-    sprite.position = CGPointMake(self.screenSize.width/2,self.screenSize.height/2);
-    sprite.size = CGSizeMake(140, 140);
-    //[self addChild:sprite];
-    SKLabelNode *takePhoto;
-    takePhoto = [[SKLabelNode alloc] initWithFontNamed:@"Futura-CondensedMedium"];
-    takePhoto.name = @"TakePhotoButton";
-    takePhoto.fontSize = 55.0;
-    takePhoto.text = @"Add your own circles";
-    takePhoto.position = CGPointMake(self.screenSize.width/2,40);
-    takePhoto.fontColor = [SKColor blackColor];
+//    SKSpriteNode *sprite = [[SKSpriteNode alloc]initWithImageNamed:@"SealFace"];
+//    sprite.position = CGPointMake(self.screenSize.width/2,self.screenSize.height/2);
+//    sprite.size = CGSizeMake(140, 140);
+//    //[self addChild:sprite];
+//    SKLabelNode *takePhoto;
+//    takePhoto = [[SKLabelNode alloc] initWithFontNamed:@"Futura-CondensedMedium"];
+//    takePhoto.name = @"TakePhotoButton";
+//    takePhoto.fontSize = 55.0;
+//    takePhoto.text = @"Add your own circles";
+//    takePhoto.position = CGPointMake(self.screenSize.width/2,40);
+//    takePhoto.fontColor = [SKColor blackColor];
     //[self addChild:takePhoto];
     
     //[self settupAllSpriteNodes];
@@ -81,7 +112,7 @@
 
     if (firstUse) {
         NSLog(@"Setting Queue");
-        int64_t delayInSeconds = 2.0;
+        int64_t delayInSeconds = 1.0;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
             NSLog(@"Setup instructions");
@@ -159,7 +190,7 @@
 
 -(void) exitInstructionsPressed{
     [self.instructionsView removeFromSuperview];
-    
+    self.instructionsView = nil;
     
 }
 
@@ -173,6 +204,13 @@
     if([node.name isEqualToString:@"playButton"]){
         SKSpriteNode *playButton = (SKSpriteNode *)node;
         [playButton runAction: [SKAction scaleTo:2.8 * screenScale / 2 duration:0.15]];
+    }
+    if([node.name isEqualToString:@"Instructions"]){
+        if (!self.instructionsView) {
+            [self setupInstructions];
+
+        }
+        
     }
     if([node.name isEqualToString:@"TakePhotoButton"]){
         [self performSelector:@selector(takePhoto) withObject:nil afterDelay:0.3];

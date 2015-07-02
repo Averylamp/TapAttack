@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		BB0B2C141A57133000AC7D50 /* GlassBreaking.m4a in Resources */ = {isa = PBXBuildFile; fileRef = BB0B2C131A57133000AC7D50 /* GlassBreaking.m4a */; };
+		BB0EF3FC1B44EEB600C6AAD5 /* RedParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = BB0EF3FB1B44EEB600C6AAD5 /* RedParticle.sks */; };
+		BB26681B1B44EA84006AFBBE /* GreenParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = BB2668191B44EA84006AFBBE /* GreenParticle.sks */; };
+		BB26681C1B44EA84006AFBBE /* bokeh.png in Resources */ = {isa = PBXBuildFile; fileRef = BB26681A1B44EA84006AFBBE /* bokeh.png */; };
 		BB2B99101A609530000E0797 /* UIImage+Mask.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2B990E1A609530000E0797 /* UIImage+Mask.m */; };
 		BB2B99141A60DBBA000E0797 /* 25_mask.png in Resources */ = {isa = PBXBuildFile; fileRef = BB2B99131A60DBBA000E0797 /* 25_mask.png */; };
 		BB2F652B1A4F3FEE00E4AD79 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2F652A1A4F3FEE00E4AD79 /* main.m */; };
@@ -55,6 +58,9 @@
 
 /* Begin PBXFileReference section */
 		BB0B2C131A57133000AC7D50 /* GlassBreaking.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = GlassBreaking.m4a; sourceTree = "<group>"; };
+		BB0EF3FB1B44EEB600C6AAD5 /* RedParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = RedParticle.sks; sourceTree = "<group>"; };
+		BB2668191B44EA84006AFBBE /* GreenParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GreenParticle.sks; sourceTree = "<group>"; };
+		BB26681A1B44EA84006AFBBE /* bokeh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bokeh.png; sourceTree = "<group>"; };
 		BB2B990D1A609530000E0797 /* UIImage+Mask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Mask.h"; sourceTree = "<group>"; };
 		BB2B990E1A609530000E0797 /* UIImage+Mask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Mask.m"; sourceTree = "<group>"; };
 		BB2B99131A60DBBA000E0797 /* 25_mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 25_mask.png; path = ../25_mask.png; sourceTree = "<group>"; };
@@ -161,6 +167,9 @@
 				BB2F65351A4F3FEE00E4AD79 /* GameViewController.m */,
 				BB56127B1A56427C00897598 /* MenuScene.h */,
 				BB56127C1A56427C00897598 /* MenuScene.m */,
+				BB2668191B44EA84006AFBBE /* GreenParticle.sks */,
+				BB0EF3FB1B44EEB600C6AAD5 /* RedParticle.sks */,
+				BB26681A1B44EA84006AFBBE /* bokeh.png */,
 				BB5612751A560DDE00897598 /* MenuScene.sks */,
 				BB41C5931A5654C4009280DA /* LoseScene.h */,
 				BB41C5941A5654C4009280DA /* LoseScene.m */,
@@ -328,6 +337,7 @@
 				BB41C5921A565480009280DA /* LoseScene.sks in Resources */,
 				BBE0DF411A57932E00CDDABA /* Powerup20.wav in Resources */,
 				BB630F481B42420E00E83319 /* Panton-Heavy.otf in Resources */,
+				BB26681C1B44EA84006AFBBE /* bokeh.png in Resources */,
 				BB2B99141A60DBBA000E0797 /* 25_mask.png in Resources */,
 				BB630F471B42420E00E83319 /* Panton-ExtraLight.otf in Resources */,
 				BBE0DF3D1A578A9900CDDABA /* partnersinrhyme_CLICK13A.mp3 in Resources */,
@@ -338,8 +348,10 @@
 				BB2F65331A4F3FEE00E4AD79 /* GameScene.sks in Resources */,
 				BB5612761A560DDE00897598 /* MenuScene.sks in Resources */,
 				BB0B2C141A57133000AC7D50 /* GlassBreaking.m4a in Resources */,
+				BB26681B1B44EA84006AFBBE /* GreenParticle.sks in Resources */,
 				BB630F451B42420E00E83319 /* Panton-Bold.otf in Resources */,
 				BB2F65391A4F3FEE00E4AD79 /* Main.storyboard in Resources */,
+				BB0EF3FC1B44EEB600C6AAD5 /* RedParticle.sks in Resources */,
 				BB630F4B1B42420E00E83319 /* Panton-SemiBold.otf in Resources */,
 				BB630F461B42420E00E83319 /* Panton-ExtraBold.otf in Resources */,
 			);

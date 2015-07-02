@@ -258,6 +258,9 @@
 }
 
 -(void)reportScore: (int)scoreInpt{
+    if (!_leaderboardIdentifier) {
+        return;
+    }
     
     GKScore *score = [[GKScore alloc] initWithLeaderboardIdentifier:_leaderboardIdentifier];
     score.value = scoreInpt;
