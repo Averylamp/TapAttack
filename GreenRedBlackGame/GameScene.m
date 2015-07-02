@@ -36,6 +36,7 @@
 @property BOOL doubleActivated;
 @property BOOL colorSwitching;
 @property double timeToSwitchColor;
+@property SKShapeNode *doubleBar;
 
 @property double timeToDeactivateDouble;
 
@@ -505,15 +506,29 @@ static double const savedImageMultiplier = 4.0/3.0;
     }
     double caTime = CACurrentMediaTime();
     
-    if (caTime > self.timeToSwitchColor || (self.doubleActivated &&  self.colorSwitchTime/ 40 < self.timeToSwitchColor - caTime)) {
+    if (caTime > self.timeToSwitchColor || (self.doubleActivated &&  self.colorSwitchTime/ 15 < self.timeToSwitchColor - caTime)) {
         self.colorSwitching = true;
         if (self.doubleActivated) {
-            [UIView animateWithDuration:self.colorSwitchTime / 20 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            if (!self.doubleBar) {
+                self.doubleBar = [SKShapeNode node];
+                self.doubleBar.path = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, 1, 25)].CGPath;
+                self.doubleBar.fillColor = [UIColor colorWithRed:0.188f green:0.639f blue:0.988f alpha:1.00f];
+                self.doubleBar.strokeColor = [UIColor colorWithRed:0.188f green:0.639f blue:0.988f alpha:1.00f];
+                self.doubleBar.xScale = 0;
+                [self addChild:self.doubleBar];
+            }
+            if (self.doubleBar.xScale == 0) {
+                self.doubleBar.xScale = self.size.width / 2 * 1.4;
+                SKAction *shrinkBar = [SKAction scaleXTo:0 duration:10.4];
+                shrinkBar.timingFunction = SKActionTimingLinear;
+                [self.doubleBar runAction:shrinkBar];
+            }
+            [UIView animateWithDuration:self.colorSwitchTime / 15 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 [self  setBackgroundColor:[self.colorArray objectAtIndex:arc4random() % self.colorArray.count]];
             } completion:^(BOOL finished) {
                 
             }];
-            self.timeToSwitchColor = caTime+ self.colorSwitchTime/20;
+            self.timeToSwitchColor = caTime+ self.colorSwitchTime / 15;
         }else{
             [UIView animateWithDuration:self.colorSwitchTime delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
                 self.backgroundColor = [self.colorArray objectAtIndex:arc4random() % self.colorArray.count];

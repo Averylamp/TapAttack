@@ -229,7 +229,7 @@
 
 -(void)authenticateLocalPlayer{
     GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
-    
+    self.gameCenterEnabled = NO;
     localPlayer.authenticateHandler = ^(UIViewController *viewController, NSError *error){
         if (viewController != nil) {
             [self presentViewController:viewController animated:YES completion:nil];
@@ -246,6 +246,7 @@
                     }
                     else{
                         self.leaderboardIdentifier = leaderboardIdentifier;
+                        self.gameCenterEnabled = YES;
                     }
                 }];
             }
