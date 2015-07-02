@@ -108,6 +108,8 @@
     BOOL firstUse = YES;
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"firstUse"]) {
         firstUse = ((NSNumber*)[[NSUserDefaults standardUserDefaults] objectForKey:@"firstUse"]).boolValue;
+    }else{
+        [[NSUserDefaults standardUserDefaults]setObject:[NSNumber numberWithBool:NO] forKey:@"firstUse"];
     }
 
     if (firstUse) {

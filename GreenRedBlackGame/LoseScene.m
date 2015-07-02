@@ -181,7 +181,7 @@
         [self.againLabel runAction:shrinkl];
     }if(![node.name isEqualToString:@"Game Center"]){
         [self.shareBackground runAction:shrinkb];
-        [self.shareBackground runAction:shrinkl];
+        [self.shareLabel runAction:shrinkl];
     }
 }
 
