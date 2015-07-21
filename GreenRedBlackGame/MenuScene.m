@@ -178,7 +178,7 @@
     [self.instructionsView addSubview:yellowInstructions];
     UIView *yellow = [[UIView alloc]initWithFrame:CGRectMake(5, 210, 40, 40)];
     yellow.layer.cornerRadius = 20;
-    yellow.backgroundColor = [UIColor colorWithRed:1.0f green:180.0/255.0 blue:0.0f alpha:1.0f];
+    yellow.backgroundColor = [UIColor colorWithRed:1.0f green:253/255.0 blue: 56/255.0 alpha:1.0f];
     [self.instructionsView addSubview:yellow];
     
     UILabel *doubleInstructions = [[UILabel alloc]initWithFrame:CGRectMake(0, 270, instructionsView.frame.size.width - 7, 40)];
@@ -431,7 +431,7 @@
         node.name = @"Green Back Circle";
         ((SKShapeNode*)node).path = [UIBezierPath bezierPathWithOvalInRect:circle].CGPath;
         ((SKShapeNode*)node).fillColor = SKColor.greenColor;
-        ((SKShapeNode*)node).strokeColor = nil;
+        ((SKShapeNode*)node).strokeColor = [UIColor clearColor];
         node.position = CGPointZero;
         ((SKShapeNode*)node).xScale=1.0;
         ((SKShapeNode*)node).yScale=1.0;
@@ -450,7 +450,7 @@
         node.name = @"Red Back Circle";
         ((SKShapeNode*)node).path = [UIBezierPath bezierPathWithOvalInRect:circle].CGPath;
         ((SKShapeNode*)node).fillColor = SKColor.redColor;
-        ((SKShapeNode*)node).strokeColor = nil;
+        ((SKShapeNode*)node).strokeColor = [UIColor clearColor];
         node.position = CGPointZero;
         ((SKShapeNode*)node).xScale=1.0;
         ((SKShapeNode*)node).yScale=1.0;
