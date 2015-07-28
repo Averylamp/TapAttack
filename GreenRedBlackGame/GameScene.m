@@ -63,7 +63,7 @@ static double const savedImageMultiplier = 4.0/3.0;
     soundURL = [NSURL fileURLWithPath:soundFilePath];
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundURL, &_goldenClickSound);
     
-    soundFilePath = [[NSBundle mainBundle] pathForResource:@"Powerup3" ofType:@"wav"];
+    soundFilePath = [[NSBundle mainBundle] pathForResource:@"PowerUp2xSound" ofType:@"wav"];
     soundURL = [NSURL fileURLWithPath:soundFilePath];
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)soundURL, &_blueClickSound);
     
