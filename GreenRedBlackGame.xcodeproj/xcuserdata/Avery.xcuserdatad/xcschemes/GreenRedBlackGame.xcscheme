@@ -110,6 +110,7 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
+      customArchiveName = "Tap Attack!!"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>
